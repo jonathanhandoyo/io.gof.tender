@@ -17,7 +17,7 @@ import java.util.Date;
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class BaseEntity {
+public abstract class BaseEntity {
     @GraphId
     private Long id;
 

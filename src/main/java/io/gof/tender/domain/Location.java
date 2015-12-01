@@ -1,9 +1,11 @@
 package io.gof.tender.domain;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.util.Map;
@@ -11,6 +13,7 @@ import java.util.Map;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Location {
     private Result[] results;
     private String status;
@@ -18,6 +21,7 @@ public class Location {
     @Getter
     @Setter
     @NoArgsConstructor
+    @AllArgsConstructor
     public static class Result {
         private AddressComponent[] address_components;
         private String formatted_address;
@@ -29,6 +33,7 @@ public class Location {
         @Getter
         @Setter
         @NoArgsConstructor
+        @AllArgsConstructor
         public static class AddressComponent {
             private String long_name;
             private String short_name;
@@ -38,6 +43,7 @@ public class Location {
         @Getter
         @Setter
         @NoArgsConstructor
+        @AllArgsConstructor
         public static class Geometry {
             private Map<String, Map<String, Double>> bounds;
             private Map<String, Double> location;
@@ -48,7 +54,7 @@ public class Location {
 
     public static Location fromJson(String json) {
         try {
-            return new ObjectMapper().readerFor(Location.class).readValue(json);
+            return StringUtils.isNotBlank(json) ? new ObjectMapper().readerFor(Location.class).readValue(json) : null;
         } catch (IOException e) {
             return null;
         }
