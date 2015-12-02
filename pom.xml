@@ -198,7 +198,7 @@
 
     <build>
         <finalName>io.gof.tender</finalName>
-        <outputDirectory>/target</outputDirectory>
+        <outputDirectory>target/</outputDirectory>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
