@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar  target/io.gof.tender-1.0-SNAPSHOT.jar
+web: java -Dserver.port=$PORT -jar  /app/tmp/cache/.m2/repository/io/gof/tender/1.0-SNAPSHOT/tender-1.0-SNAPSHOT.jar
