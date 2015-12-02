@@ -93,7 +93,7 @@ public class Project extends BaseEntity {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Requirement {
-        private Permit permit;
+        private Permit[] permits;
         private String[] items;
 
         @Getter

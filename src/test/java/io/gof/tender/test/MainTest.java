@@ -8,6 +8,8 @@ import io.gof.tender.repository.BidRepository;
 import io.gof.tender.repository.ProjectRepository;
 import io.gof.tender.repository.RepresentativeRepository;
 import io.gof.tender.repository.VendorRepository;
+import io.gof.tender.util.CustomMap;
+import org.apache.commons.lang3.tuple.Pair;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -21,6 +23,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static io.gof.tender.util.CustomMap.map;
+import static org.apache.commons.lang3.tuple.Pair.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -70,13 +75,23 @@ public class MainTest {
                     ),
                     "budget reference",
                     "business qualification",
-                    map,
+                    map(
+                            of("weight one", 10D),
+                            of("weight two", 30D),
+                            of("weight three", 60D)
+                    ),
                     null,
                     new Project.Requirement(
-                            new Project.Requirement.Permit(
-                                    "project requirement permit type",
-                                    "project requirement permit classification"
-                            ),
+                            new Project.Requirement.Permit[]{
+                                    new Project.Requirement.Permit(
+                                            "project requirement permit type 1",
+                                            "project requirement permit classification 1"
+                                    ),
+                                    new Project.Requirement.Permit(
+                                            "project requirement permit type 2",
+                                            "project requirement permit classification 2"
+                                    )
+                            },
                             new String[] {
                                     "project requirement item 1",
                                     "project requirement item 2"
