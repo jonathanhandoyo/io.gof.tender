@@ -7,7 +7,7 @@
     <groupId>io.gof</groupId>
     <artifactId>tender</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <!--<packaging>war</packaging>-->
 
     <name>tender</name>
     <description>Project Tender Monitoring</description>
@@ -198,7 +198,7 @@
 
     <build>
         <finalName>io.gof.tender</finalName>
-        <outputDirectory>target/</outputDirectory>
+        <!--<outputDirectory>target/</outputDirectory>-->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
