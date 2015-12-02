@@ -5,10 +5,10 @@ var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', 'ngCacheBus
 
         //['ngCacheBuster'] Cache everything except rest api requests
         //TODO setup matchlist
-        httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*api.*/, /.*protected.*/], true);
+        //httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*api.*/, /.*protected.*/], true);
 
         // For any unmatched url, redirect to '/'
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/404');
 
         $stateProvider.state('site', {
             'abstract': true,
@@ -29,13 +29,51 @@ var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', 'ngCacheBus
                 authorities: []
             },
             views: {
-                'home@': {
+                'content@': {
                     templateUrl: 'components/home.html',
                     controller: 'HomeController'
                 }
             },
             resolve: {
 
+            }
+        }).state('projects', {
+            parent: 'site',
+            url: '/projects',
+            data: {
+                authorities: []
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'components/project-list.html',
+                    controller: 'ProjectListController'
+                }
+            },
+            resolve: {
+
+            }
+        }).state('project', {
+            parent: 'site',
+            url: '/project/:projectId',
+            data: {
+                authorities: []
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'components/project.html',
+                    controller: 'ProjectController'
+                }
+            },
+            resolve: {
+
+            }
+        }).state('404', {
+            parent: 'site',
+            url: '/404',
+            views: {
+                'content@': {
+                    templateUrl: '404.html'
+                }
             }
         });
 

@@ -62,6 +62,10 @@ hr{
 
 }
 
+th {
+    vertical-align: middle !important;
+}
+
 :focus {
     outline:none;
 }

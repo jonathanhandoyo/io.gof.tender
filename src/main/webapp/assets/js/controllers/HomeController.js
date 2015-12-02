@@ -3,6 +3,9 @@
 angular.module('mainApp')
     .controller('HomeController', function ($scope) {
 
+        $scope.$parent.pageTitle = 'Home';
+        $scope.$parent.pageIcon = 'fa-home';
+
         /* ****************************************** */
         /* Knob Examples */
         /* ****************************************** */
@@ -78,6 +81,7 @@ angular.module('mainApp')
         /* ****************************************** */
         $scope.projects = [
             {
+                id: 'PRJ01',
                 name: 'Hospital Management System',
                 dueDate: '26/2/2012',
                 completeness: 80,
@@ -85,6 +89,7 @@ angular.module('mainApp')
                 icon: 'fa-hospital-o'
             },
             {
+                id: 'PRJ02',
                 name: 'School Download System',
                 dueDate: '26/2/2012',
                 completeness: 40,
@@ -92,6 +97,7 @@ angular.module('mainApp')
                 icon: 'fa-university'
             },
             {
+                id: 'PRJ03',
                 name: 'Question and Answers Script',
                 dueDate: '26/2/2012',
                 completeness: 95,
@@ -99,6 +105,7 @@ angular.module('mainApp')
                 icon: 'fa-globe'
             },
             {
+                id: 'PRJ04',
                 name: 'Software Downloads Script',
                 dueDate: '26/2/2012',
                 completeness: 100,
