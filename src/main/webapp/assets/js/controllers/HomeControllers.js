@@ -189,7 +189,7 @@ angular.module('mainApp')
                 contact: 'Contact of vendor 2',
                 admReq: false,
                 techReq: true,
-                score: '100',
+                score: '123',
                 remarks: 'Lorem ipsum dolor sit amet consiquest dio',
                 priceOri: '10,000,000',
                 priceAdj: '16,000,000'
