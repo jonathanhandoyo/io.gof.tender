@@ -187,22 +187,22 @@ angular.module('mainApp')
             {
                 name: 'Vendor 2',
                 contact: 'Contact of vendor 2',
-                admReq: true,
-                techReq: false,
+                admReq: false,
+                techReq: true,
                 score: '100',
                 remarks: 'Lorem ipsum dolor sit amet consiquest dio',
                 priceOri: '10,000,000',
-                priceAdj: '10,000,000'
+                priceAdj: '16,000,000'
             },
             {
                 name: 'Vendor 3',
                 contact: 'Contact of vendor 3',
                 admReq: true,
                 techReq: false,
-                score: '100',
+                score: '999',
                 remarks: 'Lorem ipsum dolor sit amet consiquest dio',
                 priceOri: '10,000,000',
-                priceAdj: '10,000,000'
+                priceAdj: '30,000,000'
             }
          ];
 

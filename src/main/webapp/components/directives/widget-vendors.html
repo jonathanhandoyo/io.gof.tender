@@ -31,8 +31,8 @@
                         <!-- Actions -->
                         <td>{{vendor.name}}</td>
                         <td>{{vendor.contact}}</td>
-                        <td>{{vendor.admReq}}</td>
-                        <td>{{vendor.techReq}}</td>
+                        <td><span><i ng-if="vendor.admReq" class="fa fa-check green"></i></span></i></td>
+                        <td><i ng-if="vendor.techReq" class="fa fa-check green"></i></td>
                         <td>{{vendor.score}}</td>
                         <td>{{vendor.remarks}}</td>
                         <td>{{vendor.priceOri}}</td>
