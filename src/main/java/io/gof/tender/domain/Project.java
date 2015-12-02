@@ -10,6 +10,7 @@ import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 import org.neo4j.ogm.annotation.typeconversion.Convert;
 
+import java.util.Map;
 import java.util.Set;
 
 @Getter
@@ -38,6 +39,9 @@ public class Project extends BaseEntity {
 
     private String budgetReference;
     private String businessQualification;
+
+    @Convert(MapConverter.class)
+    private Map<String, Double> weight;
 
     @Convert(LocationConverter.class)
     private Location location;
@@ -90,16 +94,16 @@ public class Project extends BaseEntity {
     @AllArgsConstructor
     public static class Requirement {
         private Permit permit;
-        private String[] item;
-    }
+        private String[] items;
 
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class Permit {
-        private String type;
-        private String classification;
+        @Getter
+        @Setter
+        @NoArgsConstructor
+        @AllArgsConstructor
+        public static class Permit {
+            private String type;
+            private String classification;
+        }
     }
 
     @Getter

@@ -19,6 +19,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @ContextConfiguration(classes = ApplicationConfiguration.class)
@@ -44,6 +47,10 @@ public class MainTest {
     @Test
     public void test1() throws Exception {
         try {
+            Map<String, Double> map = new HashMap<>();
+            map.put("one", 1d);
+            map.put("two", 2d);
+
             Project project = new Project(
                     "project name",
                     Project.Status.PENDING,
@@ -63,9 +70,10 @@ public class MainTest {
                     ),
                     "budget reference",
                     "business qualification",
+                    map,
                     null,
                     new Project.Requirement(
-                            new Project.Permit(
+                            new Project.Requirement.Permit(
                                     "project requirement permit type",
                                     "project requirement permit classification"
                             ),
@@ -80,6 +88,8 @@ public class MainTest {
             );
 
             project = this.projects.save(project);
+
+
             System.out.println(project);
         } catch (Exception exception) {
             LOG.error(exception.getMessage(), exception);
