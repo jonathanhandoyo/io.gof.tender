@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Title here -->
+		<title>Peyek</title>
+		<!-- Description, Keywords and Author -->
+		<meta name="description" content="Pemantau Proyek">
+		<meta name="keywords" content="proyek, project, proyek nasional, national project, indonesia">
+		<meta name="author" content="GoF">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- Styles -->
+		<!-- Bootstrap CSS -->
+		<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <!-- jQuery prettyPhoto -->
+        <link href="assets/css/prettyPhoto.css" rel="stylesheet">
+		<!-- jQuery gritter -->
+		<link href="assets/css/jquery.gritter.css" rel="stylesheet">
+		<!-- Font awesome CSS -->
+		<link href="assets/css/font-awesome.min.css" rel="stylesheet">
+		<!-- Custom Color CSS -->
+		<link href="assets/css/less-style.css" rel="stylesheet">
+		<!-- Custom CSS -->
+		<link href="assets/css/style.css" rel="stylesheet">
+
+        <!-- Timeline -->
+        <link href="assets/css/timeline.css" rel="stylesheet">
+
+        <!-- Main CSS -->
+        <style type="text/css">
+
+            th {
+                vertical-align: middle !important;
+            }
+
+        </style>
+
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="#">
+	</head>
+
+	<body ng-app="mainApp">
+
+		<div class="outer">
+
+			<!-- Sidebar starts -->
+            <div class="sidebar">
+                <div ui-view="sidebar" ng-cloak=""></div>
+            </div>
+			<!-- Sidebar ends -->
+
+			<!-- Mainbar starts -->
+            <div class="mainbar">
+
+                <div class="main-head">
+                    <div ui-view="header" ng-cloak=""></div>
+                </div>
+
+                <div class="main-content">
+                    <div ui-view="home" ng-cloak=""></div>
+                </div>
+
+            </div>
+			<!-- Mainbar ends -->
+
+			<div class="clearfix"></div>
+		</div>
+
+		<!-- Javascript files -->
+        <!--Modernizr-->
+        <script src="../bower_components/modernizr/modernizr.js"></script>
+
+	    <!-- jQuery -->
+		<script src="assets/js/jquery.js"></script>
+
+		<!-- Bootstrap JS -->
+		<script src="assets/js/bootstrap.min.js"></script>
+
+		<!-- jQuery UI -->
+        <script src="assets/js/jquery-ui.min.js"></script>
+        <!--<script src="../bower_components/jquery/dist/jquery.js"></script>-->
+
+        <!--AngularJS-->
+        <script src="assets/bower_components/angular/angular.js"></script>
+        <script src="assets/bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="assets/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="assets/bower_components/angular-cache-buster/angular-cache-buster.js"></script>
+        <script src="assets/bower_components/angular-aria/angular-aria.js"></script>
+
+		<!-- Date Time Picker JS -->
+		<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+
+		<!-- Bootstrap wysihtml5 JS -->
+		<script src="assets/js/wysihtml5-0.3.0.js"></script>
+		<script src="assets/js/prettify.js"></script>
+		<script src="assets/js/bootstrap-wysihtml5.min.js"></script>
+
+		<!-- jQuery flot -->
+		<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="assets/js/excanvas.min.js"></script><![endif]-->
+		<script src="assets/js/jquery.flot.min.js"></script>
+		<script src="assets/js/jquery.flot.stack.min.js"></script>
+		<script src="assets/js/jquery.flot.pie.min.js"></script>
+		<script src="assets/js/jquery.flot.resize.min.js"></script>
+
+		<!-- Validate JS -->
+		<script src="assets/js/jquery.validate.js"></script>
+		<!-- Form wizard steps  JS -->
+		<script src="assets/js/jquery.steps.min.js"></script>
+		<!-- jQuery Knob -->
+		<script src="assets/js/jquery.knob.js"></script>
+		<!-- jQuery Sparklines -->
+		<script src="assets/js/jquery.sparklines.js"></script>
+		<!-- jQuery slim scroll -->
+		<script src="assets/js/jquery.slimscroll.min.js"></script>
+		<!-- Data Tables JS -->
+		<script src="assets/js/jquery.dataTables.min.js"></script>
+		<!-- Pretty Photo JS -->
+		<script src="assets/js/jquery.prettyPhoto.js"></script>
+		<!-- Rate It JS -->
+		<script src="assets/js/jquery.rateit.min.js"></script>
+		<!-- Full calendar -->
+	    <script src="assets/js/moment.min.js"></script>
+	    <script src="assets/js/fullcalendar.min.js"></script>
+		<!-- jQuery gritter -->
+		<script src="assets/js/jquery.gritter.min.js"></script>
+		<!-- jQuery gritter notification -->
+		<script src="assets/js/custom.notification.js"></script>
+		<!-- Respond JS for IE8 -->
+		<script src="assets/js/respond.min.js"></script>
+		<!-- HTML5 Support for IE -->
+		<script src="assets/js/html5shiv.js"></script>
+
+        <!--Controllers/Services/Directives-->
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/services/alert.service.js"></script>
+        <script src="assets/js/directives/alert.directive.js"></script>
+        <script src="assets/js/directives/inputs.directive.js"></script>
+        <script src="assets/js/directives/decorations.directive.js"></script>
+        <script src="assets/js/directives/widgets.directive.js"></script>
+        <script src="assets/js/controllers/HeaderController.js"></script>
+        <script src="assets/js/controllers/SidebarController.js"></script>
+        <script src="assets/js/controllers/HomeControllers.js"></script>
+
+		<!-- Javascript for this page -->
+        <script type="text/javascript"></script>
+
+		<!-- Custom JS -->
+		<script src="assets/js/custom.js"></script>
+
+	</body>
+</html>

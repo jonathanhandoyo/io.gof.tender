@@ -16,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @ComponentScan(basePackages = {"io.gof.tender"})
 @EnableNeo4jRepositories(basePackages = "io.gof.tender.repository")
-@EnableWebMvc
+//@EnableWebMvc
 public class ApplicationConfiguration extends Neo4jConfiguration {
     private static final Logger LOG = LoggerFactory.getLogger(ApplicationConfiguration.class);
 

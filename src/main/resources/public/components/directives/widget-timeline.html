@@ -1,0 +1,38 @@
+<section class="panel">
+    <div class="panel-body">
+        <div class="text-center mbot30">
+            <h3 class="timeline-title">Timeline</h3>
+            <p class="t-info">{{title}}</p>
+        </div>
+
+        <div class="timeline">
+            <article ng-repeat="milestone in milestones track by $index" ng-class-odd="'timeline-item'" ng-class-even="'timeline-item alt'">
+                <div class="timeline-desk">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <span ng-class-odd="'arrow'" ng-class-even="'arrow-alt'"></span>
+                            <span class="timeline-icon blue"></span>
+                            <span class="timeline-date">{{milestone.date}}</span>
+                            <h1 class="blue">{{milestone.title}}</h1>
+                            <p ng-bind-html="milestone.content"></p>
+                            <div ng-if="milestone.highlights" class="clearfix">
+                                <div ng-repeat="highlight in milestone.highlights" class="notification">
+                                    <i class=" fa fa-exclamation-sign"></i> <span ng-bind-html="highlight.text"></span>
+                                </div>
+                            </div>
+                            <div class="clearfix">
+                                <div ng-if="milestone.album && milestone.album.items" class="album">
+                                    <a ng-repeat="item in milestone.album.items track by $index" ng-href="{{item.src}}" class="prettyphoto">
+                                        <img alt="" src="{{item.thumb}}" class="img-responsive" after-render="afterImageRendered">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div class="clearfix">&nbsp;</div>
+    </div>
+</section>

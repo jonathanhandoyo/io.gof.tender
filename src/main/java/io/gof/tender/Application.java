@@ -1,18 +1,29 @@
 package io.gof.tender;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.core.env.Environment;
+
+import java.net.InetAddress;
 
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {
+
+    private static final Logger log = LoggerFactory.getLogger(Application.class);
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(Application.class);
     }
 
-    public static void main(String[] args) {
-        new Application().configure(new SpringApplicationBuilder(Application.class)).run(args);
+    public static void main(String[] args) throws Exception {
+        SpringApplicationBuilder app = new Application().configure(new SpringApplicationBuilder(Application.class));
+        Environment env = app.run(args).getEnvironment();
+        log.info("Access URLs:\n----------------------------------------------------------\n\t" +
+                "External: \thttp://{}:{}\n----------------------------------------------------------"
+                ,InetAddress.getLocalHost().getHostAddress(), env.getProperty("server.port"));
     }
 }

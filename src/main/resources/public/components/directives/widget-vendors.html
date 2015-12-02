@@ -1,0 +1,66 @@
+<div class="widget pages-widget">
+
+    <div class="widget-head br-red">
+        <h3><i class="fa fa-users"></i> Bidding Vendors</h3>
+    </div>
+
+    <div class="widget-body no-padd">
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <!-- Table heading -->
+                <thead>
+                    <tr>
+                        <th rowspan="2">Name</th>
+                        <th rowspan="2">Contact</th>
+                        <th colspan="2">Requirements Completeness</th>
+                        <th rowspan="2">Score</th>
+                        <th rowspan="2">Remarks</th>
+                        <th colspan="2">Price</th>
+                        <th rowspan="2"></th>
+                    </tr>
+                    <tr>
+                        <th>Administrative</th>
+                        <th>Technical</th>
+                        <th>Original</th>
+                        <th>Adjusted</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="vendor in vendors track by $index">
+                        <!-- Actions -->
+                        <td>{{vendor.name}}</td>
+                        <td>{{vendor.contact}}</td>
+                        <td>{{vendor.admReq}}</td>
+                        <td>{{vendor.techReq}}</td>
+                        <td>{{vendor.score}}</td>
+                        <td>{{vendor.remarks}}</td>
+                        <td>{{vendor.priceOri}}</td>
+                        <td>{{vendor.priceAdj}}</td>
+                        <td>
+                            <a href="#"><i class="fa fa-edit lblue"></i></a> &nbsp;
+                            <a href="#"><i class="fa fa-share-square-o green"></i></a> &nbsp;
+                            <a href="#"><i class="fa fa-trash-o red"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="widget-foot">
+        <div class="pull-right">
+            <!-- Pagination -->
+            <ul class="pagination">
+                <li><a href="#">«</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">»</a></li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+</div>
