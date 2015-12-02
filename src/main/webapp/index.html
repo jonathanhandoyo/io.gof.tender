@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<!-- Title here -->
-		<title>Peyek</title>
+		<title>PrIMe</title>
 		<!-- Description, Keywords and Author -->
 		<meta name="description" content="Pemantau Proyek">
 		<meta name="keywords" content="proyek, project, proyek nasional, national project, indonesia">
@@ -22,19 +22,10 @@
 		<!-- Custom Color CSS -->
 		<link href="assets/css/less-style.css" rel="stylesheet">
 		<!-- Custom CSS -->
-		<link href="assets/css/style.css" rel="stylesheet">
+		<link href="assets/css/main.css" rel="stylesheet">
 
         <!-- Timeline -->
         <link href="assets/css/timeline.css" rel="stylesheet">
-
-        <!-- Main CSS -->
-        <style type="text/css">
-
-            th {
-                vertical-align: middle !important;
-            }
-
-        </style>
 
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="#">
@@ -58,7 +49,7 @@
                 </div>
 
                 <div class="main-content">
-                    <div ui-view="home" ng-cloak=""></div>
+                    <div ui-view="content" ng-cloak=""></div>
                 </div>
 
             </div>
@@ -140,7 +131,9 @@
         <script src="assets/js/directives/widgets.directive.js"></script>
         <script src="assets/js/controllers/HeaderController.js"></script>
         <script src="assets/js/controllers/SidebarController.js"></script>
-        <script src="assets/js/controllers/HomeControllers.js"></script>
+        <script src="assets/js/controllers/HomeController.js"></script>
+        <script src="assets/js/controllers/ProjectListController.js"></script>
+        <script src="assets/js/controllers/ProjectController.js"></script>
 
 		<!-- Javascript for this page -->
         <script type="text/javascript"></script>

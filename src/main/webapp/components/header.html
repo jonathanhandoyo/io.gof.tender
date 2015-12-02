@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container" ng-controller="HeaderController">
     <div class="row">
         <div class="col-md-3 col-sm-4 col-xs-6">
             <!-- Page title -->
-            <h2><i class="fa fa-desktop lblue"></i> Dashboard</h2>
+            <h2><i class="fa {{pageIcon ? pageIcon : 'map-marker'}} red" style="font-size: 14px;"></i> {{pageTitle}}</h2>
         </div>
 
         <div class="col-md-3 col-sm-4 col-xs-6">

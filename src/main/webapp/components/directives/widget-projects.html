@@ -1,7 +1,7 @@
 <div class="widget projects-widget">
 
     <div class="widget-head br-blue">
-        <h3><i class="fa fa-list-ul"></i> Projects</h3>
+        <h3><i class="fa fa-list-ul"></i> Projects List</h3>
     </div>
 
     <div class="widget-body no-padd">
@@ -13,10 +13,10 @@
                     <!-- Project icon -->
                     <i class="fa {{project.icon}}" style="font-size: 14px;"></i>
                     <!-- Name -->
-                    <strong>{{project.name}}</strong>
+                    <a ng-href="#/project/{{project.id}}"><strong>{{project.name}}</strong></a>
                 </p>
 
-                <p class="p-meta">
+                <p class="p-meta pull-right">
                     <!-- Due date & % Completed -->
                     <span>Due : {{project.dueDate}} - {{project.completeness}}% Done</span>
                 </p>

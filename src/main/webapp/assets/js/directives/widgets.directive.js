@@ -42,6 +42,7 @@ angular.module('mainApp')
     *
     * projects: [
     *   {
+    *       id: string,
     *       name: string,
     *       dueDate: string,
     *       icon: string (fa-*),

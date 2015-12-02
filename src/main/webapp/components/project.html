@@ -1,0 +1,29 @@
+<div class="container" ng-controller="ProjectController">
+
+    <div class="page-content">
+
+        <!-- Heading -->
+        <div class="single-head">
+            <!-- Bread crumbs -->
+            <div class="breads pull-left">
+                <a href="#/">Home</a> / <a href="#/projects">Project</a> / {{projectId}}
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Project Content Here</h1>
+                <h3>Project ID : {{projectId}}</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <app-timeline title="Project name here" milestones="milestones"></app-timeline>
+            </div>
+        </div>
+
+    </div>
+
+</div>

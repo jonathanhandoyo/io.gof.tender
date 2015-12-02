@@ -1,0 +1,33 @@
+{
+  "name": "tender",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-less": "^1.1.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "jit-grunt": "^0.9.1"
+  },
+  "version": "1.0.0",
+  "description": "Proyek Monitoring",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "jit-grunt": "^0.9.1",
+    "less": "^2.5.3"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonathanhandoyo/io.gof.tender.git"
+  },
+  "keywords": [
+    "tender"
+  ],
+  "author": "GoF",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonathanhandoyo/io.gof.tender/issues"
+  },
+  "homepage": "https://github.com/jonathanhandoyo/io.gof.tender#readme"
+}
