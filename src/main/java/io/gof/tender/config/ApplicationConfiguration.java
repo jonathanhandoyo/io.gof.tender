@@ -1,6 +1,6 @@
 package io.gof.tender.config;
 
-import org.apache.http.annotation.Immutable;
+import com.google.code.geocoder.Geocoder;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
 import org.slf4j.Logger;
@@ -45,5 +45,10 @@ public class ApplicationConfiguration extends Neo4jConfiguration {
     @Override
     public Session getSession() throws Exception {
         return super.getSession();
+    }
+
+    @Bean
+    public Geocoder geocoder() throws Exception {
+        return new Geocoder();
     }
 }

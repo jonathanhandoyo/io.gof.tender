@@ -1,5 +1,6 @@
 package io.gof.tender.domain;
 
+import com.google.code.geocoder.model.GeocodeResponse;
 import io.gof.tender.util.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -46,8 +47,10 @@ public class Project extends BaseEntity {
     @Convert(MapConverter.class)
     private Map<String, Double> weight;
 
-    @Convert(LocationConverter.class)
-    private Location location;
+    @Convert(GeocodeResponseConverter.class)
+    private GeocodeResponse geocodedLocation;
+
+    private String location;
 
     @Convert(RequirementConverter.class)
     private Requirement requirement;

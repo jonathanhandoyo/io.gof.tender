@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Optional;
 
 /**
  * Custom implementation of Spring Security's RememberMeServices.
@@ -108,7 +109,7 @@ public class CustomPersistentRememberMeServices extends
         String login = successfulAuthentication.getName();
 
         log.debug("Creating new persistent login for user {}", login);
-        PersistentToken token = userRepository.findOneByUsername(login).map(u -> {
+        PersistentToken token = Optional.of(userRepository.findOneByUsername(login)).map(u -> {
             PersistentToken t = new PersistentToken();
             t.setSeries(generateSeriesData());
             t.setUser(u);
