@@ -10,13 +10,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BidRepository extends GraphRepository<Bid> {
-    @Query( " MATCH (project:Project) --> (bid:Bid), " +
-            "       (bid) --> (representative:Representative), " +
-            "       (bid) --> (vendor:vendor) " +
-            " WHERE id(project) = {0} " +
-            "RETURN bid; ")
-    Iterable<Bid> getAllBids(Project project);
-
     @Query( " MATCH (vendor:Vendor), (project:Project), (bid:Bid), (rep:Representative) " +
             " WHERE id(vendor)  = {0} " +
             "   AND id(project) = {1} " +

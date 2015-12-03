@@ -34,7 +34,7 @@ public class Milestone extends BaseEntity {
 
     private String[] highlights;
     private Integer score;
-    private Integer scorePercentage;
+    private Integer weight;
 
     @Getter
     @Setter

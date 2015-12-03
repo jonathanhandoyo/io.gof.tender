@@ -71,53 +71,53 @@ public class DataBootstrapper {
         for (CSVRecord record : records) {
             System.out.println(record.get("tahap_lelang/_text"));
 
-            Project project = new Project(
-                record.get("nama_lelang"),
-                Project.Status.COMPLETE,
-                record.get("kategori"),
-                "",
-                new Project.Methodology(
-                        record.get("metode_dokumen"),
-                        record.get("metode_evaluasi"),
-                        record.get("metode_pengadaan"),
-                        record.get("metode_kualifikasi")
-                ),
-                new Project.Valuation(format.parse(record.get("nilai_pagu").replace("\"", "")).doubleValue(), format.parse(record.get("hps").replace("\"", "")).doubleValue()),
-                new Project.Contract(
-                        record.get("cara_pembayaran"),
-                        record.get("pembebanan_tahun_anggaran"),
-                        record.get("sumber_pendanaan")
-                ),
-                record.get("anggaran"),
-                record.get("kualifikasi_usaha"),
-                map(
-//                        of("weight one", 10D),
-//                        of("weight two", 30D),
-//                        of("weight three", 60D)
-                ),
-                null,
-                new Project.Requirement(
-                        new Project.Requirement.Permit[]{
-                                new Project.Requirement.Permit(
-                                        "project requirement permit type 1",
-                                        "project requirement permit classification 1"
-                                ),
-                                new Project.Requirement.Permit(
-                                        "project requirement permit type 2",
-                                        "project requirement permit classification 2"
-                                )
-                        },
-                        new String[] {
-                                "project requirement item 1",
-                                "project requirement item 2"
-                        }
-                ),
-                null,
-                null,
-                null,
-                null
-            );
-            System.out.println(project);
+//            Project project = new Project(
+//                record.get("nama_lelang"),
+//                Project.Status.COMPLETE,
+//                record.get("kategori"),
+//                "",
+//                new Project.Methodology(
+//                        record.get("metode_dokumen"),
+//                        record.get("metode_evaluasi"),
+//                        record.get("metode_pengadaan"),
+//                        record.get("metode_kualifikasi")
+//                ),
+//                new Project.Valuation(format.parse(record.get("nilai_pagu").replace("\"", "")).doubleValue(), format.parse(record.get("hps").replace("\"", "")).doubleValue()),
+//                new Project.Contract(
+//                        record.get("cara_pembayaran"),
+//                        record.get("pembebanan_tahun_anggaran"),
+//                        record.get("sumber_pendanaan")
+//                ),
+//                record.get("anggaran"),
+//                record.get("kualifikasi_usaha"),
+//                map(
+////                        of("weight one", 10D),
+////                        of("weight two", 30D),
+////                        of("weight three", 60D)
+//                ),
+//                null,
+//                new Project.Requirement(
+//                        new Project.Requirement.Permit[]{
+//                                new Project.Requirement.Permit(
+//                                        "project requirement permit type 1",
+//                                        "project requirement permit classification 1"
+//                                ),
+//                                new Project.Requirement.Permit(
+//                                        "project requirement permit type 2",
+//                                        "project requirement permit classification 2"
+//                                )
+//                        },
+//                        new String[] {
+//                                "project requirement item 1",
+//                                "project requirement item 2"
+//                        }
+//                ),
+//                null,
+//                null,
+//                null,
+//                null
+//            );
+//            System.out.println(project);
         }
     }
 

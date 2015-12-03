@@ -1,15 +1,14 @@
 package io.gof.tender.test;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.gof.tender.Application;
 import io.gof.tender.config.ApplicationConfiguration;
-import io.gof.tender.domain.*;
+import io.gof.tender.domain.Project;
 import io.gof.tender.repository.BidRepository;
 import io.gof.tender.repository.ProjectRepository;
 import io.gof.tender.repository.RepresentativeRepository;
 import io.gof.tender.repository.VendorRepository;
-import io.gof.tender.util.CustomMap;
-import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVRecord;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -21,18 +20,22 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.FileReader;
+import java.io.Reader;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import static io.gof.tender.util.CustomMap.map;
-import static org.apache.commons.lang3.tuple.Pair.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @ContextConfiguration(classes = ApplicationConfiguration.class)
 @WebAppConfiguration
-public class MainTest {
+public class UserBootstrapper {
     private static final Logger LOG = LoggerFactory.getLogger(MainTest.class);
+    private static final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd");
 
     @Autowired
     private Neo4jOperations neo4jTemplate;
@@ -50,15 +53,9 @@ public class MainTest {
     private RepresentativeRepository representatives;
 
     @Test
-    public void test1() throws Exception {
-        try {
-        } catch (Exception exception) {
-            LOG.error(exception.getMessage(), exception);
-            throw exception;
-        }
+    public void fill() throws Exception {
     }
 
-    @Test
-    public void test2() throws Exception {
+    public static void main(String[] args) throws Exception {
     }
 }
