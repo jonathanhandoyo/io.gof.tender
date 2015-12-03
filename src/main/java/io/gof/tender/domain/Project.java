@@ -58,6 +58,9 @@ public class Project extends BaseEntity {
     @Relationship(type = "HAS_BIDDING")
     private Set<Bid> bids;
 
+    @Relationship(type = "TRACK_POINT")
+    private Set<Milestone> timeline;
+
     @Getter
     @Setter
     @NoArgsConstructor

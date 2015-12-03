@@ -2,13 +2,16 @@ package io.gof.tender.test;
 
 import io.gof.tender.Application;
 import io.gof.tender.config.ApplicationConfiguration;
+import io.gof.tender.domain.Milestone;
 import io.gof.tender.domain.Project;
 import io.gof.tender.repository.BidRepository;
 import io.gof.tender.repository.ProjectRepository;
 import io.gof.tender.repository.RepresentativeRepository;
 import io.gof.tender.repository.VendorRepository;
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -24,7 +27,10 @@ import java.io.FileReader;
 import java.io.Reader;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import static io.gof.tender.util.CustomMap.map;
 import static org.apache.commons.lang3.tuple.Pair.of;
@@ -35,6 +41,7 @@ import static org.apache.commons.lang3.tuple.Pair.of;
 @WebAppConfiguration
 public class DataBootstrapper {
     private static final Logger LOG = LoggerFactory.getLogger(MainTest.class);
+    private static final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd");
 
     @Autowired
     private Neo4jOperations neo4jTemplate;
@@ -105,6 +112,7 @@ public class DataBootstrapper {
                                 "project requirement item 2"
                         }
                 ),
+                null,
                 null,
                 null,
                 null
