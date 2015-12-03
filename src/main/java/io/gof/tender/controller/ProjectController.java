@@ -1,6 +1,11 @@
 package io.gof.tender.controller;
 
+import io.gof.tender.domain.Project;
+import io.gof.tender.domain.User;
+import io.gof.tender.domain.Vote;
 import io.gof.tender.repository.ProjectRepository;
+import io.gof.tender.repository.UserRepository;
+import io.gof.tender.repository.VoteRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +24,12 @@ public class ProjectController {
 
     @Autowired
     private ProjectRepository projects;
+
+    @Autowired
+    private UserRepository users;
+
+    @Autowired
+    private VoteRepository votes;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<?> all() {
@@ -43,8 +54,11 @@ public class ProjectController {
     @RequestMapping(value = "/vote/{projectId}/{userId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<?> get(@PathVariable Long projectId, @PathVariable Long userId) {
         try {
-            //TODO
-            return new ResponseEntity<>(HttpStatus.OK);
+            Project project = this.projects.findOne(projectId);
+            User user = this.users.findOne(userId);
+
+            Vote vote = this.votes.vote(project, user);
+            return new ResponseEntity<>(vote, HttpStatus.OK);
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

@@ -3,10 +3,8 @@ package io.gof.tender.test;
 import io.gof.tender.Application;
 import io.gof.tender.config.ApplicationConfiguration;
 import io.gof.tender.domain.Project;
-import io.gof.tender.repository.BidRepository;
-import io.gof.tender.repository.ProjectRepository;
-import io.gof.tender.repository.RepresentativeRepository;
-import io.gof.tender.repository.VendorRepository;
+import io.gof.tender.domain.User;
+import io.gof.tender.repository.*;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.junit.Test;
@@ -41,19 +39,31 @@ public class UserBootstrapper {
     private Neo4jOperations neo4jTemplate;
 
     @Autowired
-    private ProjectRepository projects;
-
-    @Autowired
     private BidRepository bids;
 
     @Autowired
-    private VendorRepository vendors;
+    private ProjectRepository projects;
 
     @Autowired
     private RepresentativeRepository representatives;
 
+    @Autowired
+    private UserRepository users;
+
+    @Autowired
+    private VendorRepository vendors;
+
+    @Test
+    public void wipe() throws Exception {
+        this.users.deleteAll();
+    }
+
     @Test
     public void fill() throws Exception {
+        this.users.save(new User("admin", "admin", null, null));
+        this.users.save(new User("jonathan", "jonathan", "https://drive.google.com/file/d/0Bygmy11KkxT6SmpVeDN3aDE3dHc/view?usp=sharing", null));
+        this.users.save(new User("siwananda", "siwananda", null, null));
+        this.users.save(new User("arnold", "arnold", null, null));
     }
 
     public static void main(String[] args) throws Exception {
