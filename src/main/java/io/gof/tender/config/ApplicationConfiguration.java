@@ -19,7 +19,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @EnableAutoConfiguration
 @EnableWebMvc
-@ComponentScan
+@ComponentScan(basePackages = {"io.gof.tender"})
 @Import({SecurityConfiguration.class})
 @EnableNeo4jRepositories(basePackages = "io.gof.tender.repository")
 public class ApplicationConfiguration extends Neo4jConfiguration {
