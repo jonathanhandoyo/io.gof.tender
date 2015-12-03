@@ -13,12 +13,41 @@
     <div class="side-nav">
 
         <div class="side-nav-block">
+            <h4>Public Menu</h4>
+            <ul class="list-unstyled">
+                <li><a ui-sref="home" ui-sref-active="active"><i class="fa fa-home"></i> Home</a></li>
+                <li><a ui-sref="project" ui-sref-active="active"><i class="fa fa-list-ul"></i> Project List</a></li>
+                <li><a ui-sref="tenders" ui-sref-active="active"><i class="fa fa-list-ul"></i> Tender List</a></li>
+                <li><a ui-sref="project-report" ui-sref-active="active"><i class="fa fa-list-ul"></i> Project report</a></li>
+            </ul>
+        </div>
+
+        <div class="side-nav-block">
+            <h4>Vendor Menu</h4>
+            <ul class="list-unstyled">
+                <li><a ui-sref="vendor-tender" ui-sref-active="active"><i class="fa fa-home"></i> My Tenders</a></li>
+                <li><a ui-sref="vendor-contractor" ui-sref-active="active"><i class="fa fa-list-ul"></i> Manage contractors</a></li>
+                <li><a ui-sref="vendor-alert" ui-sref-active="active"><i class="fa fa-list-ul"></i> Setup Project Alerts</a></li>
+            </ul>
+        </div>
+
+        <div class="side-nav-block">
+            <h4>Project Owner Menu</h4>
+            <ul class="list-unstyled">
+                <li><a ui-sref="po-create-project" ui-sref-active="active"><i class="fa fa-home"></i> Create Project</a></li>
+                <li><a ui-sref="po-view-project" ui-sref-active="active"><i class="fa fa-list-ul"></i> View My Projects</a></li>
+                <li><a ui-sref="po-view-tender" ui-sref-active="active"><i class="fa fa-list-ul"></i> View Bids</a></li>
+                <li><a ui-sref="po-alert" ui-sref-active="active"><i class="fa fa-list-ul"></i> Setup Bid Alerts</a></li>
+            </ul>
+        </div>
+
+
+        <div class="side-nav-block">
             <!-- Sidebar heading -->
             <h4>Main</h4>
             <!-- Sidebar links -->
             <ul class="list-unstyled">
-                <li><a href="#/" class="active" ng-click="setActive($event)"><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="#/projects" ng-click="setActive($event)"><i class="fa fa-list-ul"></i> Project List</a></li>
+
                 <li><a href="widgets.html" ng-click="setActive($event)"><i class="fa fa-bullseye"></i> Widget <span class="badge badge-danger pull-right">6</span></a></li>
                 <li><a href="charts.html" ng-click="setActive($event)"><i class="fa fa-signal"></i> Charts <span class="badge badge-info pull-right">5</span></a></li>
                 <li><a href="ui.html" ng-click="setActive($event)"><i class="fa fa-wrench"></i> UI</a></li>
