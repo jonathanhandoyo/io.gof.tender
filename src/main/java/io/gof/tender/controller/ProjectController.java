@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @RestController
-@RequestMapping("/project")
+@RequestMapping("/projects")
 public class ProjectController {
     private static final Logger LOG = LoggerFactory.getLogger(ProjectController.class);
 
@@ -31,7 +31,7 @@ public class ProjectController {
     @Autowired
     private VoteRepository votes;
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<?> all() {
         try {
             return new ResponseEntity<>(StreamSupport.stream(this.projects.findAll(1).spliterator(), false).collect(Collectors.toSet()), HttpStatus.OK);
@@ -41,7 +41,7 @@ public class ProjectController {
         }
     }
 
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<?> get(@PathVariable Long id) {
         try {
             return new ResponseEntity<>(this.projects.findOne(id, 2), HttpStatus.OK);
@@ -51,7 +51,7 @@ public class ProjectController {
         }
     }
 
-    @RequestMapping(value = "/vote/{projectId}/{userId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{projectId}/vote/{userId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<?> get(@PathVariable Long projectId, @PathVariable Long userId) {
         try {
             Project project = this.projects.findOne(projectId);

@@ -16,14 +16,14 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @RestController
-@RequestMapping("/vendor")
+@RequestMapping("/vendors")
 public class VendorController {
     private static final Logger LOG = LoggerFactory.getLogger(VendorController.class);
 
     @Autowired
     private VendorRepository vendors;
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<?> all() {
         try {
             return new ResponseEntity<>(StreamSupport.stream(this.vendors.findAll(1).spliterator(), false).collect(Collectors.toSet()), HttpStatus.OK);
