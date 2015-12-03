@@ -52,10 +52,6 @@ public class MainTest {
     @Test
     public void test1() throws Exception {
         try {
-            Map<String, Double> map = new HashMap<>();
-            map.put("one", 1d);
-            map.put("two", 2d);
-
             Project project = new Project(
                     "project name",
                     Project.Status.PENDING,
@@ -102,10 +98,12 @@ public class MainTest {
                     null
             );
 
-            project = this.projects.save(project);
-
-
-            System.out.println(project);
+//            project = this.projects.save(project);
+            System.out.println("");
+            System.out.println(project.toString());
+            String json = project.toString();
+            Project test = new ObjectMapper().readerFor(Project.class).readValue(json);
+            System.out.println(test);
         } catch (Exception exception) {
             LOG.error(exception.getMessage(), exception);
             throw exception;
