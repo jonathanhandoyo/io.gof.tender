@@ -23,11 +23,13 @@
         <java.version>1.8</java.version>
         <neo4j.version>2.3.1</neo4j.version>
         <neo4j.ogm.version>1.1.2</neo4j.ogm.version>
+        <neo4j.dsl.version>2.1.4</neo4j.dsl.version>
         <spring.data.version>4.0.0.RELEASE</spring.data.version>
         <lombok.version>1.16.6</lombok.version>
 
         <commons.lang.version>3.4</commons.lang.version>
         <commons.collections.version>4.0</commons.collections.version>
+        <commons.csv.version>1.2</commons.csv.version>
         <guava.version>18.0</guava.version>
         <jackson.version>2.6.3</jackson.version>
         <junit.version>4.12</junit.version>
@@ -53,6 +55,11 @@
             <groupId>org.neo4j</groupId>
             <artifactId>neo4j-kernel</artifactId>
             <version>${neo4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j-cypher-dsl</artifactId>
+            <version>${neo4j.dsl.version}</version>
         </dependency>
         <dependency>
             <groupId>org.neo4j</groupId>
@@ -192,6 +199,11 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
             <version>${commons.collections.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>${commons.csv.version}</version>
         </dependency>
 
         <!-- servlet -->

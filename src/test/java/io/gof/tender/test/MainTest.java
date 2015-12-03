@@ -8,6 +8,8 @@ import io.gof.tender.repository.BidRepository;
 import io.gof.tender.repository.ProjectRepository;
 import io.gof.tender.repository.RepresentativeRepository;
 import io.gof.tender.repository.VendorRepository;
+import io.gof.tender.util.CustomMap;
+import org.apache.commons.lang3.tuple.Pair;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -21,6 +23,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static io.gof.tender.util.CustomMap.map;
+import static org.apache.commons.lang3.tuple.Pair.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -47,10 +52,6 @@ public class MainTest {
     @Test
     public void test1() throws Exception {
         try {
-            Map<String, Double> map = new HashMap<>();
-            map.put("one", 1d);
-            map.put("two", 2d);
-
             Project project = new Project(
                     "project name",
                     Project.Status.PENDING,
@@ -70,13 +71,23 @@ public class MainTest {
                     ),
                     "budget reference",
                     "business qualification",
-                    map,
+                    map(
+                            of("weight one", 10D),
+                            of("weight two", 30D),
+                            of("weight three", 60D)
+                    ),
                     null,
                     new Project.Requirement(
-                            new Project.Requirement.Permit(
-                                    "project requirement permit type",
-                                    "project requirement permit classification"
-                            ),
+                            new Project.Requirement.Permit[]{
+                                    new Project.Requirement.Permit(
+                                            "project requirement permit type 1",
+                                            "project requirement permit classification 1"
+                                    ),
+                                    new Project.Requirement.Permit(
+                                            "project requirement permit type 2",
+                                            "project requirement permit classification 2"
+                                    )
+                            },
                             new String[] {
                                     "project requirement item 1",
                                     "project requirement item 2"
@@ -87,10 +98,12 @@ public class MainTest {
                     null
             );
 
-            project = this.projects.save(project);
-
-
-            System.out.println(project);
+//            project = this.projects.save(project);
+            System.out.println("");
+            System.out.println(project.toString());
+            String json = project.toString();
+            Project test = new ObjectMapper().readerFor(Project.class).readValue(json);
+            System.out.println(test);
         } catch (Exception exception) {
             LOG.error(exception.getMessage(), exception);
             throw exception;
