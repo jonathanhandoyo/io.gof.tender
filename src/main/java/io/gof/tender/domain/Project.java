@@ -37,6 +37,9 @@ public class Project extends BaseEntity {
     @Convert(ContractConverter.class)
     private Contract contract;
 
+    @Convert(DocumentConverter.class)
+    private Document[] documents;
+
     private String budgetReference;
     private String businessQualification;
 
@@ -58,8 +61,11 @@ public class Project extends BaseEntity {
     @Relationship(type = "HAS_BIDDING")
     private Set<Bid> bids;
 
-    @Relationship(type = "TRACK_POINT")
-    private Set<Milestone> timeline;
+    @Relationship(type = "MILESTONE")
+    private Set<Milestone> milestones;
+
+    @Relationship(type = "HAS_COMMENTS")
+    private Set<Comment> comments;
 
     @Getter
     @Setter

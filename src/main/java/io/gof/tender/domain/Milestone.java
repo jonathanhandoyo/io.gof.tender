@@ -1,6 +1,10 @@
 package io.gof.tender.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.gof.tender.util.AlbumConverter;
+import io.gof.tender.util.CustomShortDateDeserializer;
+import io.gof.tender.util.CustomShortDateSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,8 +22,9 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Milestone extends BaseEntity {
-    @DateString("yyyy-MM-dd HH:mi:ss")
-    private Date timestamp;
+    @JsonSerialize(using = CustomShortDateSerializer.class)
+    @JsonDeserialize(using = CustomShortDateDeserializer.class)
+    private Date due;
 
     private String title;
     private String content;
@@ -36,6 +41,19 @@ public class Milestone extends BaseEntity {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Album {
-        Map<String, Object>[] items;
+        private Image[] images;
+
+        @Getter
+        @Setter
+        @NoArgsConstructor
+        @AllArgsConstructor
+        public static class Image {
+            private String title;
+            private String thumbSource;
+            private String thumbBase64;
+            private String source;
+            private String base64;
+            private String alt;
+        }
     }
 }
