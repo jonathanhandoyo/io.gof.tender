@@ -7,6 +7,9 @@ var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', 'ngCacheBus
         //TODO setup matchlist
         //httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*api.*/, /.*protected.*/], true);
 
+        // when there is an empty route, redirect to /index
+        $urlRouterProvider.when('', '/');
+
         // For any unmatched url, redirect to '/'
         $urlRouterProvider.otherwise('/404');
 
