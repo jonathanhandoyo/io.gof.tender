@@ -16,7 +16,7 @@ angular.module('mainApp')
                 id: 'PRJ01',
                 name: 'Hospital Management System',
                 dueDate: '26/2/2012',
-                completeness: 80,
+                completion: 80,
                 state: 'normal',
                 icon: 'fa-hospital-o'
             },
@@ -24,7 +24,7 @@ angular.module('mainApp')
                 id: 'PRJ02',
                 name: 'School Download System',
                 dueDate: '26/2/2012',
-                completeness: 40,
+                completion: 40,
                 state: 'danger',
                 icon: 'fa-university'
             },
@@ -32,7 +32,7 @@ angular.module('mainApp')
                 id: 'PRJ03',
                 name: 'Question and Answers Script',
                 dueDate: '26/2/2012',
-                completeness: 95,
+                completion: 95,
                 state: 'warning',
                 icon: 'fa-globe'
             },
@@ -40,7 +40,7 @@ angular.module('mainApp')
                 id: 'PRJ04',
                 name: 'Software Downloads Script',
                 dueDate: '26/2/2012',
-                completeness: 100,
+                completion: 100,
                 state: 'success',
                 icon: 'fa-desktop'
             }
