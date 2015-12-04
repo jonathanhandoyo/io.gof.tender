@@ -17,9 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -54,8 +52,8 @@ public class ProjectController {
         }
     }
 
-    @RequestMapping(value = "near/{lng}/{lat}/distance", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<?> near(Double lng, Double lat, Double distance) {
+    @RequestMapping(value = "near/{lng}/{lat}/{distance}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody ResponseEntity<?> near(@PathVariable Double lng, @PathVariable Double lat, @PathVariable Double distance) {
         try {
 
             Iterable<ProjectLocation> projectLocations = this.projectLocations.findByCoordinateNear(new Point(lng, lat), new Distance(distance, Metrics.KILOMETERS));
@@ -76,7 +74,7 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "within/{swLng}/{swLat}/{neLng}/{neLat}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<?> within(Double swLng, Double swLat, Double neLng, Double neLat) {
+    public @ResponseBody ResponseEntity<?> within(@PathVariable Double swLng, @PathVariable Double swLat, @PathVariable Double neLng, @PathVariable Double neLat) {
         try {
 
             Iterable<ProjectLocation> projectLocations = this.projectLocations.findByCoordinateWithin(new Box(new Point(swLng, swLat), new Point(neLng, neLat)));
@@ -95,8 +93,8 @@ public class ProjectController {
         }
     }
 
-    @RequestMapping(value = "within/{lng}/{lat}/distance", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<?> within(Double lng, Double lat, Integer distance) {
+    @RequestMapping(value = "within/{lng}/{lat}/{distance}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody ResponseEntity<?> within(@PathVariable Double lng, @PathVariable Double lat, @PathVariable Double distance) {
         try {
 
             Iterable<ProjectLocation> projectLocations = this.projectLocations.findByCoordinateWithin(new Circle(new Point(lng, lat), new Distance(distance, Metrics.KILOMETERS)));

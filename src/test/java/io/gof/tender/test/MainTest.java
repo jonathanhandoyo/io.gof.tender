@@ -96,13 +96,13 @@ public class MainTest {
 
     @Test
     public void test3() throws Exception {
-        List<ProjectLocation> projectLocations1 = projectLocationRepo.findByCoordinateNear(new Point(106.8314138, -6.1748441), new Distance(1, Metrics.KILOMETERS));
+        /*List<ProjectLocation> projectLocations1 = projectLocationRepo.findByCoordinateNear(new Point(106.8314138, -6.1748441), new Distance(1, Metrics.KILOMETERS));
         List<ProjectLocation> projectLocations2 = projectLocationRepo.findByCoordinateNear(new Point(106.8314138, -6.1748441), new Distance(2, Metrics.KILOMETERS));
         List<ProjectLocation> projectLocations3 = projectLocationRepo.findByCoordinateNear(new Point(106.8314138, -6.1748441), new Distance(3, Metrics.KILOMETERS));
         List<ProjectLocation> projectLocations4 = projectLocationRepo.findByCoordinateNear(new Point(106.8314138, -6.1748441), new Distance(4, Metrics.KILOMETERS));
         List<ProjectLocation> projectLocations5 = projectLocationRepo.findByCoordinateNear(new Point(106.8314138, -6.1748441), new Distance(5, Metrics.KILOMETERS));
         List<ProjectLocation> projectLocations6 = projectLocationRepo.findByCoordinateNear(new Point(106.8314138, -6.1748441), new Distance(6, Metrics.KILOMETERS));
 
-        System.out.println(projectLocations1);
+        System.out.println(projectLocations1);*/
     }
 }

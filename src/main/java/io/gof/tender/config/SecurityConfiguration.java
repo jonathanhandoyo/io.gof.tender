@@ -104,14 +104,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .disable()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/register").permitAll()
+                /*.antMatchers("/api/register").permitAll()
                 .antMatchers("/api/vendors").permitAll()
                 .antMatchers("/api/projects").permitAll()
                 .antMatchers("/api/account/reset_password/init").permitAll()
                 .antMatchers("/api/account/reset_password/finish").permitAll()
-                .antMatchers("/api/logs/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                .antMatchers("/api/audits/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                .antMatchers("/api/**").authenticated()
+                .antMatchers("/api/logs*//**").hasAuthority(AuthoritiesConstants.ADMIN)
+                .antMatchers("/api/audits*//**").hasAuthority(AuthoritiesConstants.ADMIN)
+                .antMatchers("/api*//**").authenticated()*/
+                .antMatchers("/api/**").permitAll()
         ;
 
     }
