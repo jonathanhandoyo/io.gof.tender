@@ -19,4 +19,12 @@ public interface BidRepository extends GraphRepository<Bid> {
             "CREATE UNIQUE (bid) -[:REPRESENTED_BY]-> (rep) " +
             "CREATE UNIQUE (bid) -[:FROM]-> (vendor); ")
     void bid(Vendor vendor, Project project, Bid bid, Representative rep);
+
+    @Query( " MATCH (vendor:Vendor), (project:Project), (bid:Bid) " +
+            " WHERE id(vendor)  = {0} " +
+            "   AND id(project) = {1} " +
+            "   AND id(bid)     = {2} " +
+            "CREATE UNIQUE (project) -[:HAS_BIDDING]-> (bid) " +
+            "CREATE UNIQUE (bid) -[:FROM]-> (vendor); ")
+    void bid(Vendor vendor, Project project, Bid bid);
 }

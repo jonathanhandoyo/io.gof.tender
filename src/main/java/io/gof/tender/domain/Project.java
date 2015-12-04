@@ -21,6 +21,9 @@ import java.util.Set;
 @AllArgsConstructor
 public class Project extends BaseEntity {
     @NotEmpty
+    private String code;
+
+    @NotEmpty
     private String name;
 
     @NotEmpty

@@ -1,9 +1,10 @@
 package io.gof.tender.controller;
 
-import io.gof.tender.domain.Document;
-import io.gof.tender.domain.Project;
+import io.gof.tender.domain.*;
+import io.gof.tender.repository.BidRepository;
 import io.gof.tender.repository.ProjectRepository;
 import io.gof.tender.repository.UserRepository;
+import io.gof.tender.repository.VendorRepository;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.lang3.StringUtils;
@@ -35,8 +36,75 @@ public class TestController {
     @Autowired
     private ProjectRepository projects;
 
-    @RequestMapping(value = "/case1", method = RequestMethod.GET)
-    public void fill() throws Exception {
+    @Autowired
+    private VendorRepository vendors;
+
+    @Autowired
+    private BidRepository bids;
+
+    @RequestMapping(value = "/filler/reps", method = RequestMethod.GET)
+    public void fillReps() throws Exception {
+        Representative rep = new Representative();
+    }
+
+    @RequestMapping(value = "/filler/bids", method = RequestMethod.GET)
+    public void fillVendorsAndBids() throws Exception {
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());
+        symbols.setCurrencySymbol("Rp ");
+        symbols.setMonetaryDecimalSeparator(',');
+        symbols.setGroupingSeparator('.');
+        DecimalFormat format = new DecimalFormat("¤###,###.00", symbols);
+
+        Reader in = new FileReader("C:\\git\\io.gof.tender\\src\\test\\resources\\data_bids_v1.csv");
+        Iterable<CSVRecord> records = CSVFormat.DEFAULT.withHeader().parse(in);
+        for (CSVRecord record : records) {
+            try {
+                String vendorId = record.get("nomor_registrasi");
+                Vendor vendor = this.vendors.findByBusinessRegistrationId(vendorId);
+                if (vendor == null) {
+                    vendor = new Vendor(
+                            record.get("nomor_registrasi"),
+                            record.get("nama"),
+                            null,
+                            null
+                    );
+                    vendor = this.vendors.save(vendor);
+                }
+
+                String projectCode = record.get("pageUrl").substring("https://lpse.lkpp.go.id/eproc/rekanan/lelangpeserta/".length());
+                Project project = this.projects.findByCode(projectCode);
+                if (project == null) {
+                    throw new Exception("project not found");
+                }
+
+                Bid bid = new Bid(
+                        new Bid.Evaluation(
+                                Boolean.parseBoolean(record.get("administrasi")),
+                                Boolean.parseBoolean(record.get("teknis")),
+                                false,
+                                false,
+                                Boolean.parseBoolean(record.get("winner"))
+                        ),
+                        new Bid.Price(
+                                Double.parseDouble(record.get("harga_penawaran")),
+                                Double.parseDouble(record.get("harga_terkoreksi"))
+                        ),
+                        0d,
+                        "reason",
+                        null,
+                        vendor
+                );
+
+                bid = this.bids.save(bid, 1);
+                this.bids.bid(vendor, project, bid);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @RequestMapping(value = "/filler/projects", method = RequestMethod.GET)
+    public void fillProjects() throws Exception {
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());
         symbols.setCurrencySymbol("Rp ");
         symbols.setMonetaryDecimalSeparator(',');
@@ -49,6 +117,7 @@ public class TestController {
             try {
 
                 Project project = new Project(
+                        record.get("kode_lelang"),
                         record.get("nama_lelang"),
                         Project.Status.COMPLETE,
                         record.get("kategori"),
