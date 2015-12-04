@@ -19,6 +19,7 @@ public class ProjectLocation {
     private String id;
 
     private Long projectId;
+    private String name;
 
     private double[] coordinate;
     private GeoJsonPoint point;
