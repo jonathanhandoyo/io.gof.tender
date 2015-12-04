@@ -6,10 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Controller;
 
 import java.net.InetAddress;
 
 @SpringBootApplication
+@Controller
 public class Application extends SpringBootServletInitializer {
 
     private static final Logger log = LoggerFactory.getLogger(Application.class);

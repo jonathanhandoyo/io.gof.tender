@@ -64,10 +64,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
                 .antMatchers("/scripts/**/*.{js,html}")
-                .antMatchers("/bower_components/**")
-                .antMatchers("/i18n/**")
+                .antMatchers("/*.html")
                 .antMatchers("/assets/**")
-                .antMatchers("/test/**");
+                .antMatchers("/components/**/*.html")
+        ;
     }
 
     @Override
