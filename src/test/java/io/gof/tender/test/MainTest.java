@@ -4,10 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.gof.tender.Application;
 import io.gof.tender.config.ApplicationConfiguration;
 import io.gof.tender.domain.*;
-import io.gof.tender.repository.BidRepository;
-import io.gof.tender.repository.ProjectRepository;
-import io.gof.tender.repository.RepresentativeRepository;
-import io.gof.tender.repository.VendorRepository;
+import io.gof.tender.repository.*;
 import io.gof.tender.util.CustomMap;
 import org.apache.commons.lang3.tuple.Pair;
 import org.junit.Test;
@@ -16,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.neo4j.template.Neo4jOperations;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -28,7 +26,7 @@ import static io.gof.tender.util.CustomMap.map;
 import static org.apache.commons.lang3.tuple.Pair.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
+@SpringApplicationConfiguration(classes = ApplicationConfiguration.class)
 @WebAppConfiguration
 public class MainTest {
     private static final Logger LOG = LoggerFactory.getLogger(MainTest.class);
@@ -48,9 +46,18 @@ public class MainTest {
     @Autowired
     private RepresentativeRepository representatives;
 
+    @Autowired
+    private MongoTemplate mongoTemplate;
+
+    @Autowired
+    private ProjectLocationRepository projectLocationRepo;
+
     @Test
     public void test1() throws Exception {
         try {
+            for (Project project: this.projects.findAll()){
+                System.out.println(project);
+            }
         } catch (Exception exception) {
             LOG.error(exception.getMessage(), exception);
             throw exception;
@@ -59,5 +66,11 @@ public class MainTest {
 
     @Test
     public void test2() throws Exception {
+        mongoTemplate.createCollection(ProjectLocation.class);
+
+        ProjectLocation location = new ProjectLocation();
+        location.setCoordinate(new double[]{1.3215578,103.8969994});
+        //projectLocationRepo.save(location);
+        mongoTemplate.save(location);
     }
 }
