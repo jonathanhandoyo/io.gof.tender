@@ -39,7 +39,7 @@ public class ProjectController {
     private VoteRepository votes;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<?> all(@RequestParam Long[] ids) {
+    public @ResponseBody ResponseEntity<?> all(@RequestParam(required = false) Long[] ids) {
         try {
             if (ids != null && ids.length > 0) {
                 return new ResponseEntity<>(StreamSupport.stream(this.projects.findAll(Arrays.asList(ids), 1).spliterator(), false).collect(Collectors.toSet()), HttpStatus.OK);
