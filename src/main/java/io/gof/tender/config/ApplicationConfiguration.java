@@ -5,11 +5,10 @@ import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.*;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.data.neo4j.config.Neo4jConfiguration;
 import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories;
 import org.springframework.data.neo4j.server.Neo4jServer;
@@ -22,8 +21,14 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @ComponentScan(basePackages = {"io.gof.tender"})
 @Import({SecurityConfiguration.class})
 @EnableNeo4jRepositories(basePackages = "io.gof.tender.repository")
+@PropertySource("classpath:application.properties")
 public class ApplicationConfiguration extends Neo4jConfiguration {
     private static final Logger LOG = LoggerFactory.getLogger(ApplicationConfiguration.class);
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer(){
+        return new PropertySourcesPlaceholderConfigurer();
+    }
 
     @Bean
     @Override

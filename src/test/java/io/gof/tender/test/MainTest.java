@@ -29,7 +29,6 @@ import static org.apache.commons.lang3.tuple.Pair.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-@ContextConfiguration(classes = ApplicationConfiguration.class)
 @WebAppConfiguration
 public class MainTest {
     private static final Logger LOG = LoggerFactory.getLogger(MainTest.class);
