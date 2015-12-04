@@ -3,6 +3,7 @@ package io.gof.tender.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,7 +20,8 @@ public class User extends BaseEntity {
     private boolean activated = false;
     private String avatarSource;
     private String avatarBase64;
-    @JsonIgnore
+
+    @Relationship(type = "HAS_AUTHORITY")
     private Set<Authority> authorities = new HashSet<>();
 
     public User(String username, String password, String avatarSource, String avatarBase64) {
