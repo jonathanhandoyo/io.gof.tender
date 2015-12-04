@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 public class MongoDBConfiguration {
     public @Bean
     MongoDbFactory mongoDbFactory() throws Exception {
-        MongoClientURI uri = new MongoClientURI("mongodb://<gof>:<gof>@ds045464.mongolab.com:45464/tender");
+        MongoClientURI uri = new MongoClientURI("mongodb://tender_user:tender@ds045464.mongolab.com:45464/tender");
         return new SimpleMongoDbFactory(uri);
     }
 
