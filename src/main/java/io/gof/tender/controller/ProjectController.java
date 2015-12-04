@@ -17,6 +17,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -39,9 +41,13 @@ public class ProjectController {
     private VoteRepository votes;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<?> all() {
+    public @ResponseBody ResponseEntity<?> all(@RequestParam Long[] ids) {
         try {
-            return new ResponseEntity<>(StreamSupport.stream(this.projects.findAll(1).spliterator(), false).collect(Collectors.toSet()), HttpStatus.OK);
+            if (ids != null && ids.length > 0) {
+                return new ResponseEntity<>(StreamSupport.stream(this.projects.findAll(Arrays.asList(ids), 1).spliterator(), false).collect(Collectors.toSet()), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(StreamSupport.stream(this.projects.findAll(1).spliterator(), false).collect(Collectors.toSet()), HttpStatus.OK);
+            }
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -52,11 +58,16 @@ public class ProjectController {
     public @ResponseBody ResponseEntity<?> near(Double lng, Double lat, Double distance) {
         try {
 
-            List<ProjectLocation> projectLocations = this.projectLocations.findByCoordinateNear(new Point(lng, lat), new Distance(distance, Metrics.KILOMETERS));
+            Iterable<ProjectLocation> projectLocations = this.projectLocations.findByCoordinateNear(new Point(lng, lat), new Distance(distance, Metrics.KILOMETERS));
 
-            List<Project> projects = null;
+            if (projectLocations != null) {
 
-            return new ResponseEntity<>(projects, HttpStatus.OK);
+                Iterable<Project> projects = this.projects.findAll(StreamSupport.stream(projectLocations.spliterator(), true).map(ProjectLocation::getProjectId).collect(Collectors.toSet()), 1);
+
+                return new ResponseEntity<>(StreamSupport.stream(projects.spliterator(), true).collect(Collectors.toList()), HttpStatus.OK);
+            }
+
+            return new ResponseEntity<>(HttpStatus.OK);
 
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
@@ -68,11 +79,16 @@ public class ProjectController {
     public @ResponseBody ResponseEntity<?> within(Double swLng, Double swLat, Double neLng, Double neLat) {
         try {
 
-            List<ProjectLocation> projectLocations = this.projectLocations.findByCoordinateWithin(new Box(new Point(swLng, swLat), new Point(neLng, neLat)));
+            Iterable<ProjectLocation> projectLocations = this.projectLocations.findByCoordinateWithin(new Box(new Point(swLng, swLat), new Point(neLng, neLat)));
 
-            List<Project> projects = null;
+            if (projectLocations != null) {
 
-            return new ResponseEntity<>(projects, HttpStatus.OK);
+                Iterable<Project> projects = this.projects.findAll(StreamSupport.stream(projectLocations.spliterator(), true).map(ProjectLocation::getProjectId).collect(Collectors.toSet()), 1);
+
+                return new ResponseEntity<>(StreamSupport.stream(projects.spliterator(), true).collect(Collectors.toList()), HttpStatus.OK);
+            }
+
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -83,11 +99,16 @@ public class ProjectController {
     public @ResponseBody ResponseEntity<?> within(Double lng, Double lat, Integer distance) {
         try {
 
-            List<ProjectLocation> projectLocations = this.projectLocations.findByCoordinateWithin(new Circle(new Point(lng, lat), new Distance(distance, Metrics.KILOMETERS)));
+            Iterable<ProjectLocation> projectLocations = this.projectLocations.findByCoordinateWithin(new Circle(new Point(lng, lat), new Distance(distance, Metrics.KILOMETERS)));
 
-            List<Project> projects = null;
+            if (projectLocations != null) {
 
-            return new ResponseEntity<>(projects, HttpStatus.OK);
+                Iterable<Project> projects = this.projects.findAll(StreamSupport.stream(projectLocations.spliterator(), true).map(ProjectLocation::getProjectId).collect(Collectors.toSet()), 1);
+
+                return new ResponseEntity<>(StreamSupport.stream(projects.spliterator(), true).collect(Collectors.toList()), HttpStatus.OK);
+            }
+
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
