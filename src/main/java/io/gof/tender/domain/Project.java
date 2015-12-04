@@ -38,7 +38,7 @@ public class Project extends BaseEntity {
     @Convert(ContractConverter.class)
     private Contract contract;
 
-    @Convert(DocumentConverter.class)
+    @Convert(DocumentsConverter.class)
     private Document[] documents;
 
     private String budgetReference;

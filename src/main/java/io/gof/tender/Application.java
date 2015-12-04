@@ -22,8 +22,13 @@ public class Application extends SpringBootServletInitializer {
     public static void main(String[] args) throws Exception {
         SpringApplicationBuilder app = new Application().configure(new SpringApplicationBuilder(Application.class));
         Environment env = app.run(args).getEnvironment();
-        log.info("Access URLs:\n----------------------------------------------------------\n\t" +
-                "External: \thttp://{}:{}\n----------------------------------------------------------"
-                ,InetAddress.getLocalHost().getHostAddress(), env.getProperty("server.port"));
+        log.info("\n" +
+                "Access URLs:\n" +
+                "----------------------------------------------------------\n" +
+                "\tExternal: \thttp://{}:{}\n" +
+                "\tInternal: \thttp://localhost:{}\n" +
+                "----------------------------------------------------------",
+                new String[] {InetAddress.getLocalHost().getHostAddress(), env.getProperty("server.port"), env.getProperty("server.port")}
+        );
     }
 }

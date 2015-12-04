@@ -1,6 +1,6 @@
 package io.gof.tender.domain;
 
-import io.gof.tender.util.DocumentConverter;
+import io.gof.tender.util.DocumentsConverter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +24,7 @@ public class Vendor extends BaseEntity {
     @NotEmpty
     private String name;
 
-    @Convert(DocumentConverter.class)
+    @Convert(DocumentsConverter.class)
     private Document[] documents;
 
     @Relationship(type = "HAS_REPRESENTATIVE")

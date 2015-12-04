@@ -9,9 +9,9 @@ import org.neo4j.ogm.typeconversion.AttributeConverter;
 
 import java.io.IOException;
 
-public class DocumentConverter implements AttributeConverter<Document, String> {
+public class DocumentsConverter implements AttributeConverter<Document[], String> {
     @Override
-    public String toGraphProperty(Document value) {
+    public String toGraphProperty(Document[] value) {
         try {
             return value != null ? new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(value) : null;
         } catch (JsonProcessingException e) {
@@ -20,9 +20,9 @@ public class DocumentConverter implements AttributeConverter<Document, String> {
     }
 
     @Override
-    public Document toEntityAttribute(String value) {
+    public Document[] toEntityAttribute(String value) {
         try {
-            return StringUtils.isNotBlank(value) ? new ObjectMapper().readerFor(Document.class).readValue(value) : null;
+            return StringUtils.isNotBlank(value) ? new ObjectMapper().readerFor(Document[].class).readValue(value) : null;
         } catch (IOException e) {
             return null;
         }
