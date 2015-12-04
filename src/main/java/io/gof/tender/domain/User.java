@@ -1,10 +1,12 @@
 package io.gof.tender.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -14,6 +16,18 @@ import org.neo4j.ogm.annotation.NodeEntity;
 public class User extends BaseEntity {
     private String username;
     private String password;
+    private String name;
+    private boolean activated = false;
     private String avatarSource;
     private String avatarBase64;
+
+    @Relationship(type = "HAS_AUTHORITY")
+    private Set<Authority> authorities = new HashSet<>();
+
+    public User(String username, String password, String avatarSource, String avatarBase64) {
+        this.username = username;
+        this.password = password;
+        this.avatarSource = avatarSource;
+        this.avatarBase64 = avatarBase64;
+    }
 }

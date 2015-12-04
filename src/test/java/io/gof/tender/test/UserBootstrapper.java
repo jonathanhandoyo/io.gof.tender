@@ -66,6 +66,10 @@ public class UserBootstrapper {
         this.users.save(new User("arnold", "arnold", null, null));
     }
 
-    public static void main(String[] args) throws Exception {
+    @Test
+    public void test() throws Exception {
+        for (User user: this.users.findAll()) {
+            System.out.println(user);
+        }
     }
 }

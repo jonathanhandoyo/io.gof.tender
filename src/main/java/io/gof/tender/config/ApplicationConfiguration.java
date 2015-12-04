@@ -1,6 +1,6 @@
 package io.gof.tender.config;
 
-import org.apache.http.annotation.Immutable;
+import com.google.code.geocoder.Geocoder;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
 import org.slf4j.Logger;
@@ -19,8 +19,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @EnableAutoConfiguration
 @EnableWebMvc
-@Import({WebConfiguration.class})
-@ComponentScan(basePackages = {"io.gof.tender.services"})
+@ComponentScan(basePackages = {"io.gof.tender"})
+@Import({SecurityConfiguration.class})
 @EnableNeo4jRepositories(basePackages = "io.gof.tender.repository")
 public class ApplicationConfiguration extends Neo4jConfiguration {
     private static final Logger LOG = LoggerFactory.getLogger(ApplicationConfiguration.class);
@@ -45,5 +45,10 @@ public class ApplicationConfiguration extends Neo4jConfiguration {
     @Override
     public Session getSession() throws Exception {
         return super.getSession();
+    }
+
+    @Bean
+    public Geocoder geocoder() throws Exception {
+        return new Geocoder();
     }
 }

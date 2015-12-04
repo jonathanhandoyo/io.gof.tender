@@ -8,8 +8,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends GraphRepository<User> {
     @Query( " MATCH (user:User) " +
-            " WHERE user.username = {username}" +
-            "   AND user.password = {password} " +
+            " WHERE user.username = {0}" +
+            "   AND user.password = {1} " +
             "RETURN user; ")
     User login(String username, String password);
+
+    @Query( " MATCH (user:User) " +
+            " WHERE user.username = {0}" +
+            "RETURN user; ")
+    User findOneByUsername(String username);
 }

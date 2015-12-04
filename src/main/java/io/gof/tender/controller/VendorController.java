@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @RestController
-@RequestMapping("/vendors")
+@RequestMapping("/api/vendors")
 public class VendorController {
     private static final Logger LOG = LoggerFactory.getLogger(VendorController.class);
 

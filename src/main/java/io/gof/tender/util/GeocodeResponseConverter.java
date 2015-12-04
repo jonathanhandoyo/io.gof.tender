@@ -2,28 +2,30 @@ package io.gof.tender.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.gof.tender.domain.Bid;
-import io.gof.tender.domain.Document;
-import org.apache.commons.lang3.StringUtils;
+import com.google.code.geocoder.model.GeocodeResponse;
+import io.gof.tender.domain.Milestone;
 import org.neo4j.ogm.typeconversion.AttributeConverter;
 
 import java.io.IOException;
 
-public class DocumentConverter implements AttributeConverter<Document, String> {
+public class GeocodeResponseConverter implements AttributeConverter<GeocodeResponse, String> {
+
     @Override
-    public String toGraphProperty(Document value) {
+    public String toGraphProperty(GeocodeResponse value) {
         try {
             return value != null ? new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(value) : null;
         } catch (JsonProcessingException e) {
+            e.printStackTrace();
             return null;
         }
     }
 
     @Override
-    public Document toEntityAttribute(String value) {
+    public GeocodeResponse toEntityAttribute(String string) {
         try {
-            return StringUtils.isNotBlank(value) ? new ObjectMapper().readerFor(Document.class).readValue(value) : null;
+            return string != null ? new ObjectMapper().readerFor(GeocodeResponse.class).readValue(string) : null;
         } catch (IOException e) {
+            e.printStackTrace();
             return null;
         }
     }

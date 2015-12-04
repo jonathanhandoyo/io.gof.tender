@@ -1,75 +1,41 @@
-package io.gof.tender.test;
+package io.gof.tender.controller;
 
-import com.google.code.geocoder.Geocoder;
-import com.google.code.geocoder.GeocoderRequestBuilder;
-import com.google.code.geocoder.model.GeocoderRequest;
-import io.gof.tender.Application;
-import io.gof.tender.config.ApplicationConfiguration;
 import io.gof.tender.domain.Document;
-import io.gof.tender.domain.Milestone;
 import io.gof.tender.domain.Project;
-import io.gof.tender.repository.BidRepository;
 import io.gof.tender.repository.ProjectRepository;
-import io.gof.tender.repository.RepresentativeRepository;
-import io.gof.tender.repository.VendorRepository;
-import org.apache.commons.collections4.MapUtils;
+import io.gof.tender.repository.UserRepository;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.data.neo4j.template.Neo4jOperations;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.FileReader;
 import java.io.Reader;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import static io.gof.tender.util.CustomMap.map;
-import static org.apache.commons.lang3.tuple.Pair.of;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
-@ContextConfiguration(classes = ApplicationConfiguration.class)
-@WebAppConfiguration
-public class DataBootstrapper {
-    private static final Logger LOG = LoggerFactory.getLogger(MainTest.class);
-    private static final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd");
+@RestController
+@RequestMapping("/tests")
+public class TestController {
+    private static final Logger LOG = LoggerFactory.getLogger(TestController.class);
 
     @Autowired
-    private Neo4jOperations neo4jTemplate;
-
-    @Autowired
-    private Geocoder geocoder;
+    private UserRepository users;
 
     @Autowired
     private ProjectRepository projects;
 
-    @Autowired
-    private BidRepository bids;
-
-    @Autowired
-    private VendorRepository vendors;
-
-    @Autowired
-    private RepresentativeRepository representatives;
-
-    @Test
+    @RequestMapping(value = "/case1", method = RequestMethod.GET)
     public void fill() throws Exception {
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());
         symbols.setCurrencySymbol("Rp ");
@@ -132,17 +98,10 @@ public class DataBootstrapper {
                         null,
                         null
                 );
-                System.out.println(project);
+                project = this.projects.save(project);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-    }
-
-    public static void main(String[] args) throws Exception {
-        String seed = "* Ijin Usaha Ijin Usaha Klasifikasi * Telah melunasi kewajiban pajak tahun terakhir (SPT/PPh) memiliki Nomor Pokok Wajib Pajak (NPWP) dan telah memenuhi kewajiban perpajakan tahun terakhir (SPT Tahunan) serta memiliki laporan bulanan PPh Pasal 21, PPh Pasal 23 (bila ada transaksi), PPh Pasal 25/Pasal 29 dan PPN (bagi Pengusaha Kena Pajak) paling kurang 3 (tiga) bulan terakhir, yaitu Agustus 2013, September 2013 dan Oktober 2013. Peserta dapat mengganti persyaratan ini dengan menyampaikan Surat Keterangan Fiskal (SKF) yang dikeluarkan oleh Kantor Pelayanan Pajak dengan tanggal penerbitan paling lama 1 (satu) bulan sebelum tanggal mulai pemasukan Dokumen Kualifikasi * memiliki pengalaman dalam penyediaan sistem dan infrastruktur Call Center beserta maintenance minimal 3 tahun * memiliki Tenaga Teknis/Terampil untuk melaksanakan pekerjaan ini * memiliki kemampuan untuk menyediakan fasilitas/peralatan/perlengkapan untuk melaksanakan pekerjaan ini";
-//        Arrays.asList(StringUtils.split(seed, "*")).stream().forEach(it -> System.out.println(" - " + it.trim()));
-        String[] test = Arrays.stream(StringUtils.split(seed, "*")).filter(it -> !"Ijin Usaha Ijin Usaha Klasifikasi".equals(it.trim())).toArray(String[]::new);
-        System.out.println(test);
     }
 }
