@@ -126,6 +126,48 @@ angular.module('mainApp')
 
             },
             link: function(scope, element, attrs){
+                scope.map = L.map($(element).find(".project-map-widget .panel-body .map-body")[0]);
+
+                L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 18,
+                    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+                    '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                    'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+                    id: 'examples.map-20v6611k'
+                }).addTo(scope.map);
+
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+                        //
+                        //infoWindow.setPosition(pos);
+                        //infoWindow.setContent('Scan projects around here?');
+                        scope.map.setView([37.8, -96], 4);
+                    }, function () {
+                        handleLocationError(true, infoWindow, map.getCenter());
+                    });
+                } else {
+                    // Browser doesn't support Geolocation
+                    handleLocationError(false, infoWindow, map.getCenter());
+                }
+
+                function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
+                }
+
+                scope.map.on('moveend zoomend', function() {
+                    var mapBounds = scope.map.getBounds();
+                    console.log({
+                        "SW": mapBounds.getSouthWest(),
+                        "NE": mapBounds.getNorthEast()
+                    });
+                });
 
             }
         }
