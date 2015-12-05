@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 
 @Configuration
-public class MongoDBConfiguration {
+public class MongoConfiguration {
     public @Bean
     MongoDbFactory mongoDbFactory() throws Exception {
         MongoClientURI uri = new MongoClientURI("mongodb://tender_user:tender@ds045464.mongolab.com:45464/tender");
@@ -18,7 +18,7 @@ public class MongoDBConfiguration {
     public @Bean
     MongoTemplate mongoTemplate() throws Exception {
 
-        MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory());
+        MongoTemplate mongoTemplate = new MongoTemplate(this.mongoDbFactory());
 
         return mongoTemplate;
 

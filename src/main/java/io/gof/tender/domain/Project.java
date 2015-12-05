@@ -12,8 +12,8 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
-import java.util.Set;
 
+//udah
 @Getter
 @Setter
 @Builder
@@ -42,16 +42,16 @@ public class Project extends BaseEntity {
 
     @DBRef
     private Location location;
-    private double[] coordinate;
 
+    @DBRef
     private Vendor vendor;
     private Tuple workUnit;
     private Tuple agency;
     private Tuple purchaser;
     private Price price;
 
-    private Set<Comment> comments;
-
+    @DBRef
+    private Comment[] comments;
 
     @Getter
     @Setter

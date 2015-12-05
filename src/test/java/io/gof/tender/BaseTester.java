@@ -1,8 +1,7 @@
 package io.gof.tender;
 
 import io.gof.tender.config.ApplicationConfiguration;
-import io.gof.tender.repository.ProjectRepository;
-import io.gof.tender.repository.VendorRepository;
+import io.gof.tender.repository.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -16,8 +15,23 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 public class BaseTester {
     @Autowired
+    protected CommentRepository comments;
+
+    @Autowired
+    protected LocationRepository locations;
+
+    @Autowired
+    protected MessageRepository messages;
+
+    @Autowired
     protected ProjectRepository projects;
 
     @Autowired
+    protected RevisionRepository revisions;
+
+    @Autowired
     protected VendorRepository vendors;
+
+    @Autowired
+    protected UserRepository users;
 }
