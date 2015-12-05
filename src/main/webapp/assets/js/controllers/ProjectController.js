@@ -8,6 +8,21 @@ angular.module('mainApp')
 
         $scope.projectId = $stateParams.projectId;
 
+        $scope.project = {
+            id: 'PRJ01',
+            name: 'New Building Project',
+            dueDate: '05 Dec 2015',
+            completion: 80,
+            state: 'normal',
+            icon: 'fa-building-o',
+            provinceName: "DKI Jakarta",
+            districtName: "Jakarta Selatan",
+            winnerName: "Winner vendor",
+            winningPrice: "1.331.981.000",
+            estimatedPrice: "1.341.436.000",
+            ceilingPrice: "1.341.506.000"
+        };
+
         /* ****************************************** */
         /* Timeline Examples */
         /* ****************************************** */
@@ -73,4 +88,59 @@ angular.module('mainApp')
                 ]
             }
         ];
+
+        /* ****************************************** */
+        /* Comments Examples */
+        /* ****************************************** */
+        $scope.comments = [
+            {
+                time: '1 minute ago',
+                content: 'Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.',
+                user: {
+                    name: 'Wira',
+                    avatar: 'assets/img/user2.jpg'
+                }
+            },
+            {
+                time: '2 hours ago',
+                content: 'Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.',
+                user: {
+                    name: 'Jonathan',
+                    avatar: 'assets/img/user1.jpg'
+                }
+            },
+            {
+                time: '23 Nov 2015',
+                content: 'Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.',
+                user: {
+                    name: 'Wira',
+                    avatar: 'assets/img/user2.jpg'
+                }
+            },
+            {
+                time: '2 hours ago',
+                content: 'Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.',
+                user: {
+                    name: 'Jonathan',
+                    avatar: 'assets/img/user1.jpg'
+                }
+            },
+            {
+                time: '2 hours ago',
+                content: 'Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.',
+                user: {
+                    name: 'Jonathan',
+                    avatar: 'assets/img/user1.jpg'
+                }
+            },
+            {
+                time: '2 hours ago',
+                content: 'Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.',
+                user: {
+                    name: 'Jonathan',
+                    avatar: 'assets/img/user1.jpg'
+                }
+            }
+        ];
+
     });

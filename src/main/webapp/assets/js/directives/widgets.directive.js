@@ -118,7 +118,7 @@ angular.module('mainApp')
     /* ****************************************** */
     /* Map Widget */
     /* ****************************************** */
-    .directive('appMap', function() {
+    .directive('appMap', function($http) {
         return {
             restrict: 'E',
             templateUrl: 'components/directives/widget-map.html',
