@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import java.net.InetAddress;
 
 @SpringBootApplication
-@Controller
 public class Application extends SpringBootServletInitializer {
 
     private static final Logger log = LoggerFactory.getLogger(Application.class);

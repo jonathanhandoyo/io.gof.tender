@@ -1,4 +1,5 @@
-var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', 'ngCacheBuster', 'ngAria'])
+var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', 'ngCacheBuster',
+    'ngAria', 'restangular', 'nemLogging', 'ui-leaflet'])
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider,  httpRequestInterceptorCacheBusterProvider, AlertServiceProvider) {
         // comment below to make alerts doesn't look like toast
         AlertServiceProvider.showAsToast(true);
@@ -53,7 +54,10 @@ var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', 'ngCacheBus
                 }
             },
             resolve: {
-
+                projects: function (LoveMeTender) {
+                    var allProjects = LoveMeTender.all("projects");
+                    return allProjects.getList();
+                }
             }
         }).state('project', {
             parent: 'site',

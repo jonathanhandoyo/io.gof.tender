@@ -30,8 +30,8 @@ angular.module('mainApp')
                 time: '1 minute ago',
                 content: 'Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.',
                 user: {
-                    name: 'Arnold',
-                    avatar: 'assets/img/user2.png'
+                    name: 'Wira',
+                    avatar: 'assets/img/user2.jpg'
                 }
             },
             {
@@ -39,15 +39,15 @@ angular.module('mainApp')
                 content: 'Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.',
                 user: {
                     name: 'Jonathan',
-                    avatar: 'assets/img/user1.png'
+                    avatar: 'assets/img/user1.jpg'
                 }
             },
             {
                 time: '23 Nov 2015',
                 content: 'Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.',
                 user: {
-                    name: 'Arnold',
-                    avatar: 'assets/img/user2.png'
+                    name: 'Wira',
+                    avatar: 'assets/img/user2.jpg'
                 }
             },
             {
@@ -55,7 +55,7 @@ angular.module('mainApp')
                 content: 'Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.',
                 user: {
                     name: 'Jonathan',
-                    avatar: 'assets/img/user1.png'
+                    avatar: 'assets/img/user1.jpg'
                 }
             },
             {
@@ -63,7 +63,7 @@ angular.module('mainApp')
                 content: 'Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.',
                 user: {
                     name: 'Jonathan',
-                    avatar: 'assets/img/user1.png'
+                    avatar: 'assets/img/user1.jpg'
                 }
             },
             {
@@ -71,7 +71,7 @@ angular.module('mainApp')
                 content: 'Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.',
                 user: {
                     name: 'Jonathan',
-                    avatar: 'assets/img/user1.png'
+                    avatar: 'assets/img/user1.jpg'
                 }
             }
         ];

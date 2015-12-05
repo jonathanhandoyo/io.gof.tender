@@ -1,12 +1,24 @@
 'use strict';
 
 angular.module('mainApp')
-    .controller('ProjectController', function ($scope, $stateParams) {
+    .controller('ProjectController', function ($scope, $stateParams, $http) {
 
         $scope.$parent.pageTitle = 'Project';
         $scope.$parent.pageIcon = 'fa-map-marker';
 
         $scope.projectId = $stateParams.projectId;
+
+        $http.get('api/projects/' + $scope.projectId).success(function(data, status, headers, config){
+
+            if(data){
+                $scope.project = data;
+            }else{
+                alert('Failed to fetch Project');
+            }
+
+        }).error(function(data, status, headers, config) {
+            alert('Failed to fetch Project');
+        });
 
         /* ****************************************** */
         /* Timeline Examples */
@@ -73,4 +85,59 @@ angular.module('mainApp')
                 ]
             }
         ];
+
+        /* ****************************************** */
+        /* Comments Examples */
+        /* ****************************************** */
+        $scope.comments = [
+            {
+                time: '1 minute ago',
+                content: 'Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.',
+                user: {
+                    name: 'Wira',
+                    avatar: 'assets/img/user2.jpg'
+                }
+            },
+            {
+                time: '2 hours ago',
+                content: 'Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.',
+                user: {
+                    name: 'Jonathan',
+                    avatar: 'assets/img/user1.jpg'
+                }
+            },
+            {
+                time: '23 Nov 2015',
+                content: 'Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.',
+                user: {
+                    name: 'Wira',
+                    avatar: 'assets/img/user2.jpg'
+                }
+            },
+            {
+                time: '2 hours ago',
+                content: 'Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.',
+                user: {
+                    name: 'Jonathan',
+                    avatar: 'assets/img/user1.jpg'
+                }
+            },
+            {
+                time: '2 hours ago',
+                content: 'Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.',
+                user: {
+                    name: 'Jonathan',
+                    avatar: 'assets/img/user1.jpg'
+                }
+            },
+            {
+                time: '2 hours ago',
+                content: 'Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.',
+                user: {
+                    name: 'Jonathan',
+                    avatar: 'assets/img/user1.jpg'
+                }
+            }
+        ];
+
     });

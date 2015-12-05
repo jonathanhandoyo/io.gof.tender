@@ -18,14 +18,17 @@
 		<!-- jQuery gritter -->
 		<link href="assets/css/jquery.gritter.css" rel="stylesheet">
 		<!-- Font awesome CSS -->
-		<link href="assets/css/font-awesome.min.css" rel="stylesheet">
+		<link href="assets/bower_components/font-awesome/css/font-awesome.css" rel="stylesheet">
 		<!-- Custom Color CSS -->
 		<link href="assets/css/less-style.css" rel="stylesheet">
 		<!-- Custom CSS -->
 		<link href="assets/css/style.css" rel="stylesheet">
 		<link href="assets/css/main.css" rel="stylesheet">
 
-        <!-- Timeline -->
+		<!--leaflet include-->
+		<link rel="stylesheet" href="assets/bower_components/leaflet/dist/leaflet.css">
+
+		<!-- Timeline -->
         <link href="assets/css/timeline.css" rel="stylesheet">
 
 		<!-- Favicon -->
@@ -37,13 +40,13 @@
 		<div class="outer">
 
 			<!-- Sidebar starts -->
-            <div class="sidebar">
+            <!--<div class="sidebar">
                 <div ui-view="sidebar" ng-cloak=""></div>
-            </div>
+            </div>-->
 			<!-- Sidebar ends -->
 
 			<!-- Mainbar starts -->
-            <div class="mainbar">
+            <div class="mainbar" style="margin-left: 0">
 
                 <div class="main-head">
                     <div ui-view="header" ng-cloak=""></div>
@@ -66,6 +69,9 @@
 	    <!-- jQuery -->
 		<script src="assets/js/jquery.js"></script>
 
+		<!--LoDash-->
+		<script src="assets/bower_components/lodash/lodash.min.js"></script>
+
 		<!-- Bootstrap JS -->
 		<script src="assets/js/bootstrap.min.js"></script>
 
@@ -79,6 +85,12 @@
         <script src="assets/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
         <script src="assets/bower_components/angular-cache-buster/angular-cache-buster.js"></script>
         <script src="assets/bower_components/angular-aria/angular-aria.js"></script>
+		<script src="assets/bower_components/restangular/dist/restangular.min.js"></script>
+
+		<!--angular leaflet-->
+		<script src="assets/bower_components/leaflet/dist/leaflet.js"></script>
+		<script src="assets/bower_components/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
+		<script src="assets/bower_components/ui-leaflet/dist/ui-leaflet.min.js"></script>
 
 		<!-- Date Time Picker JS -->
 		<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
@@ -125,7 +137,8 @@
 
         <!--Controllers/Services/Directives-->
         <script src="assets/js/main.js"></script>
-        <script src="assets/js/services/alert.service.js"></script>
+		<script src="assets/js/services/entity.service.js"></script>
+		<script src="assets/js/services/alert.service.js"></script>
         <script src="assets/js/directives/alert.directive.js"></script>
         <script src="assets/js/directives/inputs.directive.js"></script>
         <script src="assets/js/directives/decorations.directive.js"></script>
@@ -141,7 +154,5 @@
 
 		<!-- Custom JS -->
 		<script src="assets/js/custom.js"></script>
-
-		<script src="assets/bower_components/leaflet/dist/leaflet.js"></script>
 	</body>
 </html>

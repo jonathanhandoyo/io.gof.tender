@@ -12,7 +12,7 @@ $(document).ready(function(){
                 // (string | mandatory) the text inside the notification
                 text: 'Today you got some messages and new members. Please check it out!',
                 // (string | optional) the image to display on the left
-                image: './img/user1.png',
+                image: './img/user1.jpg',
                 // (bool | optional) if you want it to fade out on its own or just sit there
                 sticky: false,
                 // (int | optional) the time you want it to be alive for before fading out
@@ -22,12 +22,12 @@ $(document).ready(function(){
             });
 
             // You can have it return a unique id, this can be used to manually remove it later using
-            setTimeout(function () {
+            /*setTimeout(function () {
                 $.gritter.remove(unique_id, {
                     fade: true,
                     speed: 'slow'
                 });
-            }, 100000000);
+            }, 100000000);*/
 
   }, 4000);
 
@@ -44,7 +44,7 @@ $(document).ready(function(){
                 // (string | mandatory) the text inside the notification
                 text: 'Today you got some messages and new members. Please check it out!',
                 // (string | optional) the image to display on the left
-                image: './img/user2.png',
+                image: './img/user2.jpg',
                 // (bool | optional) if you want it to fade out on its own or just sit there
                 sticky: false,
                 // (int | optional) the time you want it to be alive for before fading out
@@ -73,7 +73,7 @@ $(document).ready(function(){
                 // (string | mandatory) the text inside the notification
                 text: 'Today you got some messages and new members. Please check it out!',
                 // (string | optional) the image to display on the left
-                image: './img/user1.png',
+                image: './img/user1.jpg',
                 // (bool | optional) if you want it to fade out on its own or just sit there
                 sticky: false,
                 // (int | optional) the time you want it to be alive for before fading out

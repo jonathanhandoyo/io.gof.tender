@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mainApp')
-    .controller('ProjectListController', function ($scope, $stateParams) {
+    .controller('ProjectListController', function ($scope, $stateParams, leafletMapEvents, leafletData, LoveMeTender, projects) {
 
         $scope.$parent.pageTitle = 'Projects';
         $scope.$parent.pageIcon = 'fa-list-ul';
@@ -45,4 +45,29 @@ angular.module('mainApp')
                 icon: 'fa-desktop'
             }
         ];
+
+        //Map handles
+        $scope.mapHeight = "500px";
+        $scope.center = {
+            lat: -6.1864674,
+            lng: 106.8296372,
+            zoom: 10
+        };
+
+        //Handles movement in the map and re-render more pins
+        var _handleMapMovement = function(event){
+            //console.log(map.getBounds())
+            var mapBounds = map.getBounds();
+
+            console.log({
+                "SW": mapBounds.getSouthWest(),
+                "NE": mapBounds.getNorthEast()
+            });
+        };
+
+        //TODO: look at directive based events later
+        leafletData.getMap('inMap').then(function (map) {
+            map.on("moveend zoomend", _handleMapMovement);
+        });
+
     });
