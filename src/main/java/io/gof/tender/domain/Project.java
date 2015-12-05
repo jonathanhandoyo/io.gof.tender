@@ -1,132 +1,99 @@
 package io.gof.tender.domain;
 
-import com.google.code.geocoder.model.GeocodeResponse;
-import io.gof.tender.util.*;
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import io.gof.tender.util.CustomShortDateDeserializer;
+import io.gof.tender.util.CustomShortDateSerializer;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.NotEmpty;
-import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Relationship;
-import org.neo4j.ogm.annotation.typeconversion.Convert;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Map;
+import java.util.Date;
 import java.util.Set;
 
 @Getter
 @Setter
-@NodeEntity
-@NoArgsConstructor
-@AllArgsConstructor
+@Builder
+@Document(collection = "projects")
 public class Project extends BaseEntity {
-    @NotEmpty
-    private String code;
+    @Id
+    private String id;
 
-    @NotEmpty
-    private String name;
+    private String code;                //kd_paket
+    private String name;                //nama_pake
+    private String organizer;           //nama_panitia
+    private Date announcementDate;      //tgl_pengumuman
+    private Double contractValue;       //nilai_kontrak
+    private Date contractDate;          //tanggal_kontrak
+    private String biddingCode;         //kd_lelang
+    private Date biddingEndDate;        //tanggal_akhir_lelang
+    private String fundSource;          //sumber_dana
+    private String fiscalYear;          //tahun_anggaran
+    private String category;            //kategori
+    private String districtCode;        //kd_kabupaten
+    private String districtName;        //nama_kabupaten
+    private String provinceName;        //nama_propinsi
 
-    @NotEmpty
-    private Status status;
+    @DBRef
+    private Milestone[] milestones;
 
-    private String category;
-    private String description;
+    @DBRef
+    private Location location;
+    private double[] coordinate;
 
-    @Convert(MethodologyConverter.class)
-    private Methodology methodology;
-
-    @Convert(ValuationConverter.class)
-    private Valuation valuation;
-
-    @Convert(ContractConverter.class)
-    private Contract contract;
-
-    @Convert(DocumentsConverter.class)
-    private Document[] documents;
-
-    private String budgetReference;
-    private String businessQualification;
-
-    @Convert(MapConverter.class)
-    private Map<String, Double> weight;
-
-    @Convert(GeocodeResponseConverter.class)
-    private GeocodeResponse geocodedLocation;
-
-    private String location;
-
-    @Convert(RequirementConverter.class)
-    private Requirement requirement;
-
-    @Relationship(type = "ORGANIZED_BY")
-    private Organizer organizer;
-
-    @Relationship(type = "APPOINTED_TO")
     private Vendor vendor;
+    private Tuple workUnit;
+    private Tuple agency;
+    private Tuple purchaser;
+    private Price price;
 
-    @Relationship(type = "HAS_BIDDING")
-    private Set<Bid> bids;
-
-    @Relationship(type = "MILESTONE")
-    private Set<Milestone> milestones;
-
-    @Relationship(type = "HAS_COMMENTS")
     private Set<Comment> comments;
 
+
     @Getter
     @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class Methodology {
-        private String documentation;
-        private String evaluation;
-        private String procurement;
-        private String qualification;
+    @Builder
+    public static class Milestone {
+        @JsonSerialize(using = CustomShortDateSerializer.class)
+        @JsonDeserialize(using = CustomShortDateDeserializer.class)
+        private Date due;
+
+        private String title;
+        private String content;
+
+        private Album album;
+
+        private String[] highlights;
     }
 
     @Getter
     @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class Contract {
-        private String paymentMethod;
-        private String fiscalYearImposition;
-        private String fundingSource;
-    }
-
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class Valuation {
-        private Double ceiling;
-        private Double estimate;
-    }
-
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class Requirement {
-        private Permit[] permits;
-        private String[] items;
+    @Builder
+    public static class Album {
+        private Image[] images;
 
         @Getter
         @Setter
-        @NoArgsConstructor
-        @AllArgsConstructor
-        public static class Permit {
-            private String type;
-            private String classification;
+        @Builder
+        public static class Image {
+            private String title;
+            private String thumbSource;
+            private String thumbBase64;
+            private String source;
+            private String base64;
+            private String alt;
         }
     }
 
     @Getter
-    @AllArgsConstructor
-    public enum Status {
-        PENDING,
-        IN_PROGRESS,
-        COMPLETE,
-        ;
+    @Setter
+    @Builder
+    public static class Price {
+        private Double estimated;
+        private Double ceiling;
+        private Double winning;
     }
 }

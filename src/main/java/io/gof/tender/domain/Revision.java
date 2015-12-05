@@ -9,12 +9,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Setter
 @Builder
-@Document(collection = "vendors")
-public class Vendor extends BaseEntity {
+@Document(collection = "revisions")
+public class Revision extends BaseEntity {
     @Id
     private String id;
 
-    private String code;
-    private String name;
-    private String businessRegistrationId;
+    private String number;
+    private String description;
+    private Long delta;
+    private String[] milestones;
+
 }
