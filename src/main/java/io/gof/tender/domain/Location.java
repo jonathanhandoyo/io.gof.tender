@@ -1,9 +1,13 @@
 package io.gof.tender.domain;
 
-import lombok.*;
+import com.google.code.geocoder.model.GeocodeResponse;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.geo.GeoJsonMultiPoint;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
@@ -14,7 +18,9 @@ public class Location extends BaseEntity {
     @Id
     private String id;
 
-    private Long projectId;
+    @DBRef
+    private Project project;
+
     private String name;
 
     private double[] coordinate;

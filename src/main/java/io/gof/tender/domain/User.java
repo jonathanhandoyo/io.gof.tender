@@ -10,12 +10,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Setter
 @Builder
-@Document(collection = "vendors")
-public class Vendor extends BaseEntity {
+@Document(collection = "users")
+public class User extends BaseEntity {
     @Id
     private String id;
 
-    private String code;
-    private String name;
-    private String businessRegistrationId;
+    private String username;
+    private String password;
+    private String avatar64;
 }

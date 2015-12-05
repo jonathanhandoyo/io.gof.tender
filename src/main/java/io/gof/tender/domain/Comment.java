@@ -20,11 +20,10 @@ public class Comment extends BaseEntity {
     @Id
     private String id;
 
-    private String username;
-    private String avatar64;
-    private String content;
-
     @JsonSerialize(using = CustomLongDateSerializer.class)
     @JsonDeserialize(using = CustomLongDateDeserializer.class)
     private Date timestamp;
+
+    private String username;
+    private String content;
 }
