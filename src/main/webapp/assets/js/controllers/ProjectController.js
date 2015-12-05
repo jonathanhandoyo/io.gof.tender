@@ -1,27 +1,24 @@
 'use strict';
 
 angular.module('mainApp')
-    .controller('ProjectController', function ($scope, $stateParams) {
+    .controller('ProjectController', function ($scope, $stateParams, $http) {
 
         $scope.$parent.pageTitle = 'Project';
         $scope.$parent.pageIcon = 'fa-map-marker';
 
         $scope.projectId = $stateParams.projectId;
 
-        $scope.project = {
-            id: 'PRJ01',
-            name: 'New Building Project',
-            dueDate: '05 Dec 2015',
-            completion: 80,
-            state: 'normal',
-            icon: 'fa-building-o',
-            provinceName: "DKI Jakarta",
-            districtName: "Jakarta Selatan",
-            winnerName: "Winner vendor",
-            winningPrice: "1.331.981.000",
-            estimatedPrice: "1.341.436.000",
-            ceilingPrice: "1.341.506.000"
-        };
+        $http.get('api/projects/' + $scope.projectId).success(function(data, status, headers, config){
+
+            if(data){
+                $scope.project = data;
+            }else{
+                alert('Failed to fetch Project');
+            }
+
+        }).error(function(data, status, headers, config) {
+            alert('Failed to fetch Project');
+        });
 
         /* ****************************************** */
         /* Timeline Examples */
