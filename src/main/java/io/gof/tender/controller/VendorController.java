@@ -26,7 +26,7 @@ public class VendorController {
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<?> all() {
         try {
-            return new ResponseEntity<>(StreamSupport.stream(this.vendors.findAll(1).spliterator(), false).collect(Collectors.toSet()), HttpStatus.OK);
+            return new ResponseEntity<>(StreamSupport.stream(this.vendors.findAll().spliterator(), false).collect(Collectors.toSet()), HttpStatus.OK);
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

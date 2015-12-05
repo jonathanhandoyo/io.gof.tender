@@ -1,11 +1,11 @@
 package io.gof.tender;
-import io.gof.tender.Application;
+
 import io.gof.tender.config.ApplicationConfiguration;
-import io.gof.tender.repository.*;
+import io.gof.tender.repository.ProjectRepository;
+import io.gof.tender.repository.VendorRepository;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.data.neo4j.template.Neo4jOperations;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -16,19 +16,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 public class BaseTester {
     @Autowired
-    protected Neo4jOperations neo4jTemplate;
-
-    @Autowired
-    protected BidRepository bids;
-
-    @Autowired
     protected ProjectRepository projects;
-
-    @Autowired
-    protected RepresentativeRepository representatives;
-
-    @Autowired
-    protected UserRepository users;
 
     @Autowired
     protected VendorRepository vendors;
