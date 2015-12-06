@@ -12,7 +12,8 @@ import java.util.stream.Stream;
 
 @Repository
 public interface ProjectRepository extends CrudRepository<Project, String> {
-    @Query("{location: {$exists:true}} ")
+    @Query(value="{location: {$exists:true}}",
+            fields="{name:1, location:1, title:1, category:1, biddingEndDate:1 }")
     Page<Project> findAllWithLocationExists(Pageable pageable);
 
     @Query("{location: {$exists:false}}")
