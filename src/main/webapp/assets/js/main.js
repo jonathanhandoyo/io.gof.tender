@@ -58,7 +58,7 @@ var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', /*'ngCacheB
                     controller: 'HeaderController'
                 }
             }
-        }).state('home', {
+        })/*.state('home', {
             parent: 'site',
             url: '/',
             data: {
@@ -71,9 +71,9 @@ var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', /*'ngCacheB
                 }
             },
             resolve: {}
-        }).state('projects', {
+        })*/.state('projects', {
             parent: 'site',
-            url: '/projects',
+            url: '/',//url: '/projects',
             data: {
                 authorities: []
             },

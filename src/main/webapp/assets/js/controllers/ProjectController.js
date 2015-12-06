@@ -11,7 +11,7 @@ angular.module('mainApp')
             $scope.projectId = $stateParams.projectId;
 
             $rootScope.loadingScreen.show();
-            $http.get('/api/projects/get/' + $scope.projectId).success(function(data, status, headers, config){
+            $http.get('/api/projects/' + $scope.projectId).success(function(data, status, headers, config){
 
                 if(data){
                     _.assign(data, {
