@@ -209,6 +209,7 @@ angular.module('mainApp')
             restrict: 'E',
             templateUrl: 'components/directives/widget-projects-admin.html',
             scope: {
+                editable: '@edit',
                 projects: '='
             },
             link: function(scope, element, attrs){
