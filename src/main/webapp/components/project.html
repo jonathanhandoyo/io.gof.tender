@@ -1,4 +1,4 @@
-<div class="container" ng-controller="ProjectController">
+<div class="container" ng-controller="ProjectController" ng-init="init()">
 
     <div class="page-content">
 
@@ -17,9 +17,7 @@
                     <div class="panel-body">
                         <p>
                             <h1>
-                                <!-- Project icon -->
-                                <i class="fa {{project.icon}}"></i>
-                                <!-- Name -->
+                                <i class="fa {{project.icon ? project.icon : 'fa-map-marker red'}}"></i>
                                 <a ng-href="#/project/{{project.id}}"><strong>{{project.name}}</strong></a>
                             </h1>
                         </p>
@@ -66,7 +64,7 @@
             <div class="col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <app-timeline title="Project name here" milestones="milestones"></app-timeline>
+                        <app-timeline title="Project name here" milestones="project.milestones"></app-timeline>
                     </div>
                 </div>
             </div>

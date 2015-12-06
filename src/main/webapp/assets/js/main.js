@@ -1,6 +1,6 @@
-var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', 'ngCacheBuster',
+var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', /*'ngCacheBuster',*/
     'ngAria', 'restangular', 'nemLogging', 'ui-leaflet'])
-    .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider,  httpRequestInterceptorCacheBusterProvider, AlertServiceProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider,  /*httpRequestInterceptorCacheBusterProvider,*/ AlertServiceProvider) {
         // comment below to make alerts doesn't look like toast
         AlertServiceProvider.showAsToast(true);
 

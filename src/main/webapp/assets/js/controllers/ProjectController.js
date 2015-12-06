@@ -3,22 +3,25 @@
 angular.module('mainApp')
     .controller('ProjectController', function ($scope, $stateParams, $http) {
 
-        $scope.$parent.pageTitle = 'Project';
-        $scope.$parent.pageIcon = 'fa-map-marker';
+        $scope.init = function(){
 
-        $scope.projectId = $stateParams.projectId;
+            $scope.$parent.pageTitle = 'Project';
+            $scope.$parent.pageIcon = 'fa-map-marker';
 
-        $http.get('api/projects/' + $scope.projectId).success(function(data, status, headers, config){
+            $scope.projectId = $stateParams.projectId;
 
-            if(data){
-                $scope.project = data;
-            }else{
+            $http.get('/api/projects/get/' + $scope.projectId).success(function(data, status, headers, config){
+
+                if(data){
+                    $scope.project = data;
+                }else{
+                    alert('Failed to fetch Project');
+                }
+
+            }).error(function(data, status, headers, config) {
                 alert('Failed to fetch Project');
-            }
-
-        }).error(function(data, status, headers, config) {
-            alert('Failed to fetch Project');
-        });
+            });
+        };
 
         /* ****************************************** */
         /* Timeline Examples */

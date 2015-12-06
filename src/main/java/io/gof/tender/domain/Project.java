@@ -4,16 +4,13 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.gof.tender.util.CustomShortDateDeserializer;
 import io.gof.tender.util.CustomShortDateSerializer;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-//udah
 @Getter
 @Setter
 @Builder
@@ -56,7 +53,13 @@ public class Project extends BaseEntity {
     @Getter
     @Setter
     @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Document(collection = "milestones")
     public static class Milestone {
+        @Id
+        private String id;
+
         @JsonSerialize(using = CustomShortDateSerializer.class)
         @JsonDeserialize(using = CustomShortDateDeserializer.class)
         private Date due;
@@ -72,12 +75,17 @@ public class Project extends BaseEntity {
     @Getter
     @Setter
     @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Album {
+
         private Image[] images;
 
         @Getter
         @Setter
         @Builder
+        @NoArgsConstructor
+        @AllArgsConstructor
         public static class Image {
             private String title;
             private String thumbSource;
@@ -92,6 +100,7 @@ public class Project extends BaseEntity {
     @Setter
     @Builder
     public static class Price {
+
         private Double estimated;
         private Double ceiling;
         private Double winning;

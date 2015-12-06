@@ -100,7 +100,7 @@ public class ProjectController {
 //        }
 //    }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<?> get(@PathVariable String id) {
         try {
             return new ResponseEntity<>(this.projects.findOne(id), HttpStatus.OK);
