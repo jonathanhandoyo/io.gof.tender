@@ -12,16 +12,57 @@ import org.springframework.data.domain.Sort;
 
 import java.io.FileReader;
 import java.io.Reader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 public class Bootstrapper extends BaseTester {
+    static SimpleDateFormat SDF = new SimpleDateFormat("dd-MM-yyyy");
+
     @Test
-    public void fillComments() {
-        for (Project project : this.projects.findAll()) {
+    public void fillMilestones() {
+        Milestone one = this.miletones.save(
+                Milestone.builder()
+                        .title("First Milestone")
+                        .content("Lorem ipsum dolor sit amet consiquest dio Lorem ipsum dolor sit amet consiquest dio\"")
+                        .due(CustomDate.toDate("yyyy-MM-dd", "2016-06-01"))
+                        .build()
+        );
+
+        Milestone two = this.miletones.save(
+                Milestone.builder()
+                        .title("First Milestone")
+                        .content("<a href=\"#\">Lorem ipsum</a> dolor sit amet consiquest dio Lorem ipsum dolor sit amet consiquest dio\"")
+                        .due(CustomDate.toDate("yyyy-MM-dd", "2016-06-01"))
+                        .album(this.getAlbum())
+                        .build()
+        );
+
+        Milestone three = this.miletones.save(
+                Milestone.builder()
+                        .title("First Milestone")
+                        .content("<a href=\"#\">Lorem ipsum</a> dolor sit amet consiquest dio Lorem ipsum dolor sit amet consiquest dio\"")
+                        .due(CustomDate.toDate("yyyy-MM-dd", "2016-06-01"))
+                        .album(this.getAlbum())
+                        .highlights(new String[] {
+                                "Release Highlight #1",
+                                "Release Highlight #2",
+                                "Release Highlight #3"
+                        })
+                        .build()
+        );
+
+        try (Stream<Project> result = projects.findAllWithLocationExists()) {
+
+            result.forEach(project -> {
+                project.setMilestones(new Milestone[] {one, two, three});
+                projects.save(project);
+                System.out.println(project);
+            });
         }
     }
 
@@ -99,6 +140,24 @@ public class Bootstrapper extends BaseTester {
                             .build()
             );
         }
+    }
+
+    public Milestone.Album getAlbum() {
+        return Milestone.Album.builder()
+                .images(new Milestone.Album.Image[]{
+                                Milestone.Album.Image.builder()
+                                        .title("Image 1")
+                                        .source("image1.jpg")
+                                        .alt("Image A")
+                                        .build(),
+                                Milestone.Album.Image.builder()
+                                        .title("Image 2")
+                                        .source("image2.jpg")
+                                        .alt("Image B")
+                                        .build()
+                        }
+                )
+                .build();
     }
 
     @Test

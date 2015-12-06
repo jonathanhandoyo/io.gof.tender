@@ -16,30 +16,31 @@ import java.text.SimpleDateFormat;
 import java.util.stream.Stream;
 
 public class MainTest extends BaseTester {
-    @Autowired
-    private ProjectRepository projects;
-
-    @Autowired
-    private MongoTemplate mongoTemplate;
-
     static SimpleDateFormat SDF = new SimpleDateFormat("dd-MM-yyyy");
 
-    @Test
+    /*@Test
     public void test1() throws Exception {
-        Project.Album album = new Project.Album();
-        album.setImages(new Project.Album.Image[]{
-                new Project.Album.Image("Image 1",null,null,"image1.jpg","image1.jpg","Image 1"),
-                new Project.Album.Image("Image 3",null,null,"image2.jpg","image2.jpg","Image 3"),
-                new Project.Album.Image("Image 2",null,null,"image3.jpg","image3.jpg","Image 2")
+        Milestone.Album album = new Milestone.Album();
+        album.setImages(new Milestone.Album.Image[]{
+                new Milestone.Album.Image("Image 1",null,null,"image1.jpg","image1.jpg","Image 1"),
+                new Milestone.Album.Image("Image 3",null,null,"image2.jpg","image2.jpg","Image 3"),
+                new Milestone.Album.Image("Image 2",null,null,"image3.jpg","image3.jpg","Image 2")
         });
 
-        Project.Milestone milestone1 = new Project.Milestone();
+        Milestone one = Milestone.builder()
+                .title("Title of first Mileston")
+                .due(SDF.parse("02-06-2016"))
+                .content("Lorem ipsum dolor sit amet consiquest dio Lorem ipsum dolor sit amet consiquest dio")
+                .album()
+                .build();
+
+        Milestone milestone1 = new Milestone();
         milestone1.setTitle("Project first milestone");
         milestone1.setContent("Lorem ipsum dolor sit amet consiquest dio Lorem ipsum dolor sit amet consiquest dio");
         milestone1.setDue(SDF.parse("02-06-2016"));
         mongoTemplate.save(milestone1);
 
-        Project.Milestone milestone2 = new Project.Milestone();
+        Milestone milestone2 = new Milestone();
         milestone2.setTitle("Project second milestone");
         milestone2.setContent("<a href=\"#\">Lorem ipsum</a> dolor sit amet consiquest dio Lorem ipsum dolor sit amet <span><a href=\"#\" class=\"blue\">consiquest dio</a></span>");
         milestone2.setDue(SDF.parse("05-08-2016"));
@@ -47,7 +48,7 @@ public class MainTest extends BaseTester {
         mongoTemplate.save(milestone2);
 
 
-        Project.Milestone milestone3 = new Project.Milestone();
+        Milestone milestone3 = new Milestone();
         milestone3.setTitle("Project third milestone");
         milestone3.setContent("<a href=\"#\">Lorem ipsum</a> dolor sit amet consiquest dio Lorem ipsum dolor sit amet <span><a href=\"#\" class=\"blue\">consiquest dio</a></span>");
         milestone3.setDue(SDF.parse("05-08-2016"));
@@ -62,7 +63,7 @@ public class MainTest extends BaseTester {
         try (Stream<Project> result = projects.findAllWithLocationExists()) {
 
             result.forEach(project -> {
-                project.setMilestones(new Project.Milestone[] {
+                project.setMilestones(new Milestone[] {
                     milestone1,
                     milestone2,
                     milestone3
@@ -73,7 +74,7 @@ public class MainTest extends BaseTester {
                 System.out.println(project);
             });
         }
-    }
+    }*/
 
     @Test
     public void test2() throws Exception {
