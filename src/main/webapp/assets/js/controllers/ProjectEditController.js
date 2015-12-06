@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mainApp')
-    .controller('ProjectController', function ($scope, $stateParams, $http) {
+    .controller('ProjectEditController', function ($scope, $rootScope, $stateParams, $http) {
 
         $scope.init = function(){
 
@@ -10,16 +10,23 @@ angular.module('mainApp')
 
             $scope.projectId = $stateParams.projectId;
 
-            $http.get('/api/projects/get/' + $scope.projectId).success(function(data, status, headers, config){
+            $rootScope.loadingScreen.show();
+            $http.get('/api/projects/' + $scope.projectId).success(function(data, status, headers, config){
 
                 if(data){
                     $scope.project = data;
+
+                    $rootScope.loadingScreen.hide();
                 }else{
                     alert('Failed to fetch Project');
+
+                    $rootScope.loadingScreen.hide();
                 }
 
             }).error(function(data, status, headers, config) {
                 alert('Failed to fetch Project');
+
+                $rootScope.loadingScreen.hide();
             });
         };
 

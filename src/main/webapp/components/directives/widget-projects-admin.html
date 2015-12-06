@@ -22,7 +22,7 @@
 
                     <tr ng-repeat="project in projects track by $index">
                         <td><input type="checkbox"></td>
-                        <td><a ng-href="#/project/edit/" + {project.id}>{{project.name}}</a></td>
+                        <td><a ng-href="#/project/edit/{{project.id}}" target="_blank">{{project.name}}</a></td>
                         <td>{{project.start}}</td>
                         <td>{{project.due}}</td>
                         <td>

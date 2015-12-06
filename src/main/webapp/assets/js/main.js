@@ -8,25 +8,25 @@ var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', /*'ngCacheB
         //TODO setup matchlist
         //httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*api.*/, /.*protected.*/], true);
 
-        var loadingScreen = jQuery('<div class="app-overlay"><span></span></div>').appendTo(jQuery('body')).hide();
-
         // Register the HTTP INTERCEPTORS
         $httpProvider.interceptors.push(function($q, $window, $rootScope) {
+            $rootScope.loadingScreen = jQuery('<div class="app-overlay"><span></span></div>').appendTo(jQuery('body')).hide();
+
             return {
                 'request': function(config) {
                     // show the loading AJAX icon
-                    loadingScreen.show();
+                    //loadingScreen.show();
 
                     return config || $q.when(config);
                 },
                 'response': function(response) {
-                    loadingScreen.hide();
+                    //loadingScreen.hide();
 
                     return response || $q.when(response);
                 },
                 'responseError': function(rejection) {
                     // hide the loading AJAX icon
-                    loadingScreen.hide();
+                    //loadingScreen.hide();
 
                     // go to login screen if timeout
                     if (rejection.status == 401) {
