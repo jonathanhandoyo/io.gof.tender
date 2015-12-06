@@ -10,7 +10,7 @@ angular.module('mainApp')
 
             $scope.projectId = $stateParams.projectId;
 
-            $http.get('/api/projects/get/' + $scope.projectId).success(function(data, status, headers, config){
+            $http.get('/api/projects/' + $scope.projectId).success(function(data, status, headers, config){
 
                 if(data){
                     $scope.project = data;
