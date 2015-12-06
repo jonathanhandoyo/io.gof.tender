@@ -202,4 +202,19 @@ angular.module('mainApp')
 
             }
         }
+    })
+
+    .directive('appProjectsAdmin', function() {
+        return {
+            restrict: 'E',
+            templateUrl: 'components/directives/widget-projects-admin.html',
+            scope: {
+                projects: '='
+            },
+            link: function(scope, element, attrs){
+
+            }
+        }
     });
+
+

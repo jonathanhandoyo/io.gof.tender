@@ -12,13 +12,13 @@
             <li ng-repeat="comment in comments track by $index" class="by-me">
                 <!-- Use the class "pull-left" in avatar -->
                 <div class="avatar pull-left">
-                    <img ng-src="{{comment.user.avatar}}" alt=""/>
+                    <img ng-src="../assets/img/user1.jpg" alt=""/>
                 </div>
 
                 <div class="chat-content">
                     <!-- In meta area, first include "name" and then "time" -->
-                    <div class="chat-meta">{{comment.user.name}} <span class="pull-right">{{comment.time}}</span></div>
-                    {{comment.content}}
+                    <div class="chat-meta">{{comment.username}} <span class="pull-right">{{comment.timestamp}}</span></div>
+                    <span ng-bind-html="comment.content"></span>
                     <div class="clearfix"></div>
                 </div>
             </li>

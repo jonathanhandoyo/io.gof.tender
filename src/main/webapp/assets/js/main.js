@@ -8,6 +8,38 @@ var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', /*'ngCacheB
         //TODO setup matchlist
         //httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*api.*/, /.*protected.*/], true);
 
+        var loadingScreen = jQuery('<div class="app-overlay"><span></span></div>').appendTo(jQuery('body')).hide();
+
+        // Register the HTTP INTERCEPTORS
+        $httpProvider.interceptors.push(function($q, $window, $rootScope) {
+            return {
+                'request': function(config) {
+                    // show the loading AJAX icon
+                    loadingScreen.show();
+
+                    return config || $q.when(config);
+                },
+                'response': function(response) {
+                    loadingScreen.hide();
+
+                    return response || $q.when(response);
+                },
+                'responseError': function(rejection) {
+                    // hide the loading AJAX icon
+                    loadingScreen.hide();
+
+                    // go to login screen if timeout
+                    if (rejection.status == 401) {
+                        $window.location.href = "login?timeout=true";
+
+                        return $q.reject(rejection);
+                    }
+
+                    return $q.reject(rejection);
+                }
+            };
+        });
+
         // when there is an empty route, redirect to /index
         $urlRouterProvider.when('', '/');
 
@@ -73,6 +105,38 @@ var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', /*'ngCacheB
             },
             resolve: {
 
+            }
+        }).state('project.edit', {
+            parent: 'site',
+            url: '/project/edit/:projectId',
+            data: {
+                authorities: []
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'components/project-edit.html',
+                    controller: 'ProjectEditController'
+                }
+            },
+            resolve: {
+            }
+        }).state('admin', {
+            parent: 'site',
+            url: '/admin',
+            data: {
+                authorities: []
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'components/admin.html',
+                    controller: 'AdminController'
+                }
+            },
+            resolve: {
+                //projects: function (LoveMeTender) {
+                //    var allProjects = LoveMeTender.all("projects");
+                //    return allProjects.getList();
+                //}
             }
         }).state('404', {
             parent: 'site',

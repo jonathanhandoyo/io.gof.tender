@@ -1,4 +1,4 @@
-<div class="container" ng-controller="ProjectController" ng-init="init()">
+<div class="container" ng-controller="ProjectEditController" ng-init="init()">
 
     <div class="page-content">
 
@@ -16,10 +16,10 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <p>
-                            <h1>
-                                <i class="fa {{project.icon ? project.icon : 'fa-map-marker red'}}"></i>
-                                <a ng-href="#/project/{{project.id}}"><strong>{{project.name}}</strong></a>
-                            </h1>
+                        <h1>
+                            <i class="fa {{project.icon ? project.icon : 'fa-map-marker red'}}"></i>
+                            <a ng-href="#/project/{{project.id}}"><strong>{{project.name}}</strong></a>
+                        </h1>
                         </p>
 
                         <p class="p-meta">
@@ -74,11 +74,11 @@
                         <div class="text-center">
                             <h3 class="timeline-title">Revision</h3>
                         </div>
-                            <ul class="list-unstyled">
-                                <li>05 Dec 2015 - Revision 1 - Unknown reason</li>
-                                <li>07 Dec 2015 - Revision 2 - Unknown reason</li>
-                                <li>08 Dec 2015 - Revision 3 - Unknown reason</li>
-                            </ul>
+                        <ul class="list-unstyled">
+                            <li>05 Dec 2015 - Revision 1 - Unknown reason</li>
+                            <li>07 Dec 2015 - Revision 2 - Unknown reason</li>
+                            <li>08 Dec 2015 - Revision 3 - Unknown reason</li>
+                        </ul>
                     </div>
                 </section>
                 <app-comments comments="project.comments"></app-comments>

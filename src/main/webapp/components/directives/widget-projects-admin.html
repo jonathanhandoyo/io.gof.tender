@@ -1,0 +1,61 @@
+<div class="widget projects-widget">
+
+    <div class="widget-head br-red">
+        <h3><i class="fa fa-list-ul"></i> Projects List</h3>
+    </div>
+
+    <div class="widget-body no-padd">
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <!-- Table heading -->
+                <thead>
+                    <tr>
+                        <th><input type="checkbox"></th>
+                        <th>Name</th>
+                        <th>Start</th>
+                        <th>Due</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr ng-repeat="project in projects track by $index">
+                        <td><input type="checkbox"></td>
+                        <td><a ng-href="#/project/edit/" + {project.id}>{{project.name}}</a></td>
+                        <td>{{project.start}}</td>
+                        <td>{{project.due}}</td>
+                        <td>
+                            <a href="#"><i class="fa fa-edit lblue"></i></a> &nbsp;
+                            <a href="#"><i class="fa fa-share-square-o green"></i></a> &nbsp;
+                            <a href="#"><i class="fa fa-trash-o red"></i></a>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+    <div class="widget-foot">
+        <span class="pull-left">
+            <a href="#" class="btn btn-default btn-sm">Add New Page</a> &nbsp;
+            <a href="#" class="btn btn-danger btn-sm">Delete All</a>
+        </span>
+        <div class="pull-right">
+            <!-- Pagination -->
+            <ul class="pagination">
+                <li><a href="#">«</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">»</a></li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+</div>
