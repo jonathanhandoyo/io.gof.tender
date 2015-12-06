@@ -1,5 +1,7 @@
 package io.gof.tender.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.gof.tender.util.CustomShortDateDeserializer;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
