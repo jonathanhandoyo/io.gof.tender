@@ -1,16 +1,24 @@
 package io.gof.tender.test;
 
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import io.gof.tender.BaseTester;
 import io.gof.tender.domain.*;
 import io.gof.tender.util.CustomDate;
 import io.gof.tender.util.CustomDouble;
+import io.gof.tender.util.JsonUtil;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.junit.Test;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import java.io.FileReader;
 import java.io.Reader;
-import java.util.Date;
+import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 public class Bootstrapper extends BaseTester {
     @Test
@@ -92,6 +100,61 @@ public class Bootstrapper extends BaseTester {
                             .businessRegistrationId(record.get("npwp_pemenang"))
                             .build()
             );
+        }
+    }
+
+    @Test
+    public void insertLocations () throws Exception {
+        Project project = this.projects.findOne("5662c7e7ceea2b2e62f038be");
+        Reader in = new FileReader("E:\\workspace\\io.gof.tender\\src\\test\\resources\\data_location.csv");
+
+        Iterable<CSVRecord> records = CSVFormat.DEFAULT.withHeader().parse(in);
+        List<Location> locationCollection = new ArrayList<Location>();
+        for (CSVRecord item : records) {
+            double[] coord = new double[2];
+            coord[0] = Double.parseDouble(item.get("coordinate/0"));
+            coord[1] = Double.parseDouble(item.get("coordinate/1"));
+            Location location = Location.builder()
+                    .name(item.get("name"))
+                    .coordinate(coord)
+                    .build();
+            this.locations.save(location);
+            locationCollection.add(location);
+        }
+        Random ran = new Random();
+        int min = 0;
+        int max = 45;
+        int x = ran.nextInt((max - min) + 1) + min;
+
+        project.setLocation(locationCollection.get(x));
+        this.projects.save(project);
+        System.out.println(project);
+
+    }
+
+    @Test
+    public void findAndUpdateProject () throws Exception {
+        System.out.println("Start read");
+        Iterable<Location> locations = this.locations.findAll();
+
+        // Keep that in a constant if it stays the same
+        PageRequest request = new PageRequest(0, 1, new Sort(Sort.Direction.DESC, "created"));
+        List<Project> projectList = this.projects.findWithoutLocation(request).getContent();
+
+        List<Location> locationCollection = StreamSupport.stream(locations.spliterator(), true).collect(Collectors.toList());
+
+        System.out.println("Total projects " + projectList.size());
+        System.out.println("Total locations " + locationCollection.size());
+
+        System.out.println("Starting insertiom");
+
+        for(int i=0; i<projectList.size(); i++){
+            Project project = projectList.get(i);
+            Location location = locationCollection.get(i);
+            project.setLocation(location);
+            location.setProject(project);
+            this.projects.save(project);
+            this.locations.save(location);
         }
     }
 }
