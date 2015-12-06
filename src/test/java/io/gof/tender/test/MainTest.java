@@ -6,6 +6,8 @@ import io.gof.tender.domain.Project;
 import io.gof.tender.repository.ProjectRepository;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.geo.Box;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Metrics;
@@ -90,7 +92,8 @@ public class MainTest extends BaseTester {
     @Test
     public void test3() throws Exception {
         //neLat=-6.175883636877262&neLng=106.90804481506348&swLat=-6.218548191874777&swLng=106.79792404174805
-        Stream<Project> projects = this.projects.findAllWithLocationExists();
+        PageRequest request = new PageRequest(0, 10, new Sort(Sort.Direction.DESC, "created"));
+        Iterable<Project> projects = this.projects.findAllWithLocationExists(request);
 
         projects.forEach(project -> {
             System.out.println(project);

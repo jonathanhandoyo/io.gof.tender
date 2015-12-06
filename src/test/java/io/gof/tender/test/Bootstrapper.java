@@ -86,15 +86,14 @@ public class Bootstrapper extends BaseTester {
                         })
                         .build()
         );
+        PageRequest request = new PageRequest(0, 10, new Sort(Sort.Direction.DESC, "created"));
 
-        try (Stream<Project> result = projects.findAllWithLocationExists()) {
-
-            result.forEach(project -> {
-                project.setMilestones(new Milestone[] {one, two, three});
-                projects.save(project);
-                System.out.println(project);
-            });
-        }
+        Iterable<Project> result = projects.findAllWithLocationExists(request);
+        result.forEach(project -> {
+            project.setMilestones(new Milestone[] {one, two, three});
+            projects.save(project);
+            System.out.println(project);
+        });
     }
 
     @Test

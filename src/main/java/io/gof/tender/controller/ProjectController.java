@@ -11,6 +11,8 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.geo.Box;
 import org.springframework.data.geo.Point;
 import org.springframework.http.HttpStatus;
@@ -44,7 +46,8 @@ public class ProjectController {
             if (ids != null && ids.length > 0) {
                 return new ResponseEntity<>(StreamSupport.stream(this.projects.findAll(Arrays.asList(ids)).spliterator(), true).collect(Collectors.toSet()), HttpStatus.OK);
             } else {
-                return new ResponseEntity<>(StreamSupport.stream(this.projects.findAll().spliterator(), true).collect(Collectors.toSet()), HttpStatus.OK);
+                PageRequest request = new PageRequest(0, 10, new Sort(Sort.Direction.DESC, "created"));
+                return new ResponseEntity<>(StreamSupport.stream(this.projects.findAllWithLocationExists(request).spliterator(), true).collect(Collectors.toSet()), HttpStatus.OK);
             }
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
@@ -117,7 +120,7 @@ public class ProjectController {
 //        }
 //    }
 
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<?> get(@PathVariable String id) {
         try {
             return new ResponseEntity<>(this.projects.findOne(id), HttpStatus.OK);
@@ -128,9 +131,9 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "/fake", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<?> fake(@PathVariable String id) {
+    public @ResponseBody ResponseEntity<?> fake() {
         try {
-            return new ResponseEntity<>(this.projects.findAll(Arrays.asList("5662c7f0ceea2b2e62f038c4","5662c7f2ceea2b2e62f038c7","5662c805ceea2b2e62f038d4","5662c806ceea2b2e62f038d6","5662c80aceea2b2e62f038db","5662c80cceea2b2e62f038dd","5662c80eceea2b2e62f038df","5662c813ceea2b2e62f038e6","5662c815ceea2b2e62f038e8","5662c817ceea2b2e62f038eb","5662c821ceea2b2e62f038f3","5662c822ceea2b2e62f038f5","5662c823ceea2b2e62f038f6","5662c825ceea2b2e62f038f8","5662c826ceea2b2e62f038fa","5662c82cceea2b2e62f03901","5662c82dceea2b2e62f03902","5662c82eceea2b2e62f03903","5662c834ceea2b2e62f0390b","5662c835ceea2b2e62f0390d","5662c837ceea2b2e62f0390e","5662c83aceea2b2e62f03913","5662c83dceea2b2e62f03916","5662c840ceea2b2e62f03919","5662c841ceea2b2e62f0391a","5662c843ceea2b2e62f0391d","5662c844ceea2b2e62f0391e","5662c845ceea2b2e62f03920","5662c847ceea2b2e62f03921","5662c848ceea2b2e62f03922","5662c84eceea2b2e62f0392a","5662c857ceea2b2e62f0392c","5662c85cceea2b2e62f03932","5662c85cceea2b2e62f03933","5662c7edceea2b2e62f038c0","5662c7faceea2b2e62f038cd","5662c7fcceea2b2e62f038cf","5662c806ceea2b2e62f038d5","5662c80aceea2b2e62f038da","5662c816ceea2b2e62f038ea","5662c827ceea2b2e62f038fc","5662c830ceea2b2e62f03905","5662c83bceea2b2e62f03914","5662c83fceea2b2e62f03918","5662c842ceea2b2e62f0391c","5662c84dceea2b2e62f03929")), HttpStatus.OK);
+            return new ResponseEntity<>(this.projects.findAll(Arrays.asList("56638e769cae775d1452f891","56638e769cae775d1452f893","56638e769cae775d1452f894","56638e769cae775d1452f896","56638e769cae775d1452f897","56638e769cae775d1452f898","56638e769cae775d1452f899","56638e769cae775d1452f89a","56638e769cae775d1452f89b","56638e769cae775d1452f89c","56638e769cae775d1452f89e","56638e769cae775d1452f89f","56638e769cae775d1452f8a0","56638e769cae775d1452f8a1","56638e769cae775d1452f8a2","56638e769cae775d1452f8a3","56638e769cae775d1452f8a4","56638e769cae775d1452f8a5","56638e769cae775d1452f8a7","56638e769cae775d1452f8a8","56638e769cae775d1452f8a9","56638e769cae775d1452f8aa","56638e769cae775d1452f8ab","56638e769cae775d1452f8ac","56638e769cae775d1452f8ad","56638e769cae775d1452f8ae","56638e769cae775d1452f8b0","56638e769cae775d1452f8b2","56638e769cae775d1452f8b3","56638e769cae775d1452f8b4","56638e769cae775d1452f8b5","56638e769cae775d1452f8b7","56638e769cae775d1452f8b8","56638e769cae775d1452f8b9","56638e769cae775d1452f8ba","56638e769cae775d1452f8bb","56638e769cae775d1452f8bc","56638e769cae775d1452f8bd","56638e769cae775d1452f8be","56638e769cae775d1452f8bf","56638e769cae775d1452f8c1","56638e769cae775d1452f8c3","56638e769cae775d1452f8c5","56638e769cae775d1452f8c6","56638e769cae775d1452f8c7","56638e769cae775d1452f8c8")), HttpStatus.OK);
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

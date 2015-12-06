@@ -54,10 +54,10 @@ var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', /*'ngCacheB
                 }
             },
             resolve: {
-                //projects: function (LoveMeTender) {
-                //    var allProjects = LoveMeTender.all("projects");
-                //    return allProjects.getList();
-                //}
+                projects: function (LoveMeTender) {
+                    var allProjects = LoveMeTender.all("projects");
+                    return allProjects.customGETLIST("fake");
+                }
             }
         }).state('project', {
             parent: 'site',
