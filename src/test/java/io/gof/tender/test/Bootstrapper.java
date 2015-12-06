@@ -25,7 +25,8 @@ public class Bootstrapper extends BaseTester {
     @Test
     public void fillComments() {
         System.out.println("test");
-        this.projects.findAllWithLocationExists().forEach(it -> {
+        PageRequest request = new PageRequest(0, 10, new Sort(Sort.Direction.DESC, "created"));
+        this.projects.findAllWithLocationExists(request).forEach(it -> {
                     it.setComments(new Comment[]{
                             this.comments.save(
                                     Comment.builder()
@@ -247,6 +248,7 @@ public class Bootstrapper extends BaseTester {
 
     @Test
     public void test() {
-        this.projects.findAllWithLocationExists().forEach(it -> System.out.println(it));
+        PageRequest request = new PageRequest(0, 10, new Sort(Sort.Direction.DESC, "created"));
+        this.projects.findAllWithLocationExists(request).forEach(it -> System.out.println(it));
     }
 }

@@ -14,6 +14,9 @@ angular.module('mainApp')
         /* ****************************************** */
         /* Projects List Examples */
         /* ****************************************** */
+
+        $scope.project = projects;
+        debugger;
         $scope.projects = [
             {
                 id: 'PRJ01',
