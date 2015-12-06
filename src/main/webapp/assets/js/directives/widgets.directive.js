@@ -102,7 +102,7 @@ angular.module('mainApp')
             templateUrl: 'components/directives/widget-timeline.html',
             scope: {
                 title: '@',
-                milestones: '='
+                project: '='
             },
             link: function(scope, element, attrs) {
                 scope.afterImageRendered = function (elm){
