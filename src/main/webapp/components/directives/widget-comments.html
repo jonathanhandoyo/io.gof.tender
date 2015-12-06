@@ -12,7 +12,7 @@
             <li ng-repeat="comment in comments track by $index" class="by-me">
                 <!-- Use the class "pull-left" in avatar -->
                 <div class="avatar pull-left">
-                    <img src="{{comment.user.avatar}}" alt=""/>
+                    <img ng-src="{{comment.user.avatar}}" alt=""/>
                 </div>
 
                 <div class="chat-content">

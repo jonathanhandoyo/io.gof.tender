@@ -1,9 +1,10 @@
 <section class="panel">
     <div class="panel-body">
-        <div class="text-center">
+        <div class="text-center mbot30">
             <h3 class="timeline-title">Timeline</h3>
             <p class="t-info">{{project.start}}</p>
         </div>
+
         <div class="timeline">
             <article ng-repeat="milestone in project.milestones track by $index" ng-class-odd="'timeline-item'" ng-class-even="'timeline-item alt'">
                 <div class="timeline-desk">
