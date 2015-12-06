@@ -2,7 +2,7 @@
 
 angular.module('mainApp')
     .controller('ProjectListController', function ($scope, $stateParams, leafletMapEvents, leafletData,
-                                                   LoveMeTender,projects) {
+                                                   LoveMeTender){//}, projects) {
 
         var ProjectEntity = LoveMeTender.all("projects");
 
@@ -15,35 +15,39 @@ angular.module('mainApp')
         /* Projects List Examples */
         /* ****************************************** */
 
-        _.each(projects, function(project, index){
-            _.assign(project,{dueDate: new Date(project.biddingEndDate)});
+        var _enhanceProject = function (projects) {
+            _.each(projects, function (project, index) {
+                _.assign(project, {dueDate: new Date(project.biddingEndDate)});
 
-            var additional;
-            if (index % 2 == 0){
-                additional={
-                    dueDate: project.biddingEndDate,
-                    completion: 80,
-                    state: 'normal',
-                    icon: 'fa-hospital-o'
+                var additional;
+                if (index % 2 == 0) {
+                    additional = {
+                        dueDate: project.biddingEndDate,
+                        completion: 80,
+                        state: 'normal',
+                        icon: 'fa-hospital-o'
+                    }
+                } else if (index % 3 == 0) {
+                    additional = {
+                        dueDate: project.biddingEndDate,
+                        completion: 40,
+                        state: 'danger',
+                        icon: 'fa-university'
+                    }
+                } else {
+                    additional = {
+                        dueDate: new Date(project.biddingEndDate),
+                        completion: 95,
+                        state: 'warning',
+                        icon: 'fa-globe'
+                    }
                 }
-            } else if (index % 3 == 0){
-                additional={
-                    dueDate: project.biddingEndDate,
-                    completion: 40,
-                    state: 'danger',
-                    icon: 'fa-university'
-                }
-            }else{
-                additional={
-                    dueDate: new Date(project.biddingEndDate),
-                    completion: 95,
-                    state: 'warning',
-                    icon: 'fa-globe'
-                }
-            }
-            _.assign(project, additional);
-        });
-        $scope.projects = projects;
+                _.assign(project, additional);
+            });
+            return projects;
+        };
+
+        $scope.projects = []
         //$scope.projects = [
         //    {
         //        id: 'PRJ01',
@@ -111,39 +115,37 @@ angular.module('mainApp')
         $scope.mapHeight = "500px";
         //Defaulted to Central Jakarta
         $scope.center = {
-            lat: -6.1864674,
-            lng: 106.8296372,
-            zoom: 12
+            lat: -6.168886321082537,
+            lng: 106.81139945983887,
+            zoom: 15
         };
 
-
-        $scope.markers = [];
-        _.each($scope.projects, function (project) {
-            $scope.markers.push({
-                lat: project.location.coordinate[1],
-                lng: project.location.coordinate[0]
-            })
-        });
-
-        var mainMarker = {
-            lat: -6.1864674,
-            lng: 106.8296372,
-            focus: true,
-            message: "Hey, drag me if you want",
-            draggable: true
+        var _refreshMarkers = function (projects) {
+            $scope.markers = [];
+            _.each(projects, function (project) {
+                $scope.markers.push({
+                    lat: project.location.coordinate[1],
+                    lng: project.location.coordinate[0]
+                })
+            });
         };
 
         //Handles movement in the map and re-render more pins
         function _refreshMapAndTable(swLng, swLat, neLng, neLat) {
             //Grabs a new set of project
-            //ProjectEntity.customGETLIST("within", {
-            //    swLng: swLng,
-            //    swLat: swLat,
-            //    neLng: neLng,
-            //    neLat: neLat
-            //}).then(function (projects) {
-            //    debugger;
-            //})
+            ProjectEntity.customGETLIST("within", {
+                swLng: swLng,
+                swLat: swLat,
+                neLng: neLng,
+                neLat: neLat
+            }).then(function (projects) {
+                projects = _enhanceProject(projects);
+                $scope.projects = projects;
+                //leafletData.getMap('inMap').then(function (map) {
+                //   debugger;
+                //});
+                _refreshMarkers(projects);
+            })
         }
 
         var _handleMapMovement = function (mapInstance) {
@@ -157,7 +159,11 @@ angular.module('mainApp')
 
         //TODO: look at directive based events later
         leafletData.getMap('inMap').then(function (map) {
-            map.on("moveend zoomend", function(){_handleMapMovement(map);});
+            //Fucked up way of doing this, on first load, when we get to this point, initialize the markers and projects
+            _handleMapMovement(map);
+            map.on("moveend zoomend load", function () {
+                _handleMapMovement(map);
+            });
         });
 
     });

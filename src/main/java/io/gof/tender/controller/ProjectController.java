@@ -82,11 +82,9 @@ public class ProjectController {
 
             if (projectLocations != null) {
 
-                Iterable<String> projectSet = StreamSupport.stream(projectLocations.spliterator(), true)
-                        .map(Location::getProject)
-                        .map(Project::getId)
+                Set<Location> locationSet = StreamSupport.stream(projectLocations.spliterator(), true)
                         .collect(Collectors.toSet());
-                Iterable<Project> projects = this.projects.findAll(projectSet);
+                Iterable<Project> projects = this.projects.findAllByLocationIn(locationSet);
 
                 return new ResponseEntity<>(StreamSupport.stream(projects.spliterator(), true).collect(Collectors.toList()), HttpStatus.OK);
             }
