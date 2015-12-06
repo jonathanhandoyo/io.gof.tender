@@ -13,6 +13,10 @@ angular.module('mainApp')
             $http.get('/api/projects/' + $scope.projectId).success(function(data, status, headers, config){
 
                 if(data){
+                    _.assign(data, {
+                        due: new Date(data.biddingEndDate),
+                        completion: Math.floor((Math.random() * 100) + 1)
+                    })
                     $scope.project = data;
                 }else{
                     alert('Failed to fetch Project');
