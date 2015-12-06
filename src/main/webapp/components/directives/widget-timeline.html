@@ -2,27 +2,27 @@
     <div class="panel-body">
         <div class="text-center">
             <h3 class="timeline-title">Timeline</h3>
-            <p class="t-info">28 Sep 2015</p>
+            <p class="t-info">{{project.start}}</p>
         </div>
         <div class="timeline">
-            <article ng-repeat="milestone in milestones track by $index" ng-class-odd="'timeline-item'" ng-class-even="'timeline-item alt'">
+            <article ng-repeat="milestone in project.milestones track by $index" ng-class-odd="'timeline-item'" ng-class-even="'timeline-item alt'">
                 <div class="timeline-desk">
                     <div class="panel">
                         <div class="panel-body">
                             <span ng-class-odd="'arrow'" ng-class-even="'arrow-alt'"></span>
                             <span class="timeline-icon blue"></span>
-                            <span class="timeline-date">{{milestone.date}}</span>
+                            <span class="timeline-date">{{milestone.due}}</span>
                             <h1 class="blue">{{milestone.title}}</h1>
                             <p ng-bind-html="milestone.content"></p>
                             <div ng-if="milestone.highlights" class="clearfix">
                                 <div ng-repeat="highlight in milestone.highlights" class="notification">
-                                    <i class=" fa fa-exclamation-sign"></i> <span ng-bind-html="highlight.text"></span>
+                                    <i class=" fa fa-exclamation-sign"></i> <span ng-bind-html="highlight"></span>
                                 </div>
                             </div>
                             <div class="clearfix">
                                 <div ng-if="milestone.album && milestone.album.images" class="album">
-                                    <a ng-repeat="image in milestone.album.images track by $index" ng-href="{{image.source}}" class="prettyphoto">
-                                        <img alt="" src="{{image.thumbSource ? image.thumbSource : image.source}}" class="img-responsive" after-render="afterImageRendered">
+                                    <a ng-repeat="image in milestone.album.images track by $index" ng-href="../assets/img/{{image.source}}" class="prettyphoto">
+                                        <img alt="" src="../assets/img/{{image.thumbSource ? image.thumbSource : image.source}}" class="img-responsive" after-render="afterImageRendered" width="50" height="50">
                                     </a>
                                 </div>
                             </div>
