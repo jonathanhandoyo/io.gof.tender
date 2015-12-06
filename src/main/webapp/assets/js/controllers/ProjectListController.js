@@ -2,7 +2,7 @@
 
 angular.module('mainApp')
     .controller('ProjectListController', function ($scope, $stateParams, leafletMapEvents, leafletData,
-                                                   LoveMeTender) {//,projects) {
+                                                   LoveMeTender,projects) {
 
         var ProjectEntity = LoveMeTender.all("projects");
 

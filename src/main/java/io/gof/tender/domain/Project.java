@@ -61,7 +61,7 @@ public class Project extends BaseEntity {
     @Getter
     @Setter
     @Builder
-    public static class Price {
+    public static class Price extends BaseEntity {
         private Double estimated;
         private Double ceiling;
         private Double winning;

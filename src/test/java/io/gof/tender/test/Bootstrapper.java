@@ -14,6 +14,7 @@ import java.io.FileReader;
 import java.io.Reader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -21,14 +22,44 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 public class Bootstrapper extends BaseTester {
-    static SimpleDateFormat SDF = new SimpleDateFormat("dd-MM-yyyy");
+    @Test
+    public void fillComments() {
+        System.out.println("test");
+        this.projects.findAllWithLocationExists().forEach(it -> {
+                    it.setComments(new Comment[]{
+                            this.comments.save(
+                                    Comment.builder()
+                                            .timestamp(new Date())
+                                            .username("username 1")
+                                            .content("Lorem ipsum dolor sit amet consiquest dio Lorem ipsum dolor sit amet consiquest dio")
+                                            .build()
+                            ),
+                            this.comments.save(
+                                    Comment.builder()
+                                            .timestamp(new Date())
+                                            .username("username 2")
+                                            .content("<a href=\"#\">Lorem ipsum</a> dolor sit amet consiquest dio Lorem ipsum dolor sit amet consiquest dio")
+                                            .build()
+                            ),
+                            this.comments.save(
+                                    Comment.builder()
+                                            .timestamp(new Date())
+                                            .username("username 3")
+                                            .content("<a href=\"#\">Lorem ipsum</a> dolor sit amet consiquest dio Lorem ipsum dolor sit amet consiquest dio")
+                                            .build()
+                            )
+                    });
+                    System.out.println(this.projects.save(it));
+                }
+        );
+    }
 
     @Test
     public void fillMilestones() {
         Milestone one = this.miletones.save(
                 Milestone.builder()
                         .title("First Milestone")
-                        .content("Lorem ipsum dolor sit amet consiquest dio Lorem ipsum dolor sit amet consiquest dio\"")
+                        .content("Lorem ipsum dolor sit amet consiquest dio Lorem ipsum dolor sit amet consiquest dio")
                         .due(CustomDate.toDate("yyyy-MM-dd", "2016-06-01"))
                         .build()
         );
@@ -36,7 +67,7 @@ public class Bootstrapper extends BaseTester {
         Milestone two = this.miletones.save(
                 Milestone.builder()
                         .title("First Milestone")
-                        .content("<a href=\"#\">Lorem ipsum</a> dolor sit amet consiquest dio Lorem ipsum dolor sit amet consiquest dio\"")
+                        .content("<a href=\"#\">Lorem ipsum</a> dolor sit amet consiquest dio Lorem ipsum dolor sit amet consiquest dio")
                         .due(CustomDate.toDate("yyyy-MM-dd", "2016-06-01"))
                         .album(this.getAlbum())
                         .build()
@@ -45,25 +76,24 @@ public class Bootstrapper extends BaseTester {
         Milestone three = this.miletones.save(
                 Milestone.builder()
                         .title("First Milestone")
-                        .content("<a href=\"#\">Lorem ipsum</a> dolor sit amet consiquest dio Lorem ipsum dolor sit amet consiquest dio\"")
+                        .content("<a href=\"#\">Lorem ipsum</a> dolor sit amet consiquest dio Lorem ipsum dolor sit amet consiquest dio")
                         .due(CustomDate.toDate("yyyy-MM-dd", "2016-06-01"))
                         .album(this.getAlbum())
-                        .highlights(new String[] {
+                        .highlights(new String[]{
                                 "Release Highlight #1",
                                 "Release Highlight #2",
                                 "Release Highlight #3"
                         })
                         .build()
         );
+        PageRequest request = new PageRequest(0, 10, new Sort(Sort.Direction.DESC, "created"));
 
-        try (Stream<Project> result = projects.findAllWithLocationExists()) {
-
-            result.forEach(project -> {
-                project.setMilestones(new Milestone[] {one, two, three});
-                projects.save(project);
-                System.out.println(project);
-            });
-        }
+        Iterable<Project> result = projects.findAllWithLocationExists(request);
+        result.forEach(project -> {
+            project.setMilestones(new Milestone[] {one, two, three});
+            projects.save(project);
+            System.out.println(project);
+        });
     }
 
     @Test
@@ -213,5 +243,10 @@ public class Bootstrapper extends BaseTester {
             this.projects.save(project);
             this.locations.save(location);
         }
+    }
+
+    @Test
+    public void test() {
+        this.projects.findAllWithLocationExists().forEach(it -> System.out.println(it));
     }
 }

@@ -1,6 +1,6 @@
 var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', /*'ngCacheBuster',*/
-    'ngAria', 'restangular', 'nemLogging', 'ui-leaflet'])
-    .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider,  /*httpRequestInterceptorCacheBusterProvider,*/ AlertServiceProvider) {
+        'ngAria', 'restangular', 'nemLogging', 'ui-leaflet'])
+    .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, /*httpRequestInterceptorCacheBusterProvider,*/ AlertServiceProvider) {
         // comment below to make alerts doesn't look like toast
         AlertServiceProvider.showAsToast(true);
 
@@ -70,9 +70,7 @@ var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', /*'ngCacheB
                     controller: 'HomeController'
                 }
             },
-            resolve: {
-
-            }
+            resolve: {}
         }).state('projects', {
             parent: 'site',
             url: '/projects',
@@ -86,10 +84,10 @@ var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', /*'ngCacheB
                 }
             },
             resolve: {
-                //projects: function (LoveMeTender) {
-                //    var allProjects = LoveMeTender.all("projects");
-                //    return allProjects.getList();
-                //}
+                projects: function (LoveMeTender) {
+                    var allProjects = LoveMeTender.all("projects");
+                    return allProjects.getList();
+                }
             }
         }).state('project', {
             parent: 'site',
@@ -103,9 +101,7 @@ var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', /*'ngCacheB
                     controller: 'ProjectController'
                 }
             },
-            resolve: {
-
-            }
+            resolve: {}
         }).state('project.edit', {
             parent: 'site',
             url: '/project/edit/:projectId',
@@ -149,8 +145,8 @@ var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', /*'ngCacheB
         });
 
         /*$httpProvider.interceptors.push('errorHandlerInterceptor');
-        $httpProvider.interceptors.push('authExpiredInterceptor');
-        $httpProvider.interceptors.push('authInterceptor');
-        $httpProvider.interceptors.push('notificationInterceptor');*/
+         $httpProvider.interceptors.push('authExpiredInterceptor');
+         $httpProvider.interceptors.push('authInterceptor');
+         $httpProvider.interceptors.push('notificationInterceptor');*/
 
     });
