@@ -1,29 +1,27 @@
 package io.gof.tender.test;
 
-import com.fasterxml.jackson.databind.type.TypeFactory;
 import io.gof.tender.BaseTester;
 import io.gof.tender.domain.*;
 import io.gof.tender.util.CustomDate;
 import io.gof.tender.util.CustomDouble;
-import io.gof.tender.util.JsonUtil;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.junit.Test;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import java.io.FileReader;
 import java.io.Reader;
-import java.util.*;
-import java.util.stream.Collector;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 public class Bootstrapper extends BaseTester {
     @Test
     public void fillComments() {
-        for (Project project: this.projects.findAll()) {
+        for (Project project : this.projects.findAll()) {
         }
     }
 
@@ -104,7 +102,7 @@ public class Bootstrapper extends BaseTester {
     }
 
     @Test
-    public void insertLocations () throws Exception {
+    public void insertLocations() throws Exception {
         Project project = this.projects.findOne("5662c7e7ceea2b2e62f038be");
         Reader in = new FileReader("E:\\workspace\\io.gof.tender\\src\\test\\resources\\data_location.csv");
 
@@ -133,12 +131,12 @@ public class Bootstrapper extends BaseTester {
     }
 
     @Test
-    public void findAndUpdateProject () throws Exception {
+    public void findAndUpdateProject() throws Exception {
         System.out.println("Start read");
         Iterable<Location> locations = this.locations.findAll();
 
         // Keep that in a constant if it stays the same
-        PageRequest request = new PageRequest(0, 1, new Sort(Sort.Direction.DESC, "created"));
+        PageRequest request = new PageRequest(0, 46, new Sort(Sort.Direction.DESC, "created"));
         List<Project> projectList = this.projects.findWithoutLocation(request).getContent();
 
         List<Location> locationCollection = StreamSupport.stream(locations.spliterator(), true).collect(Collectors.toList());
@@ -148,7 +146,7 @@ public class Bootstrapper extends BaseTester {
 
         System.out.println("Starting insertiom");
 
-        for(int i=0; i<projectList.size(); i++){
+        for (int i = 0; i < projectList.size(); i++) {
             Project project = projectList.get(i);
             Location location = locationCollection.get(i);
             project.setLocation(location);
