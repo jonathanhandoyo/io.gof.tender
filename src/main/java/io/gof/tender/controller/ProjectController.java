@@ -1,6 +1,5 @@
 package io.gof.tender.controller;
 
-import com.sun.xml.internal.bind.v2.model.core.ID;
 import io.gof.tender.domain.Comment;
 import io.gof.tender.domain.Location;
 import io.gof.tender.domain.Project;
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.Date;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 

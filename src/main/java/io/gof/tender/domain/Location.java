@@ -1,6 +1,5 @@
 package io.gof.tender.domain;
 
-import com.google.code.geocoder.model.GeocodeResponse;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
