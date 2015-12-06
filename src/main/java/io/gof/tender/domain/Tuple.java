@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class Tuple {
+public class Tuple extends BaseEntity {
     private String code;
     private String name;
 }
