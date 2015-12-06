@@ -101,7 +101,6 @@ angular.module('mainApp')
             restrict: 'E',
             templateUrl: 'components/directives/widget-timeline.html',
             scope: {
-                title: '@',
                 project: '='
             },
             link: function(scope, element, attrs) {

@@ -34,8 +34,13 @@ public class Project extends BaseEntity {
     private String districtName;        //nama_kabupaten
     private String provinceName;        //nama_propinsi
 
+    @JsonSerialize(using = CustomShortDateSerializer.class)
     @JsonDeserialize(using = CustomShortDateDeserializer.class)
     private Date start;
+
+    @JsonSerialize(using = CustomShortDateSerializer.class)
+    @JsonDeserialize(using = CustomShortDateDeserializer.class)
+    private Date due;
 
     @DBRef
     private Milestone[] milestones;
