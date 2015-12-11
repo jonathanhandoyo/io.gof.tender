@@ -64,7 +64,10 @@
             <div class="col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <app-timeline project="project"></app-timeline>
+                        <div class="pull-right clearfix">
+                            Add Post <a href="#" class="btn btn-primary btn-xs" title="Add Revision"><i class="fa fa-plus"></i></a>
+                        </div>
+                        <app-public-timeline project="project" posts="posts"></app-public-timeline>
                     </div>
                 </div>
             </div>

@@ -14,7 +14,7 @@ public class Vendor extends BaseEntity {
     @Id
     private String id;
 
-    private String code;
+    private String taxId;
     private String name;
-    private String businessRegistrationId;
+    private String address;
 }

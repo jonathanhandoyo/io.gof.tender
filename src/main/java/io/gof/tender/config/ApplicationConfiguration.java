@@ -10,7 +10,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan(basePackages = {"io.gof.tender"})
-@Import({MongoConfiguration.class})
+@Import({MongoConfiguration.class, SecurityConfiguration.class})
 @PropertySource("classpath:application.properties")
 public class ApplicationConfiguration {
     private static final Logger LOG = LoggerFactory.getLogger(ApplicationConfiguration.class);

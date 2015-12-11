@@ -1,6 +1,3 @@
-/**
- * Created by hjonathan on 01/12/2015.
- */
 'use strict';
 
 angular.module('mainApp')

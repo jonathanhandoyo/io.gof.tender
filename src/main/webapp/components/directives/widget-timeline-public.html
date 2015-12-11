@@ -1,0 +1,49 @@
+<section class="panel">
+    <div class="panel-body">
+        <div class="text-center">
+            <h3 class="timeline-title" style="">Timeline</h3>
+            <p class="t-info">Public Post</p>
+        </div>
+
+        <div class="timeline">
+            <article ng-repeat="posts in postsGroup track by $index" ng-class-odd="'timeline-item'" ng-class-even="'timeline-item alt'">
+                <div class="timeline-desk">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <span ng-class-odd="'arrow'" ng-class-even="'arrow-alt'"></span>
+                            <span class="timeline-icon blue"></span>
+                            <span class="timeline-date">{{postsGroup.date}}</span>
+                            <h1 class="blue">{{posts.length}} posts</h1>
+                            <div class="clearfix">
+                                <div class="album">
+                                    <a ng-repeat="post in posts track by $index" ng-href="data:image/png;base64,{{post.image.base64}}" class="prettyphoto">
+                                        <img alt="{{post.iamge.title}}" src="data:image/png;base64,{{post.image.base64}}" class="img-responsive" after-render="afterImageRendered" width="50" height="50">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Add Post -->
+                            <!--<div class="clearfix">
+                                Add post to this date <a href="#" class="btn btn-primary btn-xs" title="Add post"><i class="fa fa-plus"></i></a>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article ng-if="project.start" class="timeline-item alt">
+                <div class="timeline-desk">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <span class="arrow-alt"></span>
+                            <span class="timeline-icon blue"></span>
+                            <span class="timeline-date">{{project.start}}</span>
+                            <h1 class="blue">Project Start</h1>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div class="clearfix">&nbsp;</div>
+    </div>
+</section>

@@ -20,7 +20,7 @@ public class Location extends BaseEntity {
     @DBRef
     private Project project;
 
-    private String name;
+    private String address;
 
     private double[] coordinate;
     private GeoJsonPoint point;

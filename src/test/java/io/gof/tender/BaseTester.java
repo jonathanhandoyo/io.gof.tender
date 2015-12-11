@@ -28,9 +28,6 @@ public class BaseTester {
     protected LocationRepository locations;
 
     @Autowired
-    protected MessageRepository messages;
-
-    @Autowired
     protected ProjectRepository projects;
 
     @Autowired
