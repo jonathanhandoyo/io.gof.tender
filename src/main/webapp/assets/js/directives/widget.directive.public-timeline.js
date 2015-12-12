@@ -27,8 +27,8 @@ angular.module('mainApp')
                 };
                 scope.constructPostGroup();
 
-                scope.addPost = function(){
-
+                scope.addPostComplete = function(content){
+                    alert(JSON,stringify(content));
                 };
 
                 scope.afterImageRendered = function (elm){

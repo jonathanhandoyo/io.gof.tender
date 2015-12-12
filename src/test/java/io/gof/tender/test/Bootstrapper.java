@@ -24,7 +24,7 @@ import java.util.stream.StreamSupport;
 public class Bootstrapper extends BaseTester {
     @Test
     public void fillComments() {
-        System.out.println("test");
+        /*System.out.println("test");
         PageRequest request = new PageRequest(0, 10, new Sort(Sort.Direction.DESC, "created"));
         this.projects.findAllWithLocationExists(request).forEach(it -> {
                     it.setComments(new Comment[]{
@@ -52,12 +52,12 @@ public class Bootstrapper extends BaseTester {
                     });
                     System.out.println(this.projects.save(it));
                 }
-        );
+        );*/
     }
 
     @Test
     public void fillMilestones() {
-        Milestone one = this.miletones.save(
+        /*Milestone one = this.miletones.save(
                 Milestone.builder()
                         .title("First Milestone")
                         .content("Lorem ipsum dolor sit amet consiquest dio Lorem ipsum dolor sit amet consiquest dio")
@@ -94,19 +94,19 @@ public class Bootstrapper extends BaseTester {
             project.setMilestones(new Milestone[] {one, two, three});
             projects.save(project);
             System.out.println(project);
-        });
+        });*/
     }
 
     @Test
     public void fillUsers() throws Exception {
-        System.out.println(this.users.save(User.builder().username("jonathan").password("jonathan").build()));
+        /*System.out.println(this.users.save(User.builder().username("jonathan").password("jonathan").build()));
         System.out.println(this.users.save(User.builder().username("arnold").password("arnold").build()));
-        System.out.println(this.users.save(User.builder().username("siwananda").password("siwananda").build()));
+        System.out.println(this.users.save(User.builder().username("siwananda").password("siwananda").build()));*/
     }
 
     @Test
     public void fillProjects() throws Exception {
-        Reader in = new FileReader("D:\\workspace\\GoF\\io.gof.tender\\src\\test\\resources\\data_projects_v2.csv");
+        /*Reader in = new FileReader("D:\\workspace\\GoF\\io.gof.tender\\src\\test\\resources\\data_projects_v2.csv");
         Iterable<CSVRecord> records = CSVFormat.DEFAULT.withHeader().parse(in);
         for (CSVRecord record : records) {
             try {
@@ -155,11 +155,11 @@ public class Bootstrapper extends BaseTester {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 
     public Vendor getVendor(CSVRecord record) {
-        Vendor vendor = this.vendors.findByBusinessRegistrationId(record.get("npwp_pemenang"));
+        /*Vendor vendor = this.vendors.findByBusinessRegistrationId(record.get("npwp_pemenang"));
         if (vendor != null) {
             return vendor;
         } else {
@@ -170,7 +170,9 @@ public class Bootstrapper extends BaseTester {
                             .businessRegistrationId(record.get("npwp_pemenang"))
                             .build()
             );
-        }
+        }*/
+
+        return null;
     }
 
     public Milestone.Album getAlbum() {
@@ -193,7 +195,7 @@ public class Bootstrapper extends BaseTester {
 
     @Test
     public void insertLocations() throws Exception {
-        Project project = this.projects.findOne("5662c7e7ceea2b2e62f038be");
+        /*Project project = this.projects.findOne("5662c7e7ceea2b2e62f038be");
         Reader in = new FileReader("E:\\workspace\\io.gof.tender\\src\\test\\resources\\data_location.csv");
 
         Iterable<CSVRecord> records = CSVFormat.DEFAULT.withHeader().parse(in);
@@ -216,7 +218,7 @@ public class Bootstrapper extends BaseTester {
 
         project.setLocation(locationCollection.get(x));
         this.projects.save(project);
-        System.out.println(project);
+        System.out.println(project);*/
 
     }
 

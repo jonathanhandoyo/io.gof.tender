@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VendorRepository extends CrudRepository<Vendor, String> {
-    Vendor findByBusinessRegistrationId(String code);
+    Vendor findByTaxId(String code);
 }

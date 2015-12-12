@@ -1,12 +1,9 @@
-var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', /*'ngCacheBuster',*/
-        'ngAria', 'restangular', 'nemLogging', 'ui-leaflet'])
-    .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, /*httpRequestInterceptorCacheBusterProvider,*/ AlertServiceProvider) {
+var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', 'ngFileUpload', 'ngAria', 'restangular', 'nemLogging', 'ui-leaflet'])
+    .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, AlertServiceProvider) {
         // comment below to make alerts doesn't look like toast
         AlertServiceProvider.showAsToast(true);
 
-        //['ngCacheBuster'] Cache everything except rest api requests
-        //TODO setup matchlist
-        //httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*api.*/, /.*protected.*/], true);
+        //$httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 
         // Register the HTTP INTERCEPTORS
         $httpProvider.interceptors.push(function($q, $window, $rootScope) {
@@ -83,12 +80,7 @@ var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', /*'ngCacheB
                     controller: 'ProjectListController'
                 }
             },
-            resolve: {
-                //projects: function (LoveMeTender) {
-                //    var allProjects = LoveMeTender.all("projects");
-                //    return allProjects.getList();
-                //}
-            }
+            resolve: {}
         }).state('project', {
             parent: 'site',
             url: '/project/:projectId',
@@ -114,8 +106,7 @@ var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', /*'ngCacheB
                     controller: 'ProjectEditController'
                 }
             },
-            resolve: {
-            }
+            resolve: {}
         }).state('admin', {
             parent: 'site',
             url: '/admin',
@@ -128,12 +119,7 @@ var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', /*'ngCacheB
                     controller: 'AdminController'
                 }
             },
-            resolve: {
-                //projects: function (LoveMeTender) {
-                //    var allProjects = LoveMeTender.all("projects");
-                //    return allProjects.getList();
-                //}
-            }
+            resolve: {}
         }).state('404', {
             parent: 'site',
             url: '/404',
@@ -143,10 +129,5 @@ var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', /*'ngCacheB
                 }
             }
         });
-
-        /*$httpProvider.interceptors.push('errorHandlerInterceptor');
-         $httpProvider.interceptors.push('authExpiredInterceptor');
-         $httpProvider.interceptors.push('authInterceptor');
-         $httpProvider.interceptors.push('notificationInterceptor');*/
 
     });

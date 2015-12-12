@@ -129,7 +129,7 @@ public class ProjectController {
         }
     }
 
-    @RequestMapping(value = "/{id}/comment/add/{username}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}/comment/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<?> addComment(
             @PathVariable("id") String projectId,
             @PathVariable String username,
@@ -163,14 +163,13 @@ public class ProjectController {
         }
     }
 
-    @RequestMapping(value = "/{id}/post/add/{username}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/post/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<?> addPost(
-            @PathVariable("id") String projectId,
-            @PathVariable String username,
-            @RequestParam String title,
-            @RequestParam String content,
+            @RequestParam String projectId,
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) String content,
             @RequestParam MultipartFile image
-            ) {
+    ){
         try {
             Assert.state(projects.exists(projectId), "Project doesn't exist");
 
@@ -181,7 +180,7 @@ public class ProjectController {
 
             Post post = posts.save(Post.builder()
                 .projectId(projectId)
-                .username(username)
+                .username("anonymous")
                 .title(title)
                 .content(content)
                     .image(Post.Image.builder()

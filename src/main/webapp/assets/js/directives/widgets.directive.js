@@ -213,6 +213,20 @@ angular.module('mainApp')
 
             }
         }
+    })
+
+    .directive('appModal', function() {
+        return {
+            restrict: 'E',
+            templateUrl: 'components/directives/widget-modal.html',
+            transclude: true,
+            scope: {
+                modalId: '@'
+            },
+            link: function(scope, element, attrs) {
+
+            }
+        }
     });
 
 
