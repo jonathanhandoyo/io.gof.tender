@@ -186,6 +186,7 @@ public class ProjectController {
                     .image(Post.Image.builder()
                         .base64(image64)
                         .build())
+                .date(new Date())
                 .build()
             );
 

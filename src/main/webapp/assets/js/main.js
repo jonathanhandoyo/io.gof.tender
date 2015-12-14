@@ -7,7 +7,7 @@ var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', 'ngFileUplo
 
         // Register the HTTP INTERCEPTORS
         $httpProvider.interceptors.push(function($q, $window, $rootScope) {
-            $rootScope.loadingScreen = jQuery('<div class="app-overlay"><span></span></div>').appendTo(jQuery('body')).hide();
+            //$rootScope.loadingScreen = jQuery('<div class="app-overlay"><span></span></div>').appendTo(jQuery('body')).hide();
 
             return {
                 'request': function(config) {
@@ -131,3 +131,21 @@ var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', 'ngFileUplo
         });
 
     });
+
+function show_loader() {
+    var over = '<div id="loader-overlay">' +
+        '<img id="loader" src="../assets//img/gears.gif">' +
+        '</div>';
+    $(over).appendTo('body');
+    window.scrollTo(0, 0);
+    $('body').css('overflow', 'hidden');
+
+    //$('#overlay').click(function() {
+    //    $(this).remove();
+    //});
+}
+
+function hide_loader(){
+    $('#loader-overlay').remove();
+    $('body').css('overflow', 'auto');
+}

@@ -7,25 +7,14 @@ angular.module('mainApp')
             templateUrl: 'components/directives/widget-timeline-public.html',
             scope: {
                 project: '=',
-                posts: '='
+                postGroups: '='
             },
             link: function(scope, element, attrs){
+                scope.$watch(function(scope) { return scope.posts },
+                    function(newValue, oldValue) {
 
-                scope.postsGroup = {};
-
-                scope.constructPostGroup = function(postsGroup){
-                    scope.postsGroup = {};
-                    var dateFoo = undefined;
-                    angular.forEach(scope.posts, function(post, idx){
-                        if(dateFoo && scope.postsGroup[dateFoo]){
-                            scope.postsGroup[dateFoo].push(post)
-                        } else {
-                            dateFoo = post.date;
-                            scope.postsGroup[dateFoo] = [post];
-                        }
-                    });
-                };
-                scope.constructPostGroup();
+                    }
+                );
 
                 scope.addPostComplete = function(content){
                     alert(JSON,stringify(content));

@@ -6,7 +6,7 @@
         </div>
 
         <div class="timeline">
-            <article ng-repeat="posts in postsGroup track by $index" ng-class-odd="'timeline-item'" ng-class-even="'timeline-item alt'">
+            <article ng-repeat="posts in postGroups track by $index" ng-class-odd="'timeline-item'" ng-class-even="'timeline-item alt'">
                 <div class="timeline-desk">
                     <div class="panel">
                         <div class="panel-body">
@@ -17,7 +17,7 @@
                             <div class="clearfix">
                                 <div class="album">
                                     <a ng-repeat="post in posts track by $index" ng-href="data:image/png;base64,{{post.image.base64}}" class="prettyphoto">
-                                        <img alt="{{post.iamge.title}}" src="data:image/png;base64,{{post.image.base64}}" class="img-responsive" after-render="afterImageRendered" width="50" height="50">
+                                        <img alt="{{post.iamge.title}}" src="data:image/png;base64,{{post.image.base64}}" class="img-responsive" after-render="afterImageRendered">
                                     </a>
                                 </div>
                             </div>
