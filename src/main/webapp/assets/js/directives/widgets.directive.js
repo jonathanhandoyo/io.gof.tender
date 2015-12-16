@@ -51,12 +51,12 @@ angular.module('mainApp')
     * */
     /* project.state : normal, success, warning, danger */
     /* ****************************************** */
-    .directive('appProjects', function() {
+    .directive('appProjectsLoc', function() {
         return {
             restrict: 'E',
-            templateUrl: 'components/directives/widget-projects.html',
+            templateUrl: 'components/directives/widget-projects-loc.html',
             scope: {
-                projects: '='
+                locations: '='
             },
             link: function(scope, element, attrs){
 
