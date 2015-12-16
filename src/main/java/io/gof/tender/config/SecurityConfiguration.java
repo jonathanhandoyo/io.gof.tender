@@ -1,6 +1,7 @@
 package io.gof.tender.config;
 
 import io.gof.tender.domain.User;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -20,6 +21,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +46,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     String name = authentication.getName();
                     String password = authentication.getCredentials().toString();
 
-                    //TODO should be authenticated through DB
+                    String hashed = new String(DigestUtils.sha256(password), StandardCharsets.UTF_8);
+
                     List<GrantedAuthority> grantedAuths = new ArrayList<>();
                     grantedAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
                     Authentication auth = new UsernamePasswordAuthenticationToken(
