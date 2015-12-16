@@ -1,6 +1,11 @@
 package io.gof.tender.test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.code.geocoder.Geocoder;
+import com.google.code.geocoder.model.GeocodeResponse;
+import com.google.code.geocoder.model.GeocoderRequest;
+import com.google.code.geocoder.model.GeocoderResult;
+import com.google.code.geocoder.model.LatLng;
 import io.gof.tender.BaseTester;
 import io.gof.tender.domain.Location;
 import io.gof.tender.domain.Project;
@@ -8,12 +13,17 @@ import io.gof.tender.domain.Tuple;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class ProjectLoader extends BaseTester {
+    private static final Logger LOG = LoggerFactory.getLogger(ProjectLoader.class);
+
     @Test
     public void loadJSONFile() throws Exception{
         File projectsDir = new File("projects");
@@ -24,6 +34,7 @@ public class ProjectLoader extends BaseTester {
                 .name(getStr(projectMap.get("name")))
                 .biddingCode(getStr(projectMap.get("code")))
                 .biddingStepsLink(getStr(projectMap.get("biddingStepsLink")))
+                .biddingDateStr(getStr(projectMap.get("date")))
                 .category(getStr(projectMap.get("category ")))
                 .desc(getStr(projectMap.get("desc")))
                 .fiscalYear(getStr(projectMap.get("fiscalYear")))
@@ -111,7 +122,61 @@ public class ProjectLoader extends BaseTester {
                     locations.save(location);
                 }
             }
+
+            LOG.info("Project : " + project.getCode() + " done");
         }
+    }
+
+    @Test
+    public void loadGeoLoc() throws Exception{
+        List<Location> locationsList = locations.findAll();
+
+        Geocoder geocoder = new Geocoder();
+        for(Location location: locationsList){
+            if (location.getAddress() != null) {
+                String address = null;
+                String[] addresses = StringUtils.split(location.getAddress(), "-");
+                if(addresses.length > 1){
+                    if(StringUtils.isNotEmpty(StringUtils.trim(addresses[1]))){
+                        address = location.getAddress();
+                    }else {
+                        address = addresses[0];
+                    }
+                } else {
+                    address = StringUtils.trim(location.getAddress().replace("-", ""));
+                }
+
+                GeocodeResponse response = geocoder.geocode(new GeocoderRequest(address,"id"));
+
+                if(response.getResults() != null && response.getResults().size() > 0){
+                    saveLocations(location, response.getResults().get(0));
+                } else if (addresses.length > 1){
+                    address = StringUtils.trim(addresses[0]);
+                    response = geocoder.geocode(new GeocoderRequest(address,"id"));
+
+                    if(response.getResults() != null && response.getResults().size() > 0){
+                        saveLocations(location, response.getResults().get(0));
+                    }else {
+                        address = StringUtils.trim(addresses[1]);
+                        response = geocoder.geocode(new GeocoderRequest(address,"id"));
+
+                        if(response.getResults() != null && response.getResults().size() > 0){
+                            saveLocations(location, response.getResults().get(0));
+                        }else {
+                            LOG.debug("address not found : " + location.getAddress());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void saveLocations(Location location, GeocoderResult result){
+        LatLng coordinate = result.getGeometry().getLocation();
+        location.setCoordinate(new double[]{coordinate.getLat().doubleValue(), coordinate.getLng().doubleValue()});
+        location.setGeolocAddress(result.getFormattedAddress());
+
+        locations.save(location);
     }
 
     private String getStr(Object str){

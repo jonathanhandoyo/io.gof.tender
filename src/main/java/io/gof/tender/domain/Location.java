@@ -21,6 +21,7 @@ public class Location extends BaseEntity {
     private Project project;
 
     private String address;
+    private String geolocAddress;
 
     private double[] coordinate;
     private GeoJsonPoint point;
