@@ -1,9 +1,7 @@
 package io.gof.tender.controller;
 
 import io.gof.tender.domain.Comment;
-import io.gof.tender.domain.Location;
 import io.gof.tender.domain.Post;
-import io.gof.tender.domain.Project;
 import io.gof.tender.repository.CommentRepository;
 import io.gof.tender.repository.LocationRepository;
 import io.gof.tender.repository.PostRepository;
@@ -12,9 +10,6 @@ import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.geo.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +17,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Arrays;
 import java.util.Date;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -37,74 +30,17 @@ public class ProjectController {
     private ProjectRepository projects;
 
     @Autowired
-    private LocationRepository projectLocations;
-
-    @Autowired
     private CommentRepository comments;
 
     @Autowired
     private PostRepository posts;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<?> all(@RequestParam(required = false) String[] ids) {
-        try {
-            if (ids != null && ids.length > 0) {
-                return new ResponseEntity<>(StreamSupport.stream(this.projects.findAll(Arrays.asList(ids)).spliterator(), true).collect(Collectors.toSet()), HttpStatus.OK);
-            } else {
-                PageRequest request = new PageRequest(0, 10, new Sort(Sort.Direction.DESC, "created"));
-                return null;//return new ResponseEntity<>(StreamSupport.stream(this.projects.findAllWithLocationsExists(request).spliterator(), true).collect(Collectors.toSet()), HttpStatus.OK);
-            }
-        } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @RequestMapping(value = "/near/{lng}/{lat}/{distance}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<?> near(@PathVariable Double lng, @PathVariable Double lat, @PathVariable Double distance) {
+    public @ResponseBody ResponseEntity<?> all(@RequestParam(required = false) Integer page, @RequestParam(required = false) Integer offset) {
         try {
 
-            Iterable<Location> projectLocations = this.projectLocations.findByCoordinateNear(new Point(lng, lat), new Distance(distance, Metrics.KILOMETERS));
+            return new ResponseEntity<>(StreamSupport.stream(this.projects.findAll().spliterator(), true).collect(Collectors.toSet()), HttpStatus.OK);
 
-            return new ResponseEntity<>(projectLocations, HttpStatus.OK);
-
-        } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @RequestMapping(value = "within", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<?> within(@RequestParam Double swLng, @RequestParam Double swLat, @RequestParam Double neLng, @RequestParam Double neLat) {
-        try {
-
-            Iterable<Location> projectLocations = this.projectLocations.findByCoordinateWithin(new Box(new Point(swLng, swLat), new Point(neLng, neLat)));
-
-            if (projectLocations != null) {
-
-                Set<Location> locationSet = StreamSupport.stream(projectLocations.spliterator(), true)
-                        .collect(Collectors.toSet());
-                Iterable<Project> projects = null;
-
-                //projects = this.projects.findAllByLocationIn(locationSet);
-
-                return new ResponseEntity<>(StreamSupport.stream(projects.spliterator(), true).collect(Collectors.toList()), HttpStatus.OK);
-            }
-
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @RequestMapping(value = "within/{lng}/{lat}/{distance}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<?> within(@PathVariable Double lng, @PathVariable Double lat, @PathVariable Double distance) {
-        try {
-
-            Iterable<Location> projectLocations = this.projectLocations.findByCoordinateWithin(new Circle(new Point(lng, lat), new Distance(distance, Metrics.KILOMETERS)));
-
-            return new ResponseEntity<>(projectLocations, HttpStatus.OK);
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
