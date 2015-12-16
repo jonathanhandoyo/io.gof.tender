@@ -1,4 +1,4 @@
-<div class="widget projects-widget">
+<div class="widget location.projects-widget">
 
     <div class="widget-head br-blue">
         <h3><i class="fa fa-list-ul"></i> Projects List</h3>
@@ -8,23 +8,23 @@
 
         <ul class="list-unstyled">
 
-            <li ng-repeat="project in projects track by $index" class="clearfix" style="padding: 12px 15px 5px 15px;">
+            <li ng-repeat="location in locations track by $index" class="clearfix" style="padding: 12px 15px 5px 15px;">
                 <p>
                     <!-- Project icon -->
-                    <i class="fa {{project.icon}}" style="font-size: 14px;"></i>
+                    <i class="fa {{location.project.icon ? location.project.icon : 'fa-map-marker'}}" style="font-size: 14px;"></i>
                     <!-- Name -->
-                    <a href="#/project/{{project.id}}"><strong>{{project.name}}</strong></a>
+                    <a href="#/location.project/{{location.project.id}}"><strong>{{location.project.name}}</strong></a>
                 </p>
 
                 <p class="p-meta">
                     <!-- Due date & % Completed -->
-                    <span>Due : {{project.dueDate}} - {{project.completion}}% Done</span>
+                    <span>Due : {{location.project.dueDate}} - {{location.project.completion}}% Done</span>
                 </p>
 
                 <!-- Progress bar -->
                 <div class="progress clearfix">
-                    <div class="progress-bar progress-bar-{{!project.state || project.state === 'normal' ? 'info' : project.state}}"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{'width' : project.completion + '%'}">
-                        <span class="sr-only">{{project.completion}}% Complete</span>
+                    <div class="progress-bar progress-bar-{{!location.project.state || location.project.state === 'normal' ? 'info' : location.project.state}}"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{'width' : location.project.completion + '%'}">
+                        <span class="sr-only">{{location.project.completion}}% Complete</span>
                     </div>
                 </div>
 
