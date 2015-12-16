@@ -9,9 +9,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Map;
 
 @Getter
 @Setter
@@ -39,9 +37,10 @@ public class Project extends BaseEntity {
 
     private String workScope; //Lingkup pekerjaan
     private String description; //Keterangan
-    private Step[] steps; //Tahap Lelang
+    private BiddingStep[] biddingSteps; //Tahap Lelang
+    private String biddingStepsLink;
     private String organizer; //Instansi
-    private Tuple workUnit; //Satuan Kerja
+    private String workUnit; //Satuan Kerja
     private String category; //Kategori
     private Method method;
     private String fiscalYear; //Tahun Anggaran
@@ -60,7 +59,7 @@ public class Project extends BaseEntity {
     @Getter
     @Setter
     @Builder
-    public static class Step extends BaseEntity {
+    public static class BiddingStep extends BaseEntity {
         private String name;
 
         @JsonSerialize(using = CustomShortDateSerializer.class)
@@ -97,12 +96,9 @@ public class Project extends BaseEntity {
     @Setter
     @Builder
     public static class Qualification extends BaseEntity {
-        private String similarProjectExp; //Memiliki Pengalaman Pekerjaan Sejenis Minimal
-        private String similarProjectValue; //Dengan Nilai Kontrak Minimal
-        private String SimilarProjectRange; //dalam jangka waktu
-        private String[] permit;
-        private Map<String, String[]> permitClassifications; //Memiliki klasifikasi
-        private String permitClassificationReq; //keseluruhan atau salah satu
+        private Tuple[] permits;
+        private Tuple[] requirements;
+        String link;
 
     }
 
