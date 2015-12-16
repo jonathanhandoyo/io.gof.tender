@@ -52,7 +52,7 @@ public class ProjectController {
                 return new ResponseEntity<>(StreamSupport.stream(this.projects.findAll(Arrays.asList(ids)).spliterator(), true).collect(Collectors.toSet()), HttpStatus.OK);
             } else {
                 PageRequest request = new PageRequest(0, 10, new Sort(Sort.Direction.DESC, "created"));
-                return new ResponseEntity<>(StreamSupport.stream(this.projects.findAllWithLocationExists(request).spliterator(), true).collect(Collectors.toSet()), HttpStatus.OK);
+                return null;//return new ResponseEntity<>(StreamSupport.stream(this.projects.findAllWithLocationsExists(request).spliterator(), true).collect(Collectors.toSet()), HttpStatus.OK);
             }
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
@@ -84,7 +84,9 @@ public class ProjectController {
 
                 Set<Location> locationSet = StreamSupport.stream(projectLocations.spliterator(), true)
                         .collect(Collectors.toSet());
-                Iterable<Project> projects = this.projects.findAllByLocationIn(locationSet);
+                Iterable<Project> projects = null;
+
+                //projects = this.projects.findAllByLocationIn(locationSet);
 
                 return new ResponseEntity<>(StreamSupport.stream(projects.spliterator(), true).collect(Collectors.toList()), HttpStatus.OK);
             }

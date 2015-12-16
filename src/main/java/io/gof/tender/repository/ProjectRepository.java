@@ -13,13 +13,13 @@ import java.util.Set;
 
 @Repository
 public interface ProjectRepository extends CrudRepository<Project, String> {
-    @Query(value = "{location: {$exists:true}}",
+    /*@Query(value = "{locations: {&in:true}}",
             fields = "{name:1, location:1, category:1, announcementDate:1, biddingEndDate:1 }")
-    Page<Project> findAllWithLocationExists(Pageable pageable);
+    Page<Project> findAllWithLocationsExists(Pageable pageable);
 
     @Query("{location: {$exists:false}}")
-    Page<Project> findWithoutLocation(Pageable pageable);
+    Page<Project> findWithoutLocations(Pageable pageable);
 
     @Query(fields = "{name:1, location:1, category:1, announcementDate:1, biddingEndDate:1 }")
-    List<Project> findAllByLocationIn(Set<Location> locationSet);
+    List<Project> findAllByLocationIn(Set<Location> locationSet);*/
 }

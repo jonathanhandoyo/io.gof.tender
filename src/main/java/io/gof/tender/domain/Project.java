@@ -48,9 +48,6 @@ public class Project extends BaseEntity {
     private Price price;
     private ContractType contractType;
 
-    @DBRef
-    private Location[] locations; //Lokasi Pekerjaan
-
     private Qualification qualification;
     private Bidder[] bidders; //Peserta Lelang
 
@@ -130,8 +127,8 @@ public class Project extends BaseEntity {
     @Setter
     @Builder
     public static class Price extends BaseEntity {
-        private Double estimated; //Nilai HPS
-        private Double ceiling; //Nilai Pagu
-        private Double negotiated;
+        private String estimated; //Nilai HPS
+        private String ceiling; //Nilai Pagu
+        private String negotiated;
     }
 }

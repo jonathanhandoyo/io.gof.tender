@@ -224,7 +224,7 @@ public class Bootstrapper extends BaseTester {
 
     @Test
     public void findAndUpdateProject() throws Exception {
-        System.out.println("Start read");
+        /*System.out.println("Start read");
         Iterable<Location> locations = this.locations.findAll();
 
         // Keep that in a constant if it stays the same
@@ -241,16 +241,16 @@ public class Bootstrapper extends BaseTester {
         for (int i = 0; i < projectList.size(); i++) {
             Project project = projectList.get(i);
             Location location = locationCollection.get(i);
-            project.setLocation(location);
+            project.setLocations(new Location[]{location});
             location.setProject(project);
             this.projects.save(project);
             this.locations.save(location);
-        }
+        }*/
     }
 
     @Test
     public void test() {
-        PageRequest request = new PageRequest(0, 10, new Sort(Sort.Direction.DESC, "created"));
-        this.projects.findAllWithLocationExists(request).forEach(it -> System.out.println(it));
+        /*PageRequest request = new PageRequest(0, 10, new Sort(Sort.Direction.DESC, "created"));
+        this.projects.findAllWithLocationExists(request).forEach(it -> System.out.println(it));*/
     }
 }
