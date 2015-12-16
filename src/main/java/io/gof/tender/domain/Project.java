@@ -20,8 +20,9 @@ public class Project extends BaseEntity {
     private String id;
 
     private String code;
+    private String biddingCode;
     private String name;
-
+    private String desc;
 
     @JsonSerialize(using = CustomShortDateSerializer.class)
     @JsonDeserialize(using = CustomShortDateDeserializer.class)
