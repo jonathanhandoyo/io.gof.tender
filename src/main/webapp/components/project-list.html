@@ -1,14 +1,15 @@
 <div class="container">
     <div class="row">
         <div class="col-md-7 col-xs-12">
-            <leaflet id="inMap"
-                     markers="markers"
-                     lf-center="center"
-                     height="{{mapHeight}}" width="100%">
-            </leaflet>
+            <app-projects-map callback="onLocationsLoaded"></app-projects-map>
         </div>
         <div class="col-md-5 col-xs-12">
             <app-projects-loc locations="locations"></app-projects-loc>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+
         </div>
     </div>
 </div>

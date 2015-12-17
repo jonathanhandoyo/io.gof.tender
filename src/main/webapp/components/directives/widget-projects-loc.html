@@ -1,10 +1,10 @@
-<div class="widget location.projects-widget">
+<div class="widget projects-widget">
 
     <div class="widget-head br-blue">
         <h3><i class="fa fa-list-ul"></i> Projects List</h3>
     </div>
 
-    <div class="widget-body no-padd">
+    <div class="widget-body no-padd"  app-scroll>
 
         <ul class="list-unstyled">
 
@@ -13,11 +13,13 @@
                     <!-- Project icon -->
                     <i class="fa {{location.project.icon ? location.project.icon : 'fa-map-marker'}}" style="font-size: 14px;"></i>
                     <!-- Name -->
-                    <a href="#/location.project/{{location.project.id}}"><strong>{{location.project.name}}</strong></a>
+                    <a href="#/project/{{location.project.id}}"><strong>{{location.project.name}}</strong></a>
                 </p>
 
                 <p class="p-meta">
-                    <!-- Due date & % Completed -->
+                    <span>{{location.address}}</span>
+                </p>
+                <p class="p-meta">
                     <span>Due : {{location.project.dueDate}} - {{location.project.completion}}% Done</span>
                 </p>
 

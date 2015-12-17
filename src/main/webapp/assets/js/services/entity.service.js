@@ -5,7 +5,7 @@
 'use strict';
 
 angular.module('mainApp')
-    .factory('LoveMeTender', ["Restangular", function(Restangular){
+    .factory('RestUtil', ["Restangular", function(Restangular){
         return Restangular.withConfig(function (RestangularConfigurer) {
             //Sets base url for the rest requests to api
             RestangularConfigurer.setBaseUrl("api");
@@ -104,7 +104,7 @@ angular.module('mainApp')
                     close: function (alerts) {
                         return exports.closeAlert(this.id, alerts);
                     }
-                }
+                };
                 if(!alert.scoped) {
                     alerts.push(alert);
                 }

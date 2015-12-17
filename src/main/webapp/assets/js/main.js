@@ -68,9 +68,10 @@ var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', 'ngFileUplo
                 }
             },
             resolve: {}
-        })*/.state('projects', {
+        })*/
+        .state('projects', {
             parent: 'site',
-            url: '/',//url: '/projects',
+            url: '/',
             data: {
                 authorities: []
             },
