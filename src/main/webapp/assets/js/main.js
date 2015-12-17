@@ -1,4 +1,4 @@
-var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', 'ngFileUpload', 'ngAria', 'restangular', 'nemLogging', 'ui-leaflet'])
+var main_app = angular.module('mainApp', ['ngSanitize', 'ui.router', 'ngFileUpload', 'ngAria', 'restangular', 'nemLogging'/*, 'ui-leaflet'*/])
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, AlertServiceProvider) {
         // comment below to make alerts doesn't look like toast
         AlertServiceProvider.showAsToast(true);

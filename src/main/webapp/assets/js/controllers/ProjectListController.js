@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mainApp')
-    .controller('ProjectListController', function ($scope, $stateParams, $http, leafletMapEvents, leafletData){
+    .controller('ProjectListController', function ($scope, $stateParams, $http){
 
         $scope.$parent.pageTitle = 'Projects';
         $scope.$parent.pageIcon = 'fa-list-ul';
