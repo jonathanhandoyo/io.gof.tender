@@ -34,7 +34,7 @@ angular.module('mainApp')
 
                             scope.getProjectsLocations(sw.lng(), sw.lat(), ne.lng(), ne.lat(), function(locations){
 
-                                scope.setMarker(locations)
+                                scope.setMarker(locations);
 
                                 scope.callback(locations);
                             });
