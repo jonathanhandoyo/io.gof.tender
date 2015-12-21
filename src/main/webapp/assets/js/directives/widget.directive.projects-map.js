@@ -14,14 +14,32 @@ angular.module('mainApp')
                 scope.initMap = function() {
                     var map = new google.maps.Map(document.getElementById('projects-map'), {
                         center: {lat: -6.168886321082537, lng: 106.81139945983887}, //Jakarta
-                        zoom: 13/*,
-                        scrollwheel: false*/
+                        zoom: 13,
+                        scrollwheel: false
                     });
 
                     scope.map = map;
                     scope.markers = [];
 
-                    scope.mapListener = scope.createMapListener(map);
+                    scope.mapListener = map.addListener('idle', function() {
+                        console.log('map listener executed');
+
+                        window.setTimeout(function() {
+
+                            console.log('map listener timeout runs');
+
+                            var bounds = map.getBounds();
+                            var ne = bounds.getNorthEast();
+                            var sw = bounds.getSouthWest();
+
+                            scope.getProjectsLocations(sw.lng(), sw.lat(), ne.lng(), ne.lat(), function(locations){
+
+                                scope.setMarker(locations)
+
+                                scope.callback(locations);
+                            });
+                        }, 1000);
+                    });
                 };
 
                 scope.getProjectsLocations = function(swLng, swLat, neLng, neLat, callback){
@@ -37,31 +55,14 @@ angular.module('mainApp')
                     });
                 };
 
-                scope.createMapListener = function(map){
-                    return map.addListener('idle', function() {
-                        console.log('map listener executed');
-
-                        window.setTimeout(function() {
-
-                            console.log('map listener timeout runs');
-
-                            var bounds = map.getBounds();
-                            var ne = bounds.getNorthEast();
-                            var sw = bounds.getSouthWest();
-
-                            scope.getProjectsLocations(sw.lng(), sw.lat(), ne.lng(), ne.lat(), function(locations){
-                                angular.forEach(locations, function(loc, idx){
-                                    scope.markers.push(new google.maps.Marker({
-                                        position: {lat: loc.coordinate[0], lng: loc.coordinate[1]},
-                                        map: map,
-                                        title: loc.project.name + '\n' + loc.address,
-                                        animation: google.maps.Animation.DROP
-                                    }));
-                                });
-
-                                scope.callback(locations);
-                            });
-                        }, 3000);
+                scope.setMarker = function(locations){
+                    angular.forEach(locations, function(loc, idx){
+                        scope.markers.push(new google.maps.Marker({
+                            position: {lat: loc.coordinate[0], lng: loc.coordinate[1]},
+                            //title: loc.project.name + '\n' + loc.address,
+                            animation: google.maps.Animation.DROP,
+                            map: map
+                        }));
                     });
                 };
 

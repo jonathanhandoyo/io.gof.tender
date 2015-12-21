@@ -17,8 +17,10 @@ public class Location extends BaseEntity {
     @Id
     private String id;
 
-    @DBRef
-    private Project project;
+    /*@DBRef
+    private Project project;*/
+
+    String projectId;
 
     private String address;
     private String geolocAddress;

@@ -115,7 +115,7 @@ public class ProjectLoader extends BaseTester {
             if(projectMap.get("locations") != null){
                 for(Map locationMap : (ArrayList<Map>)projectMap.get("locations")){
                     Location location = Location.builder()
-                        .project(project)
+                        .projectId(project.getId())
                         .address(getStr(locationMap.get("address")))
                     .build();
 
@@ -182,4 +182,12 @@ public class ProjectLoader extends BaseTester {
     private String getStr(Object str){
         return str != null ? StringUtils.trim((String) str) : null;
     }
+
+    /*@Test
+    public void setLocationProjectId() throws Exception{
+        List<Location> locationList = locations.findAll();
+        for(Location location : locationList){
+            location.setProjectId(location.getProject().getId());
+        }
+    }*/
 }
