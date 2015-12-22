@@ -9,33 +9,41 @@
         <ul class="list-unstyled">
 
             <li ng-repeat="location in locations track by $index" class="clearfix" style="padding: 12px 15px 5px 15px;">
-                <p>
-                    <!-- Project icon -->
-                    <i class="fa {{location.project.icon ? location.project.icon : 'fa-map-marker'}}" style="font-size: 14px;"></i>
-                    <!-- Name -->
-                    <a href="#/project/{{location.project.id}}"><strong>{{location.project.name}}</strong></a>
-                </p>
+                <div ng-if="location.project">
+                    <p>
+                        <!-- Project icon -->
+                        <i class="fa {{location.project.icon ? location.project.icon : 'fa-map-marker'}}" style="font-size: 14px;"></i>
+                        <!-- Name -->
+                        <a href="#/project/{{location.project.id}}"><strong>{{location.project.name}}</strong></a>
+                    </p>
 
-                <p class="p-meta">
-                    <span>{{location.address}}</span>
-                </p>
-                <p class="p-meta">
-                    <span>Due : {{location.project.dueDate}} - {{location.project.completion}}% Done</span>
-                </p>
+                    <p class="p-meta">
+                        <span>{{location.address}}</span>
+                    </p>
+                    <p class="p-meta">
+                        <span>Due : {{location.project.dueDate}} - {{location.project.completion}}% Done</span>
+                    </p>
 
-                <!-- Progress bar -->
-                <div class="progress clearfix">
-                    <div class="progress-bar progress-bar-{{!location.project.state || location.project.state === 'normal' ? 'info' : location.project.state}}"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{'width' : location.project.completion + '%'}">
-                        <span class="sr-only">{{location.project.completion}}% Complete</span>
+                    <!-- Progress bar -->
+                    <div class="progress clearfix">
+                        <div class="progress-bar progress-bar-{{!location.project.state || location.project.state === 'normal' ? 'info' : location.project.state}}"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{'width' : location.project.completion + '%'}">
+                            <span class="sr-only">{{location.project.completion}}% Complete</span>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="pull-right clearfix">
+                        <a href="#" class="btn btn-success btn-xs" title="Comment"><i class="fa fa-comments"></i></a>
+                        <a href="#" class="btn btn-primary btn-xs" title="Vote"><i class="fa fa-thumbs-up"></i></a>
+                        <a href="#" class="btn btn-yellow btn-xs" title="Mark"><i class="fa fa-star"></i></a>
+                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-check-square-o"></i></a>
                     </div>
                 </div>
-
-                <!-- Actions -->
-                <div class="pull-right clearfix">
-                    <a href="#" class="btn btn-success btn-xs" title="Comment"><i class="fa fa-comments"></i></a>
-                    <a href="#" class="btn btn-primary btn-xs" title="Vote"><i class="fa fa-thumbs-up"></i></a>
-                    <a href="#" class="btn btn-yellow btn-xs" title="Mark"><i class="fa fa-star"></i></a>
-                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-check-square-o"></i></a>
+                <div ng-if="!location.project">
+                    <p>
+                        <i class="fa fa-map-marker" style="font-size: 14px;"></i>
+                        <span class="list-item-loader"> </span>
+                    </p>
                 </div>
             </li>
 

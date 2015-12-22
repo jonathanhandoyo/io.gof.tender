@@ -45,3 +45,10 @@ th {
     left: 50%;
     margin: -28px 0 0 -25px;
 }
+
+.list-item-loader {
+    width: 28px;
+    height: 28px;
+    background: transparent url("../img/ellipsis.gif") no-repeat left;
+    float: right;
+}

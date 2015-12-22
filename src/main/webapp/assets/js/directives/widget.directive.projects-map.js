@@ -19,7 +19,9 @@ angular.module('mainApp')
                     });
 
                     scope.map = map;
-                    scope.markers = [];
+                    scope.markers = {};
+
+                    scope.oms = new OverlappingMarkerSpiderfier(map, {markersWontMove: true, markersWontHide: true, nearbyDistance: 5});
 
                     scope.mapListener = map.addListener('idle', function() {
                         console.log('map listener executed');
@@ -38,7 +40,7 @@ angular.module('mainApp')
 
                                 scope.callback(locations);
                             });
-                        }, 1000);
+                        }, 300);
                     });
                 };
 
@@ -57,12 +59,16 @@ angular.module('mainApp')
 
                 scope.setMarker = function(locations){
                     angular.forEach(locations, function(loc, idx){
-                        scope.markers.push(new google.maps.Marker({
-                            position: {lat: loc.coordinate[0], lng: loc.coordinate[1]},
-                            //title: loc.project.name + '\n' + loc.address,
-                            animation: google.maps.Animation.DROP,
-                            map: map
-                        }));
+                        if (!scope.markers[loc.id]) {
+                            var marker = new google.maps.Marker({
+                                position: {lat: loc.coordinate[0], lng: loc.coordinate[1]},
+                                title: loc.id + '\n' + loc.projectId,
+                                animation: google.maps.Animation.DROP,
+                                map: scope.map
+                            });
+                            scope.oms.addMarker(marker);
+                            scope.markers[loc.id] = marker;
+                        }
                     });
                 };
 

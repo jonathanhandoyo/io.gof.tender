@@ -188,6 +188,8 @@ public class ProjectLoader extends BaseTester {
         List<Location> locationList = locations.findAll();
         for(Location location : locationList){
             location.setProjectId(location.getProject().getId());
+            location.setProject(null);
+            locations.save(location);
         }
     }*/
 }

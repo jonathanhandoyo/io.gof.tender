@@ -10,7 +10,9 @@ import java.util.Set;
 @Repository
 public interface LocationRepository extends MongoRepository<Location, String> {
     Set<Location> findByCoordinateWithin(Circle circle);
+
     Set<Location> findByCoordinateWithin(Box box);
+
     Set<Location> findByCoordinateWithin(Polygon polygon);
     Set<Location> findByCoordinateNear(Point point, Distance distance);
 }

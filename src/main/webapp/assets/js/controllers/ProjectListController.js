@@ -12,6 +12,14 @@ angular.module('mainApp')
 
         $scope.onLocationsLoaded = function(locations){
             $scope.locations = locations;
+            angular.forEach($scope.locations, function(loc, idx){
+                $http.get('/api/projects/' + loc.projectId
+                ).success(function(data, status, headers, config){
+                    loc.project = data;
+                }).error(function(data, status, headers, config) {
+                    alert('Failed to fetch Project detail');
+                });
+            });
         }
 
     });
