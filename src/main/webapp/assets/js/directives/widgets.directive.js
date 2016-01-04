@@ -1,23 +1,7 @@
 'use strict';
 
 angular.module('mainApp')
-    /* ****************************************** */
-    /* Comments Widget */
-/*
-    *
-    * comments: [
-    *   {
-    *       user: {
-    *           name: string,
-    *           avatar: string
-    *       },
-    *       time: string,
-    *       content: string
-    *   }
-    * ]
-    *
-    * */
-    /* ****************************************** */
+
     .directive('appComments', function() {
         return {
             restrict: 'E',
@@ -33,24 +17,6 @@ angular.module('mainApp')
         }
     })
 
-    /* ****************************************** */
-    /* Projects Widget */
-    /*
-    *
-    * projects: [
-    *   {
-    *       id: string,
-    *       name: string,
-    *       dueDate: string,
-    *       icon: string (fa-*),
-    *       completeness: int,
-    *       state: string (_blank_, 'warning', 'danger', 'success')
-    *   }
-    * ]
-    *
-    * */
-    /* project.state : normal, success, warning, danger */
-    /* ****************************************** */
     .directive('appProjectsLoc', function() {
         return {
             restrict: 'E',
@@ -59,40 +25,21 @@ angular.module('mainApp')
                 locations: '='
             },
             link: function(scope, element, attrs){
+                scope.highlightMarker = function(location){
+                    if(location.marker){
+                        location.marker.setAnimation(google.maps.Animation.BOUNCE);
+                    }
+                };
 
+                scope.dehighlightMarker = function(location){
+                    if(location.marker){
+                        location.marker.setAnimation(undefined);
+                    }
+                }
             }
         }
     })
 
-    /* ****************************************** */
-    /* Timeline Widget */
-    /*
-    *
-    * title: string
-    * milestones:  [
-    *   {
-    *       id: string
-    *       date: string,
-    *       title: string,
-    *       content: richText,
-    *       album: {
-    *           items: [
-    *               {
-    *                   src: string
-    *                   thumb: string
-    *               }
-    *           ]
-    *       },
-    *       highlights: [
-    *           {
-    *               text: richText
-    *           }
-    *       ]
-    *   }
-    * ]
-    *
-    * */
-    /* ****************************************** */
     .directive('appTimeline', function() {
         return {
             restrict: 'E',
@@ -111,9 +58,6 @@ angular.module('mainApp')
         }
     })
 
-    /* ****************************************** */
-    /* Map Widget */
-    /* ****************************************** */
     .directive('appMap', function($http) {
         return {
             restrict: 'E',
@@ -169,25 +113,6 @@ angular.module('mainApp')
         }
     })
 
-    /* ****************************************** */
-    /* Vendors Widget */
-    /*
-    *
-    * vendors: [
-    *   {
-    *       name: string,
-    *       contact: string,
-    *       admReq: boolean,
-    *       techReq: boolean,
-    *       score: string,
-    *       remarks: string,
-    *       priceOri: string,
-    *       priceAdj: string
-    *   }
-    * ]
-    *
-    * */
-    /* ****************************************** */
     .directive('appVendors', function() {
         return {
             restrict: 'E',

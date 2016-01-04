@@ -1,0 +1,73 @@
+{
+  "biddingStepsLink": "/eproc4/lelang/404119/jadwal",
+  "category": "\n            Pekerjaan Konstruksi\n        ",
+  "code": "404119",
+  "contractType": {
+    "fiscalYearImposition": "Tahun Tunggal",
+    "paymentMethod": "Lump Sum",
+    "sourceOfFund": "Pengadaan Tunggal"
+  },
+  "date": "08 Agustus 2012",
+  "desc": "",
+  "fiscalYear": " APBN 2012   ",
+  "locations": [
+    {
+      "address": "Rumpin - Bogor, Jawa Barat - "
+    }
+  ],
+  "method": {
+    "biddingMethod": "e-Lelang Umum",
+    "documentMethod": "Satu File",
+    "evaluationMethod": "Sistem Gugur",
+    "qualificationMethod": "Pascakualifikasi"
+  },
+  "name": "Perbaikan Jalan Lingkungan Perkantoran",
+  "organizer": "Lembaga Penerbangan Dan Antariksa Nasional (LAPAN)",
+  "price": {
+    "ceiling": "Rp 470.000.000,00",
+    "estimated": "Rp 470.000.000,00"
+  },
+  "qualification": {
+    "permits": [
+      {
+        "code": "SIUJK",
+        "name": "dengan Kode Sub Bidang (22001) Grade 3"
+      },
+      {
+        "code": "SBU",
+        "name": "bidang Sipil yang masih berlaku"
+      }
+    ],
+    "requirements": [
+      {
+        "code": "Memiliki surat keterangan dukungan keuangan dari bank pemerintah/swasta untuk mengikuti pengadaan barang/jasa.",
+        "name": ""
+      },
+      {
+        "code": "Telah melunasi kewajiban pajak tahun terakhir (SPT/PPh)",
+        "name": "Telah memenuhi kewajiban perpajakan tahun pajak terakhir (SPT Tahun 2011) serta memiliki laporan bulanan PPh Pasal 21, PPh Pasal 23 (bila ada transaksi), PPh Pasal 25/Pasal 29 dan PPN (bagi Pengusaha Kena Pajak) paling kurang 3 (tiga) bulan terakhir dalam tahun berjalan, yaitu bulan Mei, Juni dan Juli 2012. Peserta dapat mengganti persyaratan ini dengan menyampaikan Surat Keterangan Fiskal (SKF) 2012"
+      },
+      {
+        "code": "Tenaga Ahli",
+        "name": ""
+      },
+      {
+        "code": "Pengalaman Pekerjaan",
+        "name": ""
+      },
+      {
+        "code": "Pekerjaan Sedang Berjalan",
+        "name": ""
+      },
+      {
+        "code": "Peralatan",
+        "name": ""
+      },
+      {
+        "code": "Neraca",
+        "name": ""
+      }
+    ]
+  },
+  "workUnit": "Pusat Teknologi Roket"
+}

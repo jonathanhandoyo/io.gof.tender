@@ -1,0 +1,49 @@
+{
+  "biddingStepsLink": "/eproc4/lelang/1521119/jadwal",
+  "category": "\n            Pekerjaan Konstruksi\n        ",
+  "code": "1521119",
+  "contractType": {
+    "fiscalYearImposition": "Tahun Tunggal",
+    "paymentMethod": "Harga Satuan",
+    "sourceOfFund": "Pengadaan Tunggal"
+  },
+  "date": "27 Juni 2014",
+  "desc": "",
+  "fiscalYear": " APBN 2014   ",
+  "locations": [
+    {
+      "address": "Kantor Kementerian PPN/Bappenas Jl. Taman Suropati No. 2 Jakarta Pusat - Jakarta Pusat (Kota)"
+    }
+  ],
+  "method": {
+    "biddingMethod": "e-Lelang Pemilihan Langsung",
+    "documentMethod": "Satu File",
+    "evaluationMethod": "Sistem Gugur",
+    "qualificationMethod": "Pascakualifikasi"
+  },
+  "name": "Renovasi Interior Ruang Kerja Gedung TS2A Lantai 5 Kantor Kementerian PPN/Bappenas",
+  "organizer": "Bappenas",
+  "price": {
+    "ceiling": "Rp 746.013.500,00",
+    "estimated": "Rp 746.013.500,00"
+  },
+  "qualification": {
+    "permits": [
+      {
+        "code": "SIUJK",
+        "name": ""
+      },
+      {
+        "code": "SBU",
+        "name": "Perusahaan yang memiliki Sertifikat Badan Usaha (SBU) sub bidang Bangunan Bangunan Non Perumahan (21005)"
+      }
+    ],
+    "requirements": [
+      {
+        "code": "Telah melunasi kewajiban pajak tahun terakhir (SPT/PPh)",
+        "name": "1) SPT tahun 2013 (2) Pajak 3 bulan terakhir: Maret s/d Mei 2014"
+      }
+    ]
+  },
+  "workUnit": "Biro Umum"
+}

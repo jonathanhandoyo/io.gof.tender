@@ -60,14 +60,19 @@ angular.module('mainApp')
                 scope.setMarker = function(locations){
                     angular.forEach(locations, function(loc, idx){
                         if (!scope.markers[loc.id]) {
-                            var marker = new google.maps.Marker({
-                                position: {lat: loc.coordinate[0], lng: loc.coordinate[1]},
-                                title: loc.id + '\n' + loc.projectId,
-                                animation: google.maps.Animation.DROP,
-                                map: scope.map
-                            });
-                            scope.oms.addMarker(marker);
-                            scope.markers[loc.id] = marker;
+                            window.setTimeout(function(){
+                                var marker = new google.maps.Marker({
+                                    position: {lat: loc.coordinate[0], lng: loc.coordinate[1]},
+                                    title: loc.address,
+                                    animation: google.maps.Animation.DROP,
+                                    map: scope.map
+                                });
+                                scope.oms.addMarker(marker);
+                                scope.markers[loc.id] = marker;
+                                loc.marker = marker;
+                            }, idx * 100);
+                        } else {
+                            loc.marker = scope.markers[loc.id];
                         }
                     });
                 };

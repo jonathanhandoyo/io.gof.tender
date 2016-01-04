@@ -1,0 +1,49 @@
+{
+  "biddingStepsLink": "/eproc4/lelang/803119/jadwal",
+  "category": "\n            Pekerjaan Konstruksi\n        ",
+  "code": "803119",
+  "contractType": {
+    "fiscalYearImposition": "",
+    "paymentMethod": "",
+    "sourceOfFund": ""
+  },
+  "date": "18 Juli 2013",
+  "desc": "",
+  "fiscalYear": " APBN 2013   ",
+  "locations": [
+    {
+      "address": "Jl. 28 Oktober Siantan Hulu - Pontianak (Kota)"
+    }
+  ],
+  "method": {
+    "biddingMethod": "e-Lelang Umum",
+    "documentMethod": "Satu File",
+    "evaluationMethod": "Sistem Gugur",
+    "qualificationMethod": "Pascakualifikasi"
+  },
+  "name": "Pembangunan Pagar Pembatas Aset Dan Fasilitas Lainnya Lapan Pontianak",
+  "organizer": "Lembaga Penerbangan Dan Antariksa Nasional (LAPAN)",
+  "price": {
+    "ceiling": "Rp 2.643.000.000,00",
+    "estimated": "Rp 2.642.506.000,00"
+  },
+  "qualification": {
+    "permits": [
+      {
+        "code": "IUJK",
+        "name": ""
+      },
+      {
+        "code": "SBU",
+        "name": "21005  Non Kecil"
+      }
+    ],
+    "requirements": [
+      {
+        "code": "Telah melunasi kewajiban pajak tahun terakhir (SPT/PPh)",
+        "name": "Maret, April dan Mei 2013"
+      }
+    ]
+  },
+  "workUnit": "Biro Umum"
+}

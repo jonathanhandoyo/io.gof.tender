@@ -1,0 +1,52 @@
+{
+  "biddingStepsLink": "/eproc4/lelang/43119/jadwal",
+  "category": "\n            Pekerjaan Konstruksi\n        ",
+  "code": "43119",
+  "contractType": {
+    "fiscalYearImposition": "Tahun Tunggal",
+    "paymentMethod": "Harga Satuan",
+    "sourceOfFund": "Pengadaan Tunggal"
+  },
+  "date": "11 Oktober 2011",
+  "desc": "",
+  "fiscalYear": " APBN 2011   ",
+  "locations": [
+    {
+      "address": "Jakarta - "
+    }
+  ],
+  "method": {
+    "biddingMethod": "e-Lelang Umum",
+    "documentMethod": "Satu File",
+    "evaluationMethod": "Sistem Gugur",
+    "qualificationMethod": "Pascakualifikasi"
+  },
+  "name": "Pengadaan Interior Built In, Interior dan Partisi Lantai 9",
+  "organizer": "LKPP",
+  "price": {
+    "ceiling": "Rp 282.000.000,00",
+    "estimated": "Rp 275.588.500,00"
+  },
+  "qualification": {
+    "permits": [],
+    "requirements": [
+      {
+        "code": "Memiliki surat keterangan dukungan keuangan dari bank pemerintah/swasta untuk mengikuti pengadaan barang/jasa.",
+        "name": "sebesar Rp27.600.000,00 (dua puluh tujuh juta enam ratus ribu rupiah)"
+      },
+      {
+        "code": "Telah melunasi kewajiban pajak tahun terakhir (SPT/PPh)",
+        "name": "Juni 2011, Juli 2011 dan Agustus 2011"
+      },
+      {
+        "code": "Pengalaman Pekerjaan",
+        "name": "harus memperoleh paling sedikit 1 (satu) pekerjaan sebagai penyedia dalam kurun waktu 4 (empat) tahun terakhir, baik di lingkungan pemerintah maupun swasta termasuk pengalaman subkontrak, kecuali bagi penyedia yang baru berdiri kurang dari 3 (tiga) tahun"
+      },
+      {
+        "code": "Peralatan",
+        "name": "memiliki kemampuan untuk menyediakan fasilitas/peralatan/perlengkapan untuk melaksanakan pekerjaan konstruksi ini"
+      }
+    ]
+  },
+  "workUnit": "LKPP"
+}

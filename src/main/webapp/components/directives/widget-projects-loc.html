@@ -6,15 +6,17 @@
 
     <div class="widget-body no-padd"  app-scroll>
 
-        <ul class="list-unstyled">
+        <ul class="list-unstyled projects-list">
 
             <li ng-repeat="location in locations track by $index" class="clearfix" style="padding: 12px 15px 5px 15px;">
                 <div ng-if="location.project">
                     <p>
-                        <!-- Project icon -->
-                        <i class="fa {{location.project.icon ? location.project.icon : 'fa-map-marker'}}" style="font-size: 14px;"></i>
-                        <!-- Name -->
-                        <a href="#/project/{{location.project.id}}"><strong>{{location.project.name}}</strong></a>
+                        <a href="#/project/{{location.project.id}}" ng-mouseover="highlightMarker(location)" ng-mouseleave="dehighlightMarker(location)">
+                            <strong>
+                                <i class="fa {{location.project.icon ? location.project.icon : 'fa-map-marker'}}" style="font-size: 14px;"></i>
+                                {{location.project.name}}
+                            </strong>
+                        </a>
                     </p>
 
                     <p class="p-meta">

@@ -1,0 +1,69 @@
+{
+  "biddingStepsLink": "/eproc4/lelang/349119/jadwal",
+  "category": "\n            Pekerjaan Konstruksi\n        ",
+  "code": "349119",
+  "contractType": {
+    "fiscalYearImposition": "Tahun Tunggal",
+    "paymentMethod": "Harga Satuan",
+    "sourceOfFund": "Pengadaan Tunggal"
+  },
+  "date": "09 Juli 2012",
+  "desc": "",
+  "fiscalYear": " APBN 2012   ",
+  "locations": [
+    {
+      "address": "Jakarta - "
+    }
+  ],
+  "method": {
+    "biddingMethod": "e-Lelang Umum",
+    "documentMethod": "Satu File",
+    "evaluationMethod": "Sistem Gugur",
+    "qualificationMethod": "Pascakualifikasi"
+  },
+  "name": "Pekerjaan Pagar Jatisari",
+  "organizer": "Bappenas",
+  "price": {
+    "ceiling": "Rp 1.626.748.000,00",
+    "estimated": "Rp 1.626.748.000,00"
+  },
+  "qualification": {
+    "permits": [
+      {
+        "code": "Surat Ijin Usaha Jasa Konstruksi (SIUJK)",
+        "name": "Bangunan perumahan"
+      }
+    ],
+    "requirements": [
+      {
+        "code": "Memiliki surat keterangan dukungan keuangan dari bank pemerintah/swasta untuk mengikuti pengadaan barang/jasa.",
+        "name": "Surat dukungan keuangan dari bank sebesar 10% dari total nilai HPS"
+      },
+      {
+        "code": "Telah melunasi kewajiban pajak tahun terakhir (SPT/PPh)",
+        "name": "SPT tahun 2011;\nPajak 3 bulan terakhir yaitu: bulan Maret s.d Juni 2012"
+      },
+      {
+        "code": "Tenaga Ahli",
+        "name": ""
+      },
+      {
+        "code": "Pengalaman Pekerjaan",
+        "name": "Memiliki pengalaman di bidang bangunan perumahan dalam kurun waktu 4 (empat) tahun terakhir, kecuali perusahaan yang baru berdiri kurang dari 3 tahun"
+      },
+      {
+        "code": "Pekerjaan Sedang Berjalan",
+        "name": ""
+      },
+      {
+        "code": "Peralatan",
+        "name": ""
+      },
+      {
+        "code": "Neraca",
+        "name": ""
+      }
+    ]
+  },
+  "workUnit": "Biro Umum"
+}

@@ -17,7 +17,9 @@ angular.module('mainApp')
                 ).success(function(data, status, headers, config){
                     loc.project = data;
                 }).error(function(data, status, headers, config) {
-                    alert('Failed to fetch Project detail');
+                    loc.project = {
+                        error : data
+                    };
                 });
             });
         }

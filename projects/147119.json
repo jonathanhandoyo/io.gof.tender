@@ -1,0 +1,61 @@
+{
+  "biddingStepsLink": "/eproc4/lelang/147119/jadwal",
+  "category": "\n            Pekerjaan Konstruksi\n        ",
+  "code": "147119",
+  "contractType": {
+    "fiscalYearImposition": "Tahun Tunggal",
+    "paymentMethod": "Lump Sum",
+    "sourceOfFund": "Pengadaan Tunggal"
+  },
+  "date": "12 Februari 2012",
+  "desc": "",
+  "fiscalYear": " APBN 2012   ",
+  "locations": [
+    {
+      "address": "Gedung Kantor Pusat Badan SAR Nasional Jakarta Pusat - "
+    }
+  ],
+  "method": {
+    "biddingMethod": "e-Lelang Umum",
+    "documentMethod": "Dua Tahap",
+    "evaluationMethod": "Sistem Nilai",
+    "qualificationMethod": "Prakualifikasi"
+  },
+  "name": "Pengadaan Pembangunan 1 (satu) Unit Kapal Penyelamatan (Rescue Boat) Bahan Aluminium Panjang 40 Meter untuk Kantor SAR Padang",
+  "organizer": "Badan SAR Nasional",
+  "price": {
+    "ceiling": "Rp 44.400.000.000,00",
+    "estimated": "Rp 44.352.000.000,00"
+  },
+  "qualification": {
+    "permits": [
+      {
+        "code": "SIUP",
+        "name": "ijin usaha pembangunan kapal"
+      }
+    ],
+    "requirements": [
+      {
+        "code": "Memiliki surat keterangan dukungan keuangan dari bank pemerintah/swasta untuk mengikuti pengadaan barang/jasa.",
+        "name": "Memiliki surat keterangan dukungan keuangan dari bank pemerintah/swasta sebesar Rp. 4.435.200.000,- (Empat milyar empat ratus tiga puluh lima juta dua ratus ribu rupiah)"
+      },
+      {
+        "code": "Telah melunasi kewajiban pajak tahun terakhir (SPT/PPh)",
+        "name": "Telah melunasi kewajiban pajak tahun terakhir (SPT/PPh) serta memiliki laporan bulanan PPh Pasal 25 atau Pasal 21/Pasal 23 atau PPN sekurangkurangnya 3 (tiga) bulan yang lalu"
+      },
+      {
+        "code": "Tenaga Ahli",
+        "name": "- Pimpro dengan kualifikasi Pendidikan S1 Teknik Perkapalan (Pengalaman min 4 tahun), atau D3 Teknik Perkapalan (Pengalaman min 6 tahun), STM Teknik Perkapalan (Pengalaman min 8 tahun)\n- Tenaga ahli kontruksi dengan kualifikasi Pendidikan S1 Teknik Perkapalan (Pengalaman min 4 tahun), atau D3 Teknik Perkapalan (Pengalaman min 6 tahun), STM Teknik Perkapalan (Pengalaman min 8 tahun)\n- Tenaga ahli permesinan kapal dengan kualifikasi Pendidikan S1 Teknik Sistem Perkapalan atau Teknik Mesin  (Pengalaman min 4 tahun), atau D3 Teknik mesin (Pengalaman min 6 tahun), STM Teknik Mesin (Pengalaman min 8 tahun)\n- Tenaga ahli kelistrikan kapal dengan kualifikasi Pendidikan S1 Teknik Elektro   (Pengalaman min 4 tahun), atau D3 Teknik Elektro (Pengalaman min 6 tahun), STM Teknik Elektro (Pengalaman min 8 tahun)\n- Tenaga teknis pengelasan dengan kualifikasi memiliki sertifikat las dengan klasifikasi material aluminium (Pengalaman min 5 tahun)"
+      },
+      {
+        "code": "Pengalaman Pekerjaan",
+        "name": "memiliki pengalaman pada subbidang Pengadaan Pembangunan Kapal Bahan Aluminium dengan Kemampuan Dasar (KD) sebesar 3 NPt (Nilai Pengalaman tertinggi) minimal sebesar Rp. 14.784.000.000,-) (Empat belas milyar tujuh ratus delapan puluh empat juta rupiah) dalam 10 (sepuluh) tahun terakhir (Sejak Januari 2002)"
+      },
+      {
+        "code": "Peralatan",
+        "name": "- Luas areal kerja (galangan) minimal 5.000 m2\n- tersedia gudang material\n- tersedia areal pabrikasi tertutup yang memadai untuk proyek pembangunan 1 (satu) kapal panjang 40 m\n- tersedia fasilitas untuk peluncuran kapal\n- tersedia alat angkat didalam ruang fabrikasi\n- tersedia workshop\n- tersedia peralatan/perlengkapan pengelasan untuk aluminium"
+      }
+    ]
+  },
+  "workUnit": "Badan SAR Nasional"
+}

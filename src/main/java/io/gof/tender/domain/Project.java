@@ -26,6 +26,9 @@ public class Project extends BaseEntity {
 
     private String biddingDateStr;
 
+    @DBRef
+    Location location;
+
     @JsonSerialize(using = CustomShortDateSerializer.class)
     @JsonDeserialize(using = CustomShortDateDeserializer.class)
     private Date start;

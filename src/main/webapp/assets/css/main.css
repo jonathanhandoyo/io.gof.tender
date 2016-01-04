@@ -52,3 +52,7 @@ th {
     background: transparent url("../img/ellipsis.gif") no-repeat left;
     float: right;
 }
+
+ul.projects-list li a strong:hover {
+    color: red;
+}
